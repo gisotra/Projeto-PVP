@@ -1,0 +1,24 @@
+pseudo-documento de requisitos
+
+package assets
+sprites (Pngs)
+
+
+package elements:
+classe abstrata Obstacles:
+Wall1;
+FlyingObject;
+Wall2;
+Saw;
+
+classe abstrata Entities:
+player;
+player2 //vou aprender isso ainda  
+
+package game loop:
+GameFrame;
+GamePanel;
+GameLoop;
+
+package main
+Main
