@@ -1,0 +1,22 @@
+classes:
+
+package main 
+	Main
+
+package game
+	GLoop
+	GWindow
+	KeyInputs
+	MouseInputs
+
+package objects
+	abstract Entities
+		Player
+	abstract Obstacles 
+		FlyingObj
+		Wall
+		floorSaw
+
+package sprites
+	Sprite
+	Painter 
