@@ -1,9 +1,8 @@
 package main;
-
-import gameloop.GFrame;
+import loop.GRoom;
 
 public class Main {
     public static void main(String[] args) {
-        GFrame gF = new GFrame();
+        new GRoom();
     }
 }
