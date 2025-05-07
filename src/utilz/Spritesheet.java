@@ -7,14 +7,21 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 import loop.GRoom;
 
-public class Spritesheet {
+public class Spritesheet { /*Image loader dos sprites*/
     
-    public static final String PLAYER_ATLAS = "playerAtualizado2.png";
+    // sprites player
+    public static final String PLAYER_ATLAS = "player/playerAtualizado2.png";
+    
+    // sprites dos cenários
+    public static final String LAYER_GRASS = "environment/grama.png";
+    public static final String LAYER_CEU = "environment/ceu.png";
+    public static final String LAYER_CERCA = "environment/cerca.png";
+    public static final String LAYER_NUVENS = "environment/nuvens.png";
     
     public static BufferedImage GetSpriteAtlas(String fileName){
         
         BufferedImage img = null;
-                InputStream is = Spritesheet.class.getResourceAsStream("/assets/player/" + fileName); //leitura do spritesheet
+                InputStream is = Spritesheet.class.getResourceAsStream("/assets/" + fileName); //leitura do spritesheet
 
         try {
             img = ImageIO.read(is); //instancia BufferedImage lê o meu spritesheet 
@@ -31,21 +38,4 @@ public class Spritesheet {
         
         return img;
     }
-    
-    /*public static int[][] GetLevelData(){
-        int[][] lvlData = new int[GRoom.TILES_IN_HEIGHT][GRoom.TILES_IN_WIDTH];
-        BufferedImage img = GetSpriteAtlas(LEVEL_ONE_DATA);
-        
-        for(int j = 0; j < img.getHeight(); j++){
-            for(int i = 0; i < img.getWidth(); i++){
-                Color color = new Color(img.getRGB(i, j));
-                int value = color.getRed();
-                if(value >= 48){
-                    value = 0;
-                }
-                lvlData[j][i] = value;
-            }
-        }
-        return lvlData;
-    }*/
 }

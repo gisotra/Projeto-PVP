@@ -23,7 +23,7 @@ public class Entities {
     
     protected void drawHitbox(Graphics g) {
         //para testar a hitbox
-        g.setColor(Color.PINK);
+        g.setColor(Color.BLACK);
         g.drawRect((int) hitbox.x, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height);
     }
     

@@ -3,13 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/chern/OneDrive/Área%20de%20Trabalho/JogoPVP/src/room/Ground.java</file>
             <file>file:/C:/Users/chern/OneDrive/Área%20de%20Trabalho/JogoPVP/src/objects/Entities.java</file>
-            <file>file:/C:/Users/chern/OneDrive/Área%20de%20Trabalho/JogoPVP/src/objects/Constants.java</file>
-            <file>file:/C:/Users/chern/OneDrive/Área%20de%20Trabalho/JogoPVP/src/main/Main.java</file>
+            <file>file:/C:/Users/chern/OneDrive/Área%20de%20Trabalho/JogoPVP/src/loop/GRoom.java</file>
             <file>file:/C:/Users/chern/OneDrive/Área%20de%20Trabalho/JogoPVP/src/objects/Player1.java</file>
-            <file>file:/C:/Users/chern/OneDrive/Área%20de%20Trabalho/JogoPVP/src/assets/player/playerAtualizado2.png</file>
-            <file>file:/C:/Users/chern/OneDrive/Área%20de%20Trabalho/JogoPVP/src/objects/Collisors.java</file>
+            <file>file:/C:/Users/chern/OneDrive/Área%20de%20Trabalho/JogoPVP/src/loop/GWindow.java</file>
+            <file>file:/C:/Users/chern/OneDrive/Área%20de%20Trabalho/JogoPVP/src/environment/BackgroundLayer.java</file>
+            <file>file:/C:/Users/chern/OneDrive/Área%20de%20Trabalho/JogoPVP/src/environment/ParallaxLayer.java</file>
             <file>file:/C:/Users/chern/OneDrive/Área%20de%20Trabalho/JogoPVP/src/utilz/Spritesheet.java</file>
         </group>
     </open-files>

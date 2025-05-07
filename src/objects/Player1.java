@@ -40,8 +40,8 @@ public class Player1 extends Entities{
         super(x, y, 128, 128);
         this.ground = ground;
         loadAnimations();
-        initHitbox(x, y, 72, 96); //tamanho do meu personagem no sprite * 4 (escala que estou usando)
-        
+        //initHitbox(x, y, 72, 96); //tamanho do meu personagem no sprite * 4 (escala que estou usando)
+        initHitbox(x, y, p_height, p_width);
         //faço o player cair logo de primeira
         if(!IsEntityOnGround(hitbox, ground)){
             inAir = true;

@@ -1,10 +1,15 @@
 package loop;
 
+import environment.BackgroundLayer;
+import environment.ParallaxLayer;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.List;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import objects.Player1;
 import room.Ground;
+import utilz.Spritesheet;
 
 public class GRoom implements Runnable {
     
@@ -21,6 +26,9 @@ public class GRoom implements Runnable {
         //instância do chão
         private Ground ground;
         
+        //camadas do cenário
+        private List<ParallaxLayer> backLayers = new ArrayList<>();
+        
         //tamanho da tela
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         public int screenWidth = screenSize.width;
@@ -28,8 +36,8 @@ public class GRoom implements Runnable {
         
         public final static int TILES_DEFAULT_SIZE = 32;
         public final static float SCALE = 1.5f;
-        public final static int TILES_IN_WIDTH = 26; //832px
-        public final static int TILES_IN_HEIGHT = 14; //448px
+        public final static int TILES_IN_WIDTH = 12;  //382px de COMPRIMENTO
+        public final static int TILES_IN_HEIGHT = 7;  //215px ALTURA
         public final static int TILES_SIZE = (int)(TILES_DEFAULT_SIZE * SCALE);
         public static int GAME_WIDTH;
         public static int GAME_HEIGHT;
@@ -53,6 +61,7 @@ public class GRoom implements Runnable {
 	private void initClasses() {
             ground = new Ground(0, GAME_HEIGHT - (6 * TILES_SIZE), GAME_WIDTH, TILES_SIZE * 6);
             player1 = new Player1(200, 200, ground); 
+            loadParallaxBackground();
 
         }
         
@@ -64,13 +73,24 @@ public class GRoom implements Runnable {
         
         /*------------ MÉTODO UPDATE ------------*/
         public void update(){
-                player1.update();
+            player1.update();
+            float baseSpeed = 3.5f; // ajuste conforme a velocidade do seu jogo
+            for (ParallaxLayer layer : backLayers) {
+                layer.update(baseSpeed);
+            }
         }
         
         /*------------ MÉTODO RENDER ------------*/
         public void render(Graphics g){
+        
+                backLayers.get(0).render(g); // Céu
+                backLayers.get(1).render(g); // Nuvens
+                backLayers.get(2).render(g); // Cerca
+                
                 player1.render(g);
-                ground.render(g);
+                backLayers.get(3).render(g); //grama
+                /*ground.render(g);*/
+
         }
         
         
@@ -132,6 +152,16 @@ public class GRoom implements Runnable {
 
     }
 
+    
+    
+        /*------------ MÉTODO LOADER DE SPRITES DAS CAMADAS ------------*/
+    public void loadParallaxBackground(){
+        backLayers.add(new BackgroundLayer(Spritesheet.GetSpriteAtlas(Spritesheet.LAYER_CEU), 0.1f));
+        backLayers.add(new BackgroundLayer(Spritesheet.GetSpriteAtlas(Spritesheet.LAYER_NUVENS), 0.3f));
+        backLayers.add(new BackgroundLayer(Spritesheet.GetSpriteAtlas(Spritesheet.LAYER_CERCA), 0.6f));
+        backLayers.add(new BackgroundLayer(Spritesheet.GetSpriteAtlas(Spritesheet.LAYER_GRASS), 1.0f));
+    }
+    
     public Player1 getPlayer() {
         return player1;
     }
