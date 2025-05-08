@@ -1,9 +1,7 @@
 package environment;
-
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import loop.GRoom;
-
 public class BackgroundLayer extends ParallaxLayer {
     
     public BackgroundLayer(BufferedImage layer, float speedFactor) {
@@ -12,20 +10,16 @@ public class BackgroundLayer extends ParallaxLayer {
     
     @Override
     public void render(Graphics g) {
+        float scale = 4f; // Escala fixa (igual ao player)
 
-        int gameWidth = GRoom.TILES_IN_WIDTH * GRoom.TILES_SIZE;
-        int gameHeight = GRoom.TILES_IN_HEIGHT * GRoom.TILES_SIZE;
+        int scaledImgWidth = (int) (layer.getWidth() * scale);
+        int scaledImgHeight = (int) (layer.getHeight() * scale);
 
-        int imgWidth = layer.getWidth();
-        int imgHeight = layer.getHeight();
-
-        float scaleX = (float) gameHeight / imgHeight;
-        float scaledImgWidth = imgWidth * scaleX;
-        int count = (int) (gameWidth / scaledImgWidth) + 2;
+        int count = (GRoom.GAME_WIDTH / scaledImgWidth) + 2;
 
         for (int i = 0; i < count; i++) {
             int drawX = (int) (x + i * scaledImgWidth);
-            g.drawImage(layer, drawX, 0, (int) scaledImgWidth, gameHeight, null);
+            g.drawImage(layer, drawX, 0, scaledImgWidth, scaledImgHeight, null);
         }
     }
     

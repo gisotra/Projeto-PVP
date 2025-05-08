@@ -13,10 +13,10 @@ public class Spritesheet { /*Image loader dos sprites*/
     public static final String PLAYER_ATLAS = "player/playerAtualizado2.png";
     
     // sprites dos cenários
-    public static final String LAYER_GRASS = "environment/grama.png";
-    public static final String LAYER_CEU = "environment/ceu.png";
-    public static final String LAYER_CERCA = "environment/cerca.png";
-    public static final String LAYER_NUVENS = "environment/nuvens.png";
+    public static final String LAYER_GRASS = "environment/grama2.png";
+    public static final String LAYER_CEU = "environment/ceu2.png";
+    public static final String LAYER_CERCA = "environment/cerca2.png";
+    public static final String LAYER_NUVENS = "environment/nuvens2.png";
     
     public static BufferedImage GetSpriteAtlas(String fileName){
         

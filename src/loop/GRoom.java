@@ -83,13 +83,13 @@ public class GRoom implements Runnable {
         /*------------ MÉTODO RENDER ------------*/
         public void render(Graphics g){
         
-                backLayers.get(0).render(g); // Céu
+                /*backLayers.get(0).render(g); // Céu
                 backLayers.get(1).render(g); // Nuvens
                 backLayers.get(2).render(g); // Cerca
-                
+                */
                 player1.render(g);
-                backLayers.get(3).render(g); //grama
-                /*ground.render(g);*/
+                //backLayers.get(3).render(g); //grama
+                ground.render(g);
 
         }
         
