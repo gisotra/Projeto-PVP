@@ -26,6 +26,10 @@ public class GRoom implements Runnable {
         //instância do chão
         private Ground ground;
         
+        //instância do tipo colisor
+        
+       
+        
         //camadas do cenário
         private List<ParallaxLayer> backLayers = new ArrayList<>();
         
@@ -156,10 +160,10 @@ public class GRoom implements Runnable {
     
         /*------------ MÉTODO LOADER DE SPRITES DAS CAMADAS ------------*/
     public void loadParallaxBackground(){
-        backLayers.add(new BackgroundLayer(Spritesheet.GetSpriteAtlas(Spritesheet.LAYER_CEU), 0.1f));
-        backLayers.add(new BackgroundLayer(Spritesheet.GetSpriteAtlas(Spritesheet.LAYER_NUVENS), 0.3f));
-        backLayers.add(new BackgroundLayer(Spritesheet.GetSpriteAtlas(Spritesheet.LAYER_CERCA), 0.6f));
-        backLayers.add(new BackgroundLayer(Spritesheet.GetSpriteAtlas(Spritesheet.LAYER_GRASS), 1.0f));
+        backLayers.add(new BackgroundLayer(Spritesheet.GetSpritesheet(Spritesheet.LAYER_CEU), 0.1f));
+        backLayers.add(new BackgroundLayer(Spritesheet.GetSpritesheet(Spritesheet.LAYER_NUVENS), 0.3f));
+        backLayers.add(new BackgroundLayer(Spritesheet.GetSpritesheet(Spritesheet.LAYER_CERCA), 0.6f));
+        backLayers.add(new BackgroundLayer(Spritesheet.GetSpritesheet(Spritesheet.LAYER_GRASS), 1.0f));
     }
     
     public Player1 getPlayer() {

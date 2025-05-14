@@ -20,7 +20,7 @@ public class Ground {
     
     /*------------ RENDER ------------*/
     public void render(Graphics g){
-        g.setColor(Color.PINK);
+        g.setColor(Color.GRAY);
         g.fillRect(x, y, gr_width, gr_height);
     }
     

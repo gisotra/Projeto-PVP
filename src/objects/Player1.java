@@ -40,7 +40,7 @@ public class Player1 extends Entities{
         super(x, y, 128, 128);
         this.ground = ground;
         loadAnimations();
-        initHitbox(x, y, 72, 96); //tamanho do meu personagem no sprite * 4 (escala que estou usando)
+        initHitbox(x, y, 71, 95); //tamanho do meu personagem no sprite * 4 (escala que estou usando)
         //initHitbox(x, y, p_height, p_width);
         //faço o player cair logo de primeira
         if(!IsEntityOnGround(hitbox, ground)){
@@ -59,7 +59,7 @@ public class Player1 extends Entities{
     public void render(Graphics g) {
         
         g.drawImage(spritesheet[playerAction][aniIndex], (int) x, (int) y, 128, 128, null); //desenho o pedaço recortado na posição que eu quero, no tamanho que eu quero
-        drawHitbox(g); 
+        //drawHitbox(g); 
     }
     
     /*------------[ chamado no update] UPDATE DOS FRAMES ------------*/
@@ -192,7 +192,7 @@ public class Player1 extends Entities{
     
     private void loadAnimations() {
 
-        BufferedImage img = Spritesheet.GetSpriteAtlas(Spritesheet.PLAYER_ATLAS); //instancia BufferedImage lê o meu spritesheet 
+        BufferedImage img = Spritesheet.GetSpritesheet(Spritesheet.PLAYER_ATLAS); //instancia BufferedImage lê o meu spritesheet 
         spritesheet = new BufferedImage[3][3]; //tamanho do spritesheeet
         for (int j = 0; j < spritesheet.length; j++) {
             for (int i = 0; i < spritesheet[j].length; i++) {
