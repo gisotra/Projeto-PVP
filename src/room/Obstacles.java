@@ -20,22 +20,22 @@ public abstract class Obstacles { //muito similiar a classe Entities, porém dir
         this.height = height;
     }
 
-    protected void drawHitbox(Graphics g) {
+    protected void drawObstHitbox(Graphics g) {
         //para testar a hitbox
         g.setColor(Color.BLUE);
         g.drawRect((int) obs_hitbox.x, (int) obs_hitbox.y, (int) obs_hitbox.width, (int) obs_hitbox.height);
     }
     
-    protected void initHitbox(float x, float y, float width, float height) {
+    public void initObstHitbox(float x, float y, float width, float height) {
         obs_hitbox = new Rectangle2D.Float(x, y, width, height);
     }
     
-    protected void updateHitbox(){
+    protected void updateObstHitbox(){
         obs_hitbox.x = (int)x; //atualizo a posição horizontal
         obs_hitbox.y = (int)y; //atualizo a posição vertical
     }
 
-    public Rectangle2D.Float getHitbox(){
+    public Rectangle2D.Float getObstHitbox(){
         return obs_hitbox;
     }
 }

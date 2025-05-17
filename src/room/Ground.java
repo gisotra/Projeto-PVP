@@ -7,7 +7,7 @@ import java.awt.Rectangle;
 public class Ground {
     /*------------ ATRIBUTOS ------------*/
     private int x, y, gr_height, gr_width;
-    private Rectangle hitbox;
+    private Rectangle gHitbox;
     
     /*------------ CONSTRUTOR ------------*/
     public Ground (int x, int y, int gr_width, int gr_height){
@@ -15,7 +15,7 @@ public class Ground {
         this.y = y;
         this.gr_height = gr_height;
         this.gr_width = gr_width;
-        hitbox = new Rectangle(x, y, gr_width, gr_height);
+        gHitbox = new Rectangle(x, y, gr_width, gr_height);
     }
     
     /*------------ RENDER ------------*/
@@ -26,6 +26,10 @@ public class Ground {
     
     /*------------ RETORNA A HITBOX ------------*/
     public Rectangle getHitbox() {
-        return hitbox;
+        return gHitbox;
+    }
+    
+    public float getY() {
+        return y;
     }
 }

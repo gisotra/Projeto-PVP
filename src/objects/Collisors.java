@@ -10,6 +10,7 @@ public class Collisors {
     /*Uma classe com métodos auxiliares especializados em tratar das colisões do 
     player1 com o cenário*/
 
+    //colisão com o CHÃO
     public static boolean CanMoveHere(float x, float y, float width, float height, Ground ground) {
         if (!IsSolid(x, y, ground)) // canto superior esquerdo
         {

@@ -7,8 +7,11 @@ import java.awt.Graphics;
 import java.util.List;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.Random;
 import objects.Player1;
+import objects.Wall;
 import room.Ground;
+import room.Obstacles;
 import utilz.Spritesheet;
 
 public class GRoom implements Runnable {
@@ -27,7 +30,12 @@ public class GRoom implements Runnable {
         private Ground ground;
         
         //instância do tipo colisor
-        
+        /*logica: Crio um arraylist que vai ser incrementado até que o player morra, ou seja, até o jogo acabar
+        Isso vai ser feito através da biblioteca random*/
+        private List<Obstacles> obst;
+        private long lastSpawn = 0;
+        private long nextSpawn;
+        private Random r = new Random();
        
         
         //camadas do cenário
@@ -51,6 +59,8 @@ public class GRoom implements Runnable {
                 Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
                 GAME_WIDTH = screenSize.width;
                 GAME_HEIGHT = screenSize.height;
+                r = new Random(); //inicio a minha constante aleatória
+                nextSpawn = getRandomCooldown();
             
             
 		initClasses(); //instancia o player no jogo 
@@ -65,7 +75,8 @@ public class GRoom implements Runnable {
 	private void initClasses() {
             ground = new Ground(0, GAME_HEIGHT - (6 * TILES_SIZE), GAME_WIDTH, TILES_SIZE * 6);
             player1 = new Player1(200, 200, ground); 
-            loadParallaxBackground();
+            obst = new ArrayList<>(); //inicio o meu arraylist
+            //loadParallaxBackground();
 
         }
         
@@ -82,6 +93,28 @@ public class GRoom implements Runnable {
             for (ParallaxLayer layer : backLayers) {
                 layer.update(baseSpeed);
             }
+            
+            // Atualiza os obstáculos
+            for (int i = 0; i < obst.size(); i++) { 
+                Obstacles o = obst.get(i); 
+                if (o instanceof Wall) { // boolean
+                    Wall wall = (Wall) o; //pego minha instancia "o" (do tipo obstacle) e converto em wall
+                    wall.update(); //dou update
+
+                    // Remove da lista se sair da tela
+                    if (wall.isOffScreen()) {
+                        obst.remove(i);
+                        i--;
+                    }
+                }
+            }
+
+                // Verifica se está na hora de spawnar um novo muro
+            if (System.currentTimeMillis() - lastSpawn > nextSpawn) {
+                spawnWall();
+                lastSpawn = System.currentTimeMillis();
+                nextSpawn = getRandomCooldown();
+            }
         }
         
         /*------------ MÉTODO RENDER ------------*/
@@ -94,6 +127,13 @@ public class GRoom implements Runnable {
                 player1.render(g);
                 //backLayers.get(3).render(g); //grama
                 ground.render(g);
+                // Renderiza os obstáculos
+            for (Obstacles o : obst) { //for each
+                if (o instanceof Wall) { //verifico se é uma instancia wall
+                    ((Wall) o).render(g); //caso afirmativo, renderizo ele com o render da classe Wall
+                    // ((Wall)o).drawObstHitbox(g); // se quiser testar hitbox
+                }
+            }
 
         }
         
@@ -156,9 +196,26 @@ public class GRoom implements Runnable {
 
     }
 
+    /**/
+    public void spawnWall() {
+        int wallWidth = 70;
+        int wallHeight = 120;
+        float wallSpeed = -3.0f;
+
+        // Cria o muro no lado direito da tela (fora da tela) e na altura do chão
+        float x = GAME_WIDTH;
+        float y = ground.getY() - wallHeight;
+
+        Wall wall = new Wall(x, y, wallSpeed, wallWidth, wallHeight); //inithitbox no proprio construtor Wall
+        obst.add(wall); 
+    }
     
+    /*------------ TEMPO ALEATÓRIO PARA SPAWNAR OS OBJETOS ------------*/
+    public int getRandomCooldown(){
+        return 1000 + r.nextInt(500); 
+    }
     
-        /*------------ MÉTODO LOADER DE SPRITES DAS CAMADAS ------------*/
+    /*------------ MÉTODO LOADER DE SPRITES DAS CAMADAS ------------*/
     public void loadParallaxBackground(){
         backLayers.add(new BackgroundLayer(Spritesheet.GetSpritesheet(Spritesheet.LAYER_CEU), 0.1f));
         backLayers.add(new BackgroundLayer(Spritesheet.GetSpritesheet(Spritesheet.LAYER_NUVENS), 0.3f));
