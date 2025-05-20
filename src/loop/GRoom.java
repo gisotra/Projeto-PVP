@@ -9,6 +9,7 @@ import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Random;
 import objects.Player1;
+import objects.Player2;
 import objects.Wall;
 import room.Ground;
 import room.Obstacles;
@@ -23,8 +24,11 @@ public class GRoom implements Runnable {
 	private final int FPS_SET = 120; //120 FPS (frames por segundo) → ou seja, desenhar a tela 120 vezes a cada segundo pra ficar suave
 	private final int UPS_SET = 200; //200 UPS (updates por segundo) → ou seja, atualizar as coisas do jogo (posição de personagens, lógica, etc) 200 vezes a cada segundo, pra ficar preciso.
 
-        //instância do player
+        //instância do player 1
         private Player1 player1; //jogador 1
+        
+        //instância do player 2
+        private Player2 player2;
         
         //instância do chão
         private Ground ground;
@@ -33,8 +37,6 @@ public class GRoom implements Runnable {
         /*logica: Crio um arraylist que vai ser incrementado até que o player morra, ou seja, até o jogo acabar
         Isso vai ser feito através da biblioteca random*/
         private List<Obstacles> obst;
-        private long lastSpawn = 0;
-        private long nextSpawn;
         private Random r = new Random();
        
         
@@ -60,10 +62,11 @@ public class GRoom implements Runnable {
                 GAME_WIDTH = screenSize.width;
                 GAME_HEIGHT = screenSize.height;
                 r = new Random(); //inicio a minha constante aleatória
-                nextSpawn = getRandomCooldown();
-            
-            
-		initClasses(); //instancia o player no jogo 
+                //nextSpawn = getRandomCooldown();
+		
+                initClasses(); //instancia o player no jogo 
+                player2.setNextSpawn(getRandomCooldown());
+                
                 gamePanel = new GPanel(this);
 		gameWindow = new GWindow(gamePanel);
 		gamePanel.requestFocus(); //permite inputs
@@ -75,6 +78,7 @@ public class GRoom implements Runnable {
 	private void initClasses() {
             ground = new Ground(0, GAME_HEIGHT - (6 * TILES_SIZE), GAME_WIDTH, TILES_SIZE * 6);
             player1 = new Player1(200, 200, ground); 
+            player2 = new Player2();
             obst = new ArrayList<>(); //inicio o meu arraylist
             //loadParallaxBackground();
 
@@ -107,13 +111,6 @@ public class GRoom implements Runnable {
                         i--;
                     }
                 }
-            }
-
-                // Verifica se está na hora de spawnar um novo muro
-            if (System.currentTimeMillis() - lastSpawn > nextSpawn) {
-                spawnWall();
-                lastSpawn = System.currentTimeMillis();
-                nextSpawn = getRandomCooldown();
             }
         }
         
@@ -197,7 +194,7 @@ public class GRoom implements Runnable {
     }
 
     /**/
-    public void spawnWall() {
+    /*public void spawnWall() {
         int wallWidth = 70;
         int wallHeight = 120;
         float wallSpeed = -3.0f;
@@ -208,7 +205,7 @@ public class GRoom implements Runnable {
 
         Wall wall = new Wall(x, y, wallSpeed, wallWidth, wallHeight); //inithitbox no proprio construtor Wall
         obst.add(wall); 
-    }
+    }*/
     
     /*------------ TEMPO ALEATÓRIO PARA SPAWNAR OS OBJETOS ------------*/
     public int getRandomCooldown(){
@@ -225,6 +222,18 @@ public class GRoom implements Runnable {
     
     public Player1 getPlayer() {
         return player1;
+    }
+    
+    public Player2 getPlayer2() {
+        return player2;
+    }
+    
+    public Ground getGround() {
+        return ground;
+    }
+
+    public List<Obstacles> getObst() {
+        return obst;
     }
 }
 

@@ -14,7 +14,6 @@ public class KeyInputs implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -31,13 +30,11 @@ public class KeyInputs implements KeyListener {
                     break;
 		case KeyEvent.VK_D:
                     gamePanel.getGame().getPlayer().setRight(false);
-			break;
+		    break;
                 case KeyEvent.VK_SPACE:
                         gamePanel.getGame().getPlayer().setJump(false); //se a tecla for solta, eu torno o boolean jump como falso
                         break;
 		}
-                
-
 	}
 
 	@Override
@@ -56,11 +53,15 @@ public class KeyInputs implements KeyListener {
 		case KeyEvent.VK_D:
                     gamePanel.getGame().getPlayer().setRight(true);
 			break;
+                case KeyEvent.VK_O:
+                    gamePanel.getGame().getPlayer2().spawnWall(
+                        gamePanel.getGame().getObst(),
+                                gamePanel.getGame().getGround()
+                        );
+                        break;
 		case KeyEvent.VK_SPACE:
                     gamePanel.getGame().getPlayer().setJump(true);
                         break;
                 }
-
-	}
-
-}
+            }
+        }
