@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.List;
 import java.awt.Toolkit;
+import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 import java.util.Random;
 import objects.Player1;
@@ -19,7 +20,8 @@ public class GRoom implements Runnable {
     
         /*------------ ATRIBUTOS ------------*/
 	private GWindow gameWindow;
-	private GPanel gamePanel;
+	private GCanvas gameCanvas;
+        private BufferStrategy bufferStrategy;
 	private Thread gameThread;
 	private final int FPS_SET = 120; //120 FPS (frames por segundo) → ou seja, desenhar a tela 120 vezes a cada segundo pra ficar suave
 	private final int UPS_SET = 200; //200 UPS (updates por segundo) → ou seja, atualizar as coisas do jogo (posição de personagens, lógica, etc) 200 vezes a cada segundo, pra ficar preciso.
@@ -67,10 +69,18 @@ public class GRoom implements Runnable {
                 initClasses(); //instancia o player no jogo 
                 player2.setNextSpawn(getRandomCooldown());
                 
-                gamePanel = new GPanel(this);
-		gameWindow = new GWindow(gamePanel);
-		gamePanel.requestFocus(); //permite inputs
-                startGameLoop();
+            gameCanvas = new GCanvas(this);
+            gameWindow = new GWindow(gameCanvas);
+
+            // Cria triple buffering (recomendado para renderização suave)
+            gameCanvas.createBufferStrategy(3);
+            bufferStrategy = gameCanvas.getBufferStrategy();
+
+            // Garante foco para receber os inputs
+            gameCanvas.requestFocus();
+
+            // Inicia o loop do jogo
+            startGameLoop();
                 
 	}
         
@@ -116,7 +126,10 @@ public class GRoom implements Runnable {
         
         /*------------ MÉTODO RENDER ------------*/
         public void render(Graphics g){
-        
+            /*chamo TODOS os renders de TODOS os componentes do meu jogo e isso 
+            será desenhado tudo de uma vez no meu Canvas, dessa forma, melhorando 
+            MUITO a performance
+            */
                 /*backLayers.get(0).render(g); // Céu
                 backLayers.get(1).render(g); // Nuvens
                 backLayers.get(2).render(g); // Cerca
@@ -178,7 +191,7 @@ public class GRoom implements Runnable {
             }
 
             if (deltaF >= 1) { //Se deltaF >= 1, chama-se repaint().
-                gamePanel.repaint();
+                gameCanvas.render(bufferStrategy);
                 frames++;
                 deltaF--;
             }
@@ -213,12 +226,12 @@ public class GRoom implements Runnable {
     }
     
     /*------------ MÉTODO LOADER DE SPRITES DAS CAMADAS ------------*/
-    public void loadParallaxBackground(){
+    /*public void loadParallaxBackground(){
         backLayers.add(new BackgroundLayer(Spritesheet.GetSpritesheet(Spritesheet.LAYER_CEU), 0.1f));
         backLayers.add(new BackgroundLayer(Spritesheet.GetSpritesheet(Spritesheet.LAYER_NUVENS), 0.3f));
         backLayers.add(new BackgroundLayer(Spritesheet.GetSpritesheet(Spritesheet.LAYER_CERCA), 0.6f));
         backLayers.add(new BackgroundLayer(Spritesheet.GetSpritesheet(Spritesheet.LAYER_GRASS), 1.0f));
-    }
+    }*/
     
     public Player1 getPlayer() {
         return player1;
