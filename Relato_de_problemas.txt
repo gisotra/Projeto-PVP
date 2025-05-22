@@ -1,0 +1,18 @@
+Atuais problemas da versão atual:
+> O jogo está fazendo uso de muitas "variáveis situacionais", o que está prejudicando o 
+desempenho do jogo
+> A Classe GRoom não está bem executada, há espaço para otimização e implementação
+de Sleeps de nanossegundos na Thread para ela não pesar tanto na CPU
+
+sites que eu usei e estou usando de referencia
+https://gameprogrammingpatterns.com/game-loop.html
+
+https://stackoverflow.com/questions/39749086/how-to-make-fixed-timestep-in-java
+
+
+
+- Requisitos do jogo:
+[X] usar Swing
+[ ] som
+[ ] Interação usando redes
+[ ] Uso de XML
