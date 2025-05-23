@@ -9,6 +9,13 @@ https://gameprogrammingpatterns.com/game-loop.html
 
 https://stackoverflow.com/questions/39749086/how-to-make-fixed-timestep-in-java
 
+-> MELHORIAS A SEREM EXECUTADAS:
+- otimizar o GWindow, a partir de agora, quem definirá o tamanho do jogo será minha classe
+GRoom, e através do método "pack()", eu vou apenas "encaixar" o jogo no tamanho fullscreen
+- criação de uma classe "GConstants", em que eu vou colocar métodos finais e estáticos 
+para calcular tamanho, movimento e ações do player, otimizando processamento
+- procurar "cálculos" desnecessários que estão pesando no jogo
+
 
 
 - Requisitos do jogo:
@@ -16,3 +23,6 @@ https://stackoverflow.com/questions/39749086/how-to-make-fixed-timestep-in-java
 [ ] som
 [ ] Interação usando redes
 [ ] Uso de XML
+
+
+
