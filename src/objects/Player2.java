@@ -2,7 +2,7 @@ package objects;
 
 import java.awt.image.BufferedImage;
 import java.util.List;
-import static loop.GRoom.GAME_WIDTH;
+import utilz.Universal;
 import room.Ground;
 import room.Obstacles;
 
@@ -21,7 +21,7 @@ public class Player2 {
             int wallHeight = 120;
             float wallSpeed = -3.0f;
 
-            float x = GAME_WIDTH;
+            float x = Universal.GAME_WIDTH;
             float y = ground.getY() - wallHeight;
 
             Wall wall = new Wall(x, y, wallSpeed, wallWidth, wallHeight);

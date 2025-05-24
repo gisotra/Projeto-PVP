@@ -1,5 +1,6 @@
 package loop;
 
+import utilz.Universal;
 import environment.BackgroundLayer;
 import environment.ParallaxLayer;
 import java.awt.Dimension;
@@ -50,19 +51,16 @@ public class GRoom implements Runnable {
         public int screenWidth = screenSize.width;
         public int screenHeight = screenSize.height;
         
-        public final static int TILES_DEFAULT_SIZE = 32;
+        /*public final static int TILES_DEFAULT_SIZE = 32;
         public final static float SCALE = 1.5f;
         public final static int TILES_IN_WIDTH = 12;  //382px de COMPRIMENTO
         public final static int TILES_IN_HEIGHT = 7;  //215px ALTURA
         public final static int TILES_SIZE = (int)(TILES_DEFAULT_SIZE * SCALE);
         public static int GAME_WIDTH;
-        public static int GAME_HEIGHT;
+        public static int GAME_HEIGHT;*/
         
         /*------------ CONSTRUTOR ------------*/
 	public GRoom() {
-                Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-                GAME_WIDTH = screenSize.width;
-                GAME_HEIGHT = screenSize.height;
                 r = new Random(); //inicio a minha constante aleatória
                 //nextSpawn = getRandomCooldown();
 		
@@ -71,7 +69,16 @@ public class GRoom implements Runnable {
                 
             gameCanvas = new GCanvas(this);
             gameWindow = new GWindow(gameCanvas);
+            
+            gameWindow.showWindow();
 
+            try {
+                Thread.sleep(50); // 50ms, só pra garantir que o Canvas já esteja no display
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            
             // Cria triple buffering (recomendado para renderização suave)
             gameCanvas.createBufferStrategy(3);
             bufferStrategy = gameCanvas.getBufferStrategy();
@@ -86,7 +93,7 @@ public class GRoom implements Runnable {
         
         /*------------ INICIA AS CLASSES ------------*/
 	private void initClasses() {
-            ground = new Ground(0, GAME_HEIGHT - (6 * TILES_SIZE), GAME_WIDTH, TILES_SIZE * 6);
+            ground = new Ground(0, Universal.GAME_HEIGHT - (2 * Universal.TILES_SIZE), Universal.GAME_WIDTH, Universal.TILES_SIZE * 2);
             player1 = new Player1(200, 200, ground); 
             player2 = new Player2();
             obst = new ArrayList<>(); //inicio o meu arraylist
@@ -191,6 +198,10 @@ public class GRoom implements Runnable {
             }
 
             if (deltaF >= 1) { //Se deltaF >= 1, chama-se repaint().
+                if (bufferStrategy == null) {
+                    gameCanvas.createBufferStrategy(3);
+                    bufferStrategy = gameCanvas.getBufferStrategy();
+                }
                 gameCanvas.render(bufferStrategy);
                 frames++;
                 deltaF--;
@@ -225,13 +236,6 @@ public class GRoom implements Runnable {
         return 1000 + r.nextInt(500); 
     }
     
-    /*------------ MÉTODO LOADER DE SPRITES DAS CAMADAS ------------*/
-    /*public void loadParallaxBackground(){
-        backLayers.add(new BackgroundLayer(Spritesheet.GetSpritesheet(Spritesheet.LAYER_CEU), 0.1f));
-        backLayers.add(new BackgroundLayer(Spritesheet.GetSpritesheet(Spritesheet.LAYER_NUVENS), 0.3f));
-        backLayers.add(new BackgroundLayer(Spritesheet.GetSpritesheet(Spritesheet.LAYER_CERCA), 0.6f));
-        backLayers.add(new BackgroundLayer(Spritesheet.GetSpritesheet(Spritesheet.LAYER_GRASS), 1.0f));
-    }*/
     
     public Player1 getPlayer() {
         return player1;

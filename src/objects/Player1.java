@@ -3,15 +3,11 @@ package objects;
 import utilz.Spritesheet;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import loop.GRoom;
+import utilz.Universal;
 import static objects.Collisors.CanMoveHere;
 import static objects.Collisors.GetEntityYPosAboveGround;
 import static objects.Collisors.IsEntityOnGround;
-import static objects.Constants.PlayerConstants.GetSpriteAmount;
-import static objects.Constants.PlayerConstants.IDLE;
-import static objects.Constants.PlayerConstants.IS_FALLING;
-import static objects.Constants.PlayerConstants.JUMP;
-import static objects.Constants.PlayerConstants.RUNNING;
+
 import room.Ground;
 
 public class Player1 extends Entities{
@@ -19,7 +15,7 @@ public class Player1 extends Entities{
     /*------------ ATRIBUTOS ------------*/
     private BufferedImage[][] spritesheet;
     private int aniTick, aniIndex, aniSpeed = 22;
-    private int playerAction = IDLE;
+    private int playerAction = Universal.IDLE;
     private boolean moving = false;
     private boolean left, up, right, down;
     private float playerSpeed = 3.0f; 
@@ -30,8 +26,8 @@ public class Player1 extends Entities{
     // Mecânica de pulo + Gravidade
     private boolean jump;
     private float airSpeed = 0f;
-    private float gravity = 0.04f * GRoom.SCALE;
-    private float impulse = -3.0f * GRoom.SCALE; // Força do meu salto
+    private float gravity = 0.04f * Universal.SCALE;
+    private float impulse = -2.0f * Universal.SCALE; // Força do meu salto
     private boolean inAir = false;
     
     
@@ -83,7 +79,7 @@ public class Player1 extends Entities{
             if (aniTick >= aniSpeed) {
                 aniTick = 0;
                 aniIndex++;
-                if (aniIndex >= GetSpriteAmount(playerAction)) { //se o índice superar o número de frames, eu reseto ele, e ele fica "em loop"
+                if (aniIndex >= Universal.GetSpriteAmount(playerAction)) { //se o índice superar o número de frames, eu reseto ele, e ele fica "em loop"
                     aniIndex = 0;
                 }
 
@@ -97,16 +93,16 @@ public class Player1 extends Entities{
         int startAni = playerAction;
 
         if (moving) {
-            playerAction = RUNNING;
+            playerAction = Universal.RUNNING;
         } else {
-            playerAction = IDLE;
+            playerAction = Universal.IDLE;
         }
         
         if (inAir) {
             if (airSpeed < 0) { // estamos SUBINDO
-                playerAction = JUMP;
+                playerAction = Universal.JUMP;
             } else {
-                playerAction = IS_FALLING;
+                playerAction = Universal.IS_FALLING;
             }
         }
         

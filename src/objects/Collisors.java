@@ -1,7 +1,7 @@
 package objects;
 
 import java.awt.geom.Rectangle2D;
-import loop.GRoom;
+import utilz.Universal;
 import room.Ground;
 
 
@@ -33,9 +33,9 @@ public class Collisors {
         //true -> é sólido, não pode se mover   ||    false -> não é sólido, não tem nada ali, pode se mover
         
         // Fora dos limites da tela? Então é sólido (para impedir que o jogador saia da tela)
-        if (x < 0 || x >= GRoom.GAME_WIDTH)
+        if (x < 0 || x >= Universal.GAME_WIDTH)
             return true;
-        if (y < 0 || y >= GRoom.GAME_HEIGHT)
+        if (y < 0 || y >= Universal.GAME_HEIGHT)
             return true;
 
         // Verifica se o ponto está dentro da hitbox do chão

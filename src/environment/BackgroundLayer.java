@@ -1,7 +1,7 @@
 package environment;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import loop.GRoom;
+import utilz.Universal;
 public class BackgroundLayer extends ParallaxLayer {
     
     public BackgroundLayer(BufferedImage layer, float speedFactor) {
@@ -15,7 +15,7 @@ public class BackgroundLayer extends ParallaxLayer {
         int scaledImgWidth = (int) (layer.getWidth() * scale);
         int scaledImgHeight = (int) (layer.getHeight() * scale);
 
-        int count = (GRoom.GAME_WIDTH / scaledImgWidth) + 2;
+        int count = (Universal.GAME_WIDTH / scaledImgWidth) + 2;
 
         for (int i = 0; i < count; i++) {
             int drawX = (int) (x + i * scaledImgWidth);
