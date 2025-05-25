@@ -52,6 +52,18 @@ public class KeyInputs implements KeyListener {
             case KeyEvent.VK_D:
                 gameCanvas.getGame().getPlayer().setRight(true);
                 break;
+            /*case KeyEvent.VK_U:
+                gameCanvas.getGame().getPlayer2().spawnWall(
+                        gameCanvas.getGame().getObst(),
+                        gameCanvas.getGame().getGround()
+                );
+                break;*/
+            /*case KeyEvent.VK_I:
+                gameCanvas.getGame().getPlayer2().spawnWall(
+                        gameCanvas.getGame().getObst(),
+                        gameCanvas.getGame().getGround()
+                );
+                break;*/
             case KeyEvent.VK_O:
                 gameCanvas.getGame().getPlayer2().spawnWall(
                         gameCanvas.getGame().getObst(),

@@ -17,14 +17,9 @@ public class Player2 {
     public boolean spawnWall(List<Obstacles> obst, Ground ground) {
         long currentTime = System.currentTimeMillis();
         if (currentTime - lastSpawn >= nextSpawn) { //se o meu tempo atual menos o meu ultimo spawn for MAIOR que o "nextSpawn", eu posso spawnar
-            int wallWidth = 70;
-            int wallHeight = 120;
-            float wallSpeed = -3.0f;
 
-            float x = Universal.GAME_WIDTH;
-            float y = ground.getY() - wallHeight;
-
-            Wall wall = new Wall(x, y, wallSpeed, wallWidth, wallHeight);
+            float wall_spawn_y = ground.getY() - Universal.wall_height;
+            Wall wall = new Wall(Universal.wall_spawn_x, wall_spawn_y, Universal.obst_speed, Universal.wall_width, Universal.wall_height);
             obst.add(wall);
 
             lastSpawn = currentTime;

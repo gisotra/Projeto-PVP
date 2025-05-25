@@ -2,6 +2,8 @@ package utilz;
 
 public class Universal {
     
+
+    
     /*
     largura: 8 * 32 = 256 | OU | 16 * 32 = 512
     altura: 7 * 32 = 224
@@ -28,6 +30,14 @@ public class Universal {
     public static final int LANDING = 2;
     public static final int IS_FALLING = 2;
     public static final int IS_DEAD = 4;
+    
+    /*Posição de spawn dos obstáculos do player2*/
+    // Wall
+    public static final int wall_width = 70;
+    public static final int wall_height = 120;
+    public static float wall_spawn_x = GAME_WIDTH;
+
+    public static final float obst_speed = -3.0f;
     
     /*Método que retorna quantos frames cada ação possui*/
     public static int GetSpriteAmount(int player_action) {
