@@ -4,11 +4,17 @@ desempenho do jogo
 > A Classe GRoom não está bem executada, há espaço para otimização e implementação
 de Sleeps de nanossegundos na Thread para ela não pesar tanto na CPU
 
-sites que eu usei e estou usando de referencia
+-----------------------------------------------------------------------------------
+sites que eu usei e estou usando de referencia ------------------------------------
+-----------------------------------------------------------------------------------
+https://forums.tigsource.com/index.php?topic=39343.0
 https://gameprogrammingpatterns.com/game-loop.html
-
+https://www.reddit.com/r/feedthebeast/comments/wy2s4b/the_ultimate_updated_guide_on_increasing_fps_and/
 https://stackoverflow.com/questions/39749086/how-to-make-fixed-timestep-in-java
+https://www.youtube.com/watch?v=n-y-YHVZSwk&list=PLmdFG1KSZhosqwkP-BCtcMq0KubZ4v1Cm
+https://www.devmedia.com.br/manipulando-arquivos-xml-em-java/3245
 
+-----------------------------------------------------------------------------------
 -> MELHORIAS A SEREM EXECUTADAS:
 - otimizar o GWindow, a partir de agora, quem definirá o tamanho do jogo será minha classe
 GRoom, e através do método "pack()", eu vou apenas "encaixar" o jogo no tamanho fullscreen
@@ -17,7 +23,7 @@ para calcular tamanho, movimento e ações do player, otimizando processamento
 - procurar "cálculos" desnecessários que estão pesando no jogo
 
 
-
+-----------------------------------------------------------------------------------
 - Requisitos do jogo:
 [X] usar Swing
 [ ] som
