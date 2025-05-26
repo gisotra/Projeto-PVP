@@ -13,6 +13,7 @@ https://www.reddit.com/r/feedthebeast/comments/wy2s4b/the_ultimate_updated_guide
 https://stackoverflow.com/questions/39749086/how-to-make-fixed-timestep-in-java
 https://www.youtube.com/watch?v=n-y-YHVZSwk&list=PLmdFG1KSZhosqwkP-BCtcMq0KubZ4v1Cm
 https://www.devmedia.com.br/manipulando-arquivos-xml-em-java/3245
+https://jvm-gaming.org/t/thread-sleep-in-gameloop/55063
 
 -----------------------------------------------------------------------------------
 -> MELHORIAS A SEREM EXECUTADAS:
