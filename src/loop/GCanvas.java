@@ -1,6 +1,5 @@
 package loop;
 
-
 import utilz.Universal;
 import java.awt.*;
 import java.awt.image.BufferStrategy;

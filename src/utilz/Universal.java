@@ -1,9 +1,7 @@
 package utilz;
 
 public class Universal {
-    
-
-    
+     
     /*
     largura: 8 * 32 = 256 | OU | 16 * 32 = 512
     altura: 7 * 32 = 224
@@ -37,6 +35,13 @@ public class Universal {
     public static final int wall_height = 120;
     public static float wall_spawn_x = GAME_WIDTH;
 
+    // Bird
+    public static final int bird_width = 120;
+    public static final int bird_height = 40;
+    public static float bird_spawn_x = GAME_WIDTH;
+    
+    // Saw 
+    
     public static final float obst_speed = -3.0f;
     
     /*Método que retorna quantos frames cada ação possui*/

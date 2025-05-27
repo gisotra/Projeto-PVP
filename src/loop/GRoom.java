@@ -8,9 +8,9 @@ import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 import java.util.Random;
-import objects.Player1;
-import objects.Player2;
-import objects.Wall;
+import instances.entities.Player1;
+import instances.entities.Player2;
+import instances.obstacles.Wall;
 import room.Ground;
 import room.Obstacles;
 import utilz.Spritesheet;
@@ -22,7 +22,7 @@ public class GRoom implements Runnable {
 	private GCanvas gameCanvas;
         private BufferStrategy bufferStrategy;
 	private Thread gameThread;
-	private final int FPS_SET = 120; //120 FPS (frames por segundo) → ou seja, desenhar a tela 120 vezes a cada segundo pra ficar suave
+	private final int FPS_SET = 60; //60 FPS (frames por segundo) → ou seja, desenhar a tela 120 vezes a cada segundo pra ficar suave
         //instância do player 1
         private Player1 player1; //jogador 1
         
@@ -150,56 +150,37 @@ public class GRoom implements Runnable {
     @Override
     public void run() {
         final double tempoPorFrame = 1_000_000_000.0 / FPS_SET;
+        long ultimoTempo = System.nanoTime();
+        double delta = 0;
 
-        double variacaoTempo;
-        double ultimoFrame = System.nanoTime();
-        double proximoFrame = ultimoFrame + tempoPorFrame;
-
-        int contFrames = 0;
-        double contador = 0;
+        long timer = System.currentTimeMillis();
+        int frames = 0;
 
         while (true) {
-            long tempoAtual = System.nanoTime();
+            long agora = System.nanoTime();
+            delta += (agora - ultimoTempo) / tempoPorFrame;
+            ultimoTempo = agora;
 
-            variacaoTempo = (tempoAtual - ultimoFrame) / 1_000_000_000.0;
-            variacaoTempo = Math.min(variacaoTempo, 1.0 / 30.0);
-            ultimoFrame = tempoAtual;
-
-            update();
-            gameCanvas.render(bufferStrategy);
-
-            // FPS opcional
-            contFrames++;
-            contador += (System.nanoTime() - tempoAtual) / 1_000_000_000.0;
-            if (contador >= 1) {
-                System.out.println("FPS: " + contFrames);
-                contFrames = 0;
-                contador = 0;
+            if (delta >= 1) {
+                update();
+                gameCanvas.render(bufferStrategy);
+                frames++;
+                delta--;
             }
 
-            dormirAteProximoFrame(proximoFrame);
-
-            // Corrige possível atraso acumulado (drift)
-            while (System.nanoTime() > proximoFrame) {
-                proximoFrame += tempoPorFrame;
-            }
-        }
-    }
-
-    private void dormirAteProximoFrame(double proximoFrame) {
-        double sleepThread = (proximoFrame - System.nanoTime()) / 1_000_000.0;
-            if (sleepThread < 0) {
-                sleepThread = 0;
+            // Exibe o FPS a cada segundo
+            if (System.currentTimeMillis() - timer >= 1000) {
+                System.out.println("FPS: " + frames);
+                frames = 0;
+                timer += 1000;
             }
 
-        long sleepThreadMi = (long) sleepThread;
-        int sleepThreadNano = (int) ((sleepThread - sleepThreadMi) * 1_000_000);
-
-        try {
-            Thread.sleep(sleepThreadMi, sleepThreadNano);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            e.printStackTrace();
+            // Dorme um pouco pra não travar a CPU
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         }
     }
 

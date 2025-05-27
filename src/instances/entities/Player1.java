@@ -1,12 +1,13 @@
-package objects;
+package instances.entities;
 
+import instances.entities.Entities;
 import utilz.Spritesheet;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import utilz.Universal;
-import static objects.Collisors.CanMoveHere;
-import static objects.Collisors.GetEntityYPosAboveGround;
-import static objects.Collisors.IsEntityOnGround;
+import static instances.obstacles.Collisors.CanMoveHere;
+import static instances.obstacles.Collisors.GetEntityYPosAboveGround;
+import static instances.obstacles.Collisors.IsEntityOnGround;
 
 import room.Ground;
 
@@ -159,7 +160,7 @@ public class Player1 extends Entities{
                         }
                     }
                     
-                } else {
+                } else { //se estamos no chão
                     updateXPos(xSpeed);
                     moving = true;
                 }

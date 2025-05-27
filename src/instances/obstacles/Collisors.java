@@ -1,4 +1,4 @@
-package objects;
+package instances.obstacles;
 
 import java.awt.geom.Rectangle2D;
 import utilz.Universal;

@@ -1,4 +1,4 @@
-package objects;
+package instances.obstacles;
 
 import java.awt.Color;
 import java.awt.Graphics;

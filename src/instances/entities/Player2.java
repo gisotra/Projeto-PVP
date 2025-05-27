@@ -1,5 +1,6 @@
-package objects;
+package instances.entities;
 
+import instances.obstacles.Wall;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import utilz.Universal;
