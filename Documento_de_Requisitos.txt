@@ -1,0 +1,56 @@
+Documento de Requisitos - Super Chicken Jumper Multiplayer (JogoPVP)
+
+1. Visão Geral
+Objetivo: Criar uma réplica multiplayer em Java puro (NetBeans) de Super Chicken Jumper, onde:
+
+O Player 1 (galinha) corre automaticamente e precisa saltar obstáculos.
+
+O Player 2 cria obstáculos para dificultar a vida do Player 1.
+
+2. Requisitos Funcionais
+
+ID	Descrição	                                                        Prioridade
+RF01	Player 1 deve pular com tecla (ex: espaço) e desviar dos obstáculos	Alta
+RF02	Player 2 pode spawnar obstáculos pressionando teclas específicas	Alta
+RF03	Obstáculos se movem automaticamente da direita para a esquerda	        Alta
+RF04	Implementar sistema de colisão entre Player 1 e obstáculos	        Alta
+RF05	Exibir pontuação e game over com base em tempo ou colisões	        Média
+RF06	Rodar o jogo em loop fixo com controle de FPS 	                        Alta
+RF07	Adicionar menu inicial com botão iniciar e controles básicos	        Baixa
+RF08	Sprites devem ser carregados eficientemente usando Spritesheet          Alta
+
+3. Requisitos Não Funcionais
+ID	Descrição
+RNF01	O jogo deve ser leve e consumir o mínimo de CPU possível
+RNF02	Código deve ser modular e organizado por pacotes
+RNF03	Usar apenas recursos nativos do Java (sem bibliotecas externas)
+RNF04	Jogo deve rodar em tela cheia ou janela sem travamentos
+RNF05	Utilizar constantes definidas em Universal.java para evitar cálculos desnecessários
+
+4. Arquitetura e Organização de Classes
+----Loop do Jogo----
+GRoom.java: Contém a thread de jogo e o game loop (FPS/UPS controlado).
+GCanvas.java: Painel principal que chama update() e render() para todos os elementos em uma ArrayList<Objects>.
+
+----Lógica do Jogo----
+Main.java: Classe inicial, cria janela e instancia a engine.
+GWindow.java: JFrame que contém GCanvas.
+
+----Jogadores----
+Player1.java: Herda Entities, usa hitbox, animação e controle de pulo.
+Player2.java: Responsável por spawnar obstáculos com teclas.
+
+----Obstáculos----
+Obstacles (abstrata): Atualiza constantemente o movimento horizontal.
+Wall, Bird, Saw: Implementações específicas, herdam Obstacles.
+
+----Base----
+Objects.java (abstrata): Superclasse com posição, sprite, update() e render().
+Entities.java: Especialização de Objects com colisores e movimento.
+Collisors.java: Detecção de colisões.
+
+----Utilitários----
+Spritesheet.java: Gerencia todos os sprites do jogo, que serão lidos usando 
+XML uma única vez, com hashmap para evitar reprocessamento.
+Universal.java: Contém constantes como largura de tela, velocidade base, etc.
+
