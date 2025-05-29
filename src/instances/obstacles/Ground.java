@@ -1,4 +1,4 @@
-package room;
+package instances.obstacles;
 
 import java.awt.Color;
 import java.awt.Graphics;

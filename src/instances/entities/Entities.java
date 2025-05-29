@@ -1,26 +1,26 @@
 package instances.entities;
 
+import instances.Objects;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import loop.GCanvas;
+import utilz.Screen;
+import utilz.Spritesheet;
+import utilz.Universal;
 
-public class Entities {
+public abstract class Entities extends Objects{
     
     /*------------ ATRIBUTOS ------------*/
-    protected float x,y; //todas as classes que extenderão Entities vão ter x e y para herdar
-    protected int p_width, p_height;
     protected Rectangle2D.Float hitbox;
     
-
-    /*------------ CONSTRUTOR ------------*/
-    public Entities(float x, float y, int p_width, int p_height){
-        this.x = x;
-        this.y = y;
-        this.p_width = p_width;
-        this.p_height = p_height;        
+    public Entities(Screen screen, GCanvas gc){
+        super(screen, gc);
+        initHitbox(getX(), getY(), Universal.TILES_SIZE, Universal.TILES_SIZE);
     }
-    
-    
+    /*------------ MÉTODOS ------------*/
     protected void drawHitbox(Graphics g) {
         //para testar a hitbox
         g.setColor(Color.BLACK);
@@ -32,11 +32,23 @@ public class Entities {
     }
     
     protected void updateHitbox(){
-        hitbox.x = (int)x; //atualizo a posição horizontal
-        hitbox.y = (int)y; //atualizo a posição vertical
+        hitbox.x = getX(); //atualizo a posição horizontal
+        hitbox.y = getY(); //atualizo a posição vertical
     }
 
     public Rectangle2D.Float getHitbox(){
         return hitbox;
     }
+    
+    public void setSpritesheet(BufferedImage spritesheet) {
+        sprite = new Spritesheet(spritesheet, width, height, 1.0);
+    }
+
+    
+    @Override
+    public abstract void update(double deltaTime);
+
+    @Override
+    public abstract void render(Graphics2D g2d);
+
 }

@@ -1,8 +1,8 @@
 package main;
-import loop.GRoom;
+import loop.GWindow;
 
 public class Main {
     public static void main(String[] args) {
-        new GRoom();
+        new GWindow();
     }
 }

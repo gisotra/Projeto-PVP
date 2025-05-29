@@ -2,6 +2,7 @@ package loop;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import utilz.Universal;
 
 public class KeyInputs implements KeyListener {
 
@@ -20,19 +21,19 @@ public class KeyInputs implements KeyListener {
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_W:
-                gameCanvas.getGame().getPlayer().setUp(false); //alteração do método receber para GameCanvas 
+                Universal.up = false; //alteração do método receber para GameCanvas 
                 break;
             case KeyEvent.VK_A:
-                gameCanvas.getGame().getPlayer().setLeft(false); //alteração do método receber para GameCanvas 
+                Universal.left = false;
                 break;
             case KeyEvent.VK_S:
-                gameCanvas.getGame().getPlayer().setDown(false); //alteração do método receber para GameCanvas 
+                Universal.down = false;
                 break; 
             case KeyEvent.VK_D:
-                gameCanvas.getGame().getPlayer().setRight(false); //alteração do método receber para GameCanvas 
+                Universal.right = false;
                 break;
             case KeyEvent.VK_SPACE:
-                gameCanvas.getGame().getPlayer().setJump(false); //alteração do método receber para GameCanvas 
+                Universal.jump = false;
                 break; 
         }
     }
@@ -41,37 +42,25 @@ public class KeyInputs implements KeyListener {
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_W:
-                gameCanvas.getGame().getPlayer().setUp(true);
+                Universal.up = true;
                 break;
             case KeyEvent.VK_A:
-                gameCanvas.getGame().getPlayer().setLeft(true);
+                Universal.left = true;
                 break;
             case KeyEvent.VK_S:
-                gameCanvas.getGame().getPlayer().setDown(true);
+                Universal.down = true;
                 break;
             case KeyEvent.VK_D:
-                gameCanvas.getGame().getPlayer().setRight(true);
+                Universal.right = true;
                 break;
-            /*case KeyEvent.VK_U:
+            /*case KeyEvent.VK_O:
                 gameCanvas.getGame().getPlayer2().spawnWall(
                         gameCanvas.getGame().getObst(),
                         gameCanvas.getGame().getGround()
                 );
                 break;*/
-            /*case KeyEvent.VK_I:
-                gameCanvas.getGame().getPlayer2().spawnWall(
-                        gameCanvas.getGame().getObst(),
-                        gameCanvas.getGame().getGround()
-                );
-                break;*/
-            case KeyEvent.VK_O:
-                gameCanvas.getGame().getPlayer2().spawnWall(
-                        gameCanvas.getGame().getObst(),
-                        gameCanvas.getGame().getGround()
-                );
-                break;
             case KeyEvent.VK_SPACE:
-                gameCanvas.getGame().getPlayer().setJump(true);
+                Universal.jump = true;
                 break;
         }
     }

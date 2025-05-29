@@ -6,6 +6,7 @@ public class Universal {
     largura: 8 * 32 = 256 | OU | 16 * 32 = 512
     altura: 7 * 32 = 224
     */
+    
     /*Configurações de resolução da tela*/
     public final static int TILES_DEFAULT_SIZE = 32;
     public final static float SCALE = 3f;
@@ -15,12 +16,6 @@ public class Universal {
     public final static int GAME_WIDTH = TILES_IN_WIDTH * TILES_SIZE;
     public final static int GAME_HEIGHT = TILES_IN_HEIGHT * TILES_SIZE;
     
-    /*Direções de movimento do player*/
-    public static final int LEFT = 0;
-    public static final int UP = 1;
-    public static final int RIGHT = 2;
-    public static final int DOWN = 3;
-
     /*Índices das animações dos sprites do player (vertical)*/
     public static final int IDLE = 0;
     public static final int RUNNING = 0;
@@ -42,7 +37,23 @@ public class Universal {
     
     // Saw 
     
+    /*configuração de fps*/
+    public static final int FPS_SET = 60;
     public static final float obst_speed = -3.0f;
+    
+    /*flags de direção para usar no player e na classe KeyInputs*/
+    public static boolean right = false;
+    public static boolean left = false;
+    public static boolean up = false;
+    public static boolean down = false;
+    public static boolean jump = false;
+    
+    /*Direções de movimento para o SPRITE do player*/
+    public static final int LEFT = 0;
+    public static final int UP = 1;
+    public static final int RIGHT = 2;
+    public static final int DOWN = 3;
+
     
     /*Método que retorna quantos frames cada ação possui*/
     public static int GetSpriteAmount(int player_action) {
