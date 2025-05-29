@@ -52,5 +52,9 @@ Collisors.java: Detecção de colisões.
 ----Utilitários----
 Spritesheet.java: Gerencia todos os sprites do jogo, que serão lidos usando 
 XML uma única vez, com hashmap para evitar reprocessamento.
+
+XML abrigará os endereços de todas as sprites e vai servir como um "documento de armazenamento
+de endereços", cada endereço vai ser lido e armazenado uma única vez, providenciando o sprite
+para uso
 Universal.java: Contém constantes como largura de tela, velocidade base, etc.
 
