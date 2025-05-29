@@ -13,10 +13,12 @@ public class Movement {
     public float gravity = 0.04f * Universal.SCALE;
     public float jumpPower = -2.0f * Universal.SCALE; // Força do meu salto
     public boolean inAir = false;
+    public float groundLvl;
     
     public Movement(Player1 player1){
         this.player1 = player1;
         heightGY = player1.getHeight();
+        groundLvl = this.groundY - this.heightGY;
     }
     /*
     groundY, and height is used to find the value of y where the object is 
@@ -41,8 +43,8 @@ The class has three methods called update(), jump(), and isGrounded(). The metho
             player1.setY(player1.getY() + airSpeed); //altero o Y do player
 
             //cheguei no chão, então preciso resetar o pulo
-            if (player1.getY() >= this.groundY - this.heightGY) {
-                player1.setY(this.groundY - this.heightGY);
+            if (player1.getY() >= groundLvl) {
+                player1.setY(groundLvl);
                 airSpeed = 0f;
                 isJumping = false;
             }
@@ -53,7 +55,7 @@ The class has three methods called update(), jump(), and isGrounded(). The metho
     }
     
     private boolean isGrounded() {
-        if (player1.getY() >= (this.groundY - this.heightGY)) {
+        if (player1.getY() >= groundLvl) {
             return true;
         } else {
             return false;

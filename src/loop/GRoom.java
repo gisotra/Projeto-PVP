@@ -23,15 +23,30 @@ public class GRoom implements Runnable {
         int frames = 0;
 
         while (true) {
+            if(!gc.isDisplayable() || !gc.isFocusOwner()){
+                try{
+                    Thread.sleep(100);
+                } catch (InterruptedException e){
+                    Thread.currentThread().interrupt();
+                }
+                continue;
+            }
+            
             long agora = System.nanoTime();
             dT += (agora - ultimoTempo) / tempoPorFrame;
             ultimoTempo = agora;
+            
+            boolean renderizou = false;
 
             if (dT >= 1) {
                 update(dT);
+                dT--;
+                renderizou = true;
+            }
+            
+            if(renderizou){
                 render();
                 frames++;
-                dT--;
             }
 
             // Exibe o FPS a cada segundo

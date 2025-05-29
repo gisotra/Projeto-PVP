@@ -2,7 +2,6 @@ package utilz;
 
 import instances.Objects;
 import instances.entities.Player1;
-import instances.obstacles.Ground;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;

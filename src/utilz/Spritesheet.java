@@ -66,16 +66,8 @@ public class Spritesheet { /*Classe para gerenciamento dos sprites*/
         }
     }
     
-    public BufferedImage getSpriteFromSheet(BufferedImage image, int x, int y, int largura, int altura){ 
-        BufferedImage spriteNovo = new BufferedImage(largura, altura, BufferedImage.TYPE_INT_ARGB);
-        
-        for (int j = 0; j < altura; j++) {
-            for (int i = 0; i < largura; i++) {
-                int pixel = image.getRGB(x + i, y + j);  
-                spriteNovo.setRGB(i, j, pixel);             
-            }
-        }
-        return spriteNovo;
+    public BufferedImage getSpriteFromSheet(BufferedImage image, int x, int y, int largura, int altura) {
+        return image.getSubimage(x, y, largura, altura);
     }
     
     public void render(Graphics2D g2d, int x, int y) {
