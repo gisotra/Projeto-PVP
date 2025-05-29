@@ -13,6 +13,7 @@ public class Player1 extends Entities{
     Movement movement;
     Collider collider;
     BufferedImage playerSpriteSheet;
+    public int playerAction = Universal.IDLE;
     
     public Player1(Screen screen, GCanvas gc){
         super(screen, gc);
@@ -29,6 +30,7 @@ public class Player1 extends Entities{
 
     @Override
     public void render(Graphics2D g2d){
+        sprite.setAtion(playerAction); // altero ou mantenho a linha do spritesheet
         sprite.render(g2d, (int) getX(), (int) getY());
     }
     

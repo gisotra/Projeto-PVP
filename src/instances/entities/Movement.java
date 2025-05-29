@@ -34,6 +34,7 @@ The class has three methods called update(), jump(), and isGrounded(). The metho
     
     public void updatePos(double deltaTime){ //ainda vou usar o deltaTime para movimentação horizontal depois
         if(Universal.jump && isGrounded()){
+            player1.playerAction = Universal.JUMP;
             airSpeed = jumpPower;
             isJumping = true;
         }
@@ -41,16 +42,23 @@ The class has three methods called update(), jump(), and isGrounded(). The metho
         if(isJumping){ //caso eu esteja pulando, eu continuamente somo a gravidade na airSpeed
             airSpeed += gravity;
             player1.setY(player1.getY() + airSpeed); //altero o Y do player
+                if(airSpeed > 0){ //estou caindo
+                    player1.playerAction = Universal.IS_FALLING;
+                }
+            
 
             //cheguei no chão, então preciso resetar o pulo
             if (player1.getY() >= groundLvl) {
                 player1.setY(groundLvl);
                 airSpeed = 0f;
                 isJumping = false;
+                player1.playerAction = Universal.IDLE;
+                
             }
         } else if (!isGrounded()){ //cai de uma plataforma ou qualquer evento alternativo
             airSpeed += gravity;
             player1.setY(player1.getY() + airSpeed);
+            player1.playerAction = Universal.IS_FALLING;
         }
     }
     

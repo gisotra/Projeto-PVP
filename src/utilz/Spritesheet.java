@@ -1,9 +1,8 @@
 package utilz;
 
-import java.awt.AlphaComposite;
+import instances.entities.Player1;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.awt.image.RescaleOp;
 
 public class Spritesheet { /*Classe para gerenciamento dos sprites*/
     {// sprites player
@@ -44,6 +43,8 @@ public class Spritesheet { /*Classe para gerenciamento dos sprites*/
     int totalIndices;
     int trocaDeFrames;
     
+    int acaoAtual = Universal.IDLE;
+    
     // Construtor do Sprite: carrega a sprite sheet e separa os frames
     public Spritesheet(BufferedImage spritesheet, int altura, int largura, double time) {
         this.spritesheet = spritesheet;
@@ -66,6 +67,14 @@ public class Spritesheet { /*Classe para gerenciamento dos sprites*/
         }
     }
     
+    public void setAtion(int acao){
+        if(this.acaoAtual != acao){
+            acaoAtual = acao;
+            frameAtual = 0; //como eu mudei de animacao, reseto a contagem
+            contadorFrames = 0;
+        }
+    }
+    
     public BufferedImage getSpriteFromSheet(BufferedImage image, int x, int y, int largura, int altura) {
         return image.getSubimage(x, y, largura, altura);
     }
@@ -75,10 +84,10 @@ public class Spritesheet { /*Classe para gerenciamento dos sprites*/
         if (contadorFrames % trocaDeFrames == 0) {
             frameAtual++;
         }
-        if (frameAtual >= totalFrames) {
+        if (frameAtual >= Universal.GetSpriteAmount(acaoAtual)) {
             frameAtual = 0;
         }
-        g2d.drawImage(sprites[indice][frameAtual], x, y,
+        g2d.drawImage(sprites[acaoAtual][frameAtual], x, y,
                 (int) (largura * Universal.SCALE), (int) (altura * Universal.SCALE), null);
     }
 }
