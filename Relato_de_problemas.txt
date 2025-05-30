@@ -14,7 +14,8 @@ https://stackoverflow.com/questions/39749086/how-to-make-fixed-timestep-in-java
 https://www.youtube.com/watch?v=n-y-YHVZSwk&list=PLmdFG1KSZhosqwkP-BCtcMq0KubZ4v1Cm
 https://www.devmedia.com.br/manipulando-arquivos-xml-em-java/3245
 https://jvm-gaming.org/t/thread-sleep-in-gameloop/55063
-
+https://medium.com/better-programming/how-to-build-a-2d-endless-runner-game-with-javascript-and-html-11940ab797bf
+https://gamedev.stackexchange.com/questions/59649/get-sprites-from-xml-and-spritesheet-in-java
 -----------------------------------------------------------------------------------
 -> MELHORIAS A SEREM EXECUTADAS:
 - otimizar o GWindow, a partir de agora, quem definirá o tamanho do jogo será minha classe
