@@ -9,22 +9,26 @@ import utilz.Screen;
 import utilz.Universal;
 
 public class Player1 extends Entities{
+    
+    //https://www.youtube.com/watch?v=rTVoyWu8r6g
     /*------------ ATRIBUTOS ------------*/
-    Movement movement;
+    MovementV movementV;
+    MovementH movementH;
     Collider collider;
     BufferedImage playerSpriteSheet;
     public int playerAction = Universal.IDLE;
     
     public Player1(Screen screen, GCanvas gc){
         super(screen, gc);
-        movement = new Movement(this);
+        movementV = new MovementV(this);
+        movementH = new MovementH(this);
         initSprite();
         setX(120);
     }    
     
     @Override
     public void update(double deltaTime){
-        movement.updatePos(deltaTime);
+        movementV.updatePosY(deltaTime);
         updateHitbox();
     }
 

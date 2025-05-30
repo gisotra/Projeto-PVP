@@ -2,10 +2,12 @@ package instances.entities;
 
 import utilz.Universal;
 
-public class Movement {
+public class MovementV {
+    /*
+    Classe utilizada unicamente para implementação dos movimentos verticais
+    */
+    
     Player1 player1;
-    public double speed;
-    public double speedDT; 
     public float groundY = 5 * Universal.TILES_SIZE; //usado para achar a posição Y em que o player tá "no chão"
     public float heightGY; //usado para achar a posição Y em que o player tá "no chão"
     public boolean isJumping = false;
@@ -15,7 +17,7 @@ public class Movement {
     public boolean inAir = false;
     public float groundLvl;
     
-    public Movement(Player1 player1){
+    public MovementV(Player1 player1){
         this.player1 = player1;
         heightGY = player1.getHeight();
         groundLvl = this.groundY - this.heightGY;
@@ -32,7 +34,7 @@ The class has three methods called update(), jump(), and isGrounded(). The metho
     update() implements the jumping and gravity behaviour of the player. It 
     contains four if statements with the following purpose:*/
     
-    public void updatePos(double deltaTime){ //ainda vou usar o deltaTime para movimentação horizontal depois
+    public void updatePosY(double deltaTime){ //ainda vou usar o deltaTime para movimentação horizontal depois
         if(Universal.jump && isGrounded()){
             player1.playerAction = Universal.JUMP;
             airSpeed = jumpPower;
