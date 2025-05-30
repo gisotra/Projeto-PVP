@@ -2,22 +2,27 @@ package instances.entities;
 
 import utilz.Universal;
 
-public class MovementV {
+public class Movement {
     /*
     Classe utilizada unicamente para implementação dos movimentos verticais
     */
     
     Player1 player1;
+    public double speed = 1.8*Universal.SCALE;
+    public double speedDT;
+    public double MAX_SPEED = 2.5f*Universal.SCALE;
+    public float horizontalSpeed;
+    public float atrito = 0.7f*Universal.SCALE;
     public float groundY = 5 * Universal.TILES_SIZE; //usado para achar a posição Y em que o player tá "no chão"
     public float heightGY; //usado para achar a posição Y em que o player tá "no chão"
     public boolean isJumping = false;
     public float airSpeed = 0f; //Y
-    public float gravity = 0.04f * Universal.SCALE;
-    public float jumpPower = -2.0f * Universal.SCALE; // Força do meu salto
+    public float gravity = 0.08f * Universal.SCALE;
+    public float jumpPower = -2.8f * Universal.SCALE; // Força do meu salto
     public boolean inAir = false;
     public float groundLvl;
     
-    public MovementV(Player1 player1){
+    public Movement(Player1 player1){
         this.player1 = player1;
         heightGY = player1.getHeight();
         groundLvl = this.groundY - this.heightGY;
@@ -62,6 +67,44 @@ The class has three methods called update(), jump(), and isGrounded(). The metho
             player1.setY(player1.getY() + airSpeed);
             player1.playerAction = Universal.IS_FALLING;
         }
+    }
+    
+    public void updatePosX(double deltaTime) {
+        speedDT = speed * deltaTime;
+
+        if (Universal.right) {
+
+            horizontalSpeed += speedDT;
+
+        } else if (Universal.left) {
+
+            horizontalSpeed -= speedDT;
+
+        } else {
+
+            //não estou apertando tecla alguma E estou no chão 
+            if (horizontalSpeed > 0) { //freio ele na direita
+                horizontalSpeed -= atrito * deltaTime;
+                if (horizontalSpeed < 0) {
+                    horizontalSpeed = 0; //paro
+                }
+            } else if (horizontalSpeed < 0) {
+                horizontalSpeed += atrito * deltaTime;
+                if (horizontalSpeed > 0) {
+                    horizontalSpeed = 0; //paro
+                }
+            }
+        }
+
+        if (horizontalSpeed > MAX_SPEED) {
+            horizontalSpeed = (float) MAX_SPEED;
+        }
+        if (horizontalSpeed < -MAX_SPEED) {
+            horizontalSpeed = (float) -MAX_SPEED;
+        }
+
+        //aplico a mudança no player
+        player1.setX(player1.getX() + horizontalSpeed);
     }
     
     private boolean isGrounded() {

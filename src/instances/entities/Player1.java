@@ -12,23 +12,23 @@ public class Player1 extends Entities{
     
     //https://www.youtube.com/watch?v=rTVoyWu8r6g
     /*------------ ATRIBUTOS ------------*/
-    MovementV movementV;
-    MovementH movementH;
+    Movement movement;
     Collider collider;
     BufferedImage playerSpriteSheet;
     public int playerAction = Universal.IDLE;
     
     public Player1(Screen screen, GCanvas gc){
         super(screen, gc);
-        movementV = new MovementV(this);
-        movementH = new MovementH(this);
+        movement = new Movement(this);
         initSprite();
         setX(120);
+        movement.isJumping = true;
     }    
     
     @Override
     public void update(double deltaTime){
-        movementV.updatePosY(deltaTime);
+        movement.updatePosY(deltaTime);
+        movement.updatePosX(deltaTime);
         updateHitbox();
     }
 
