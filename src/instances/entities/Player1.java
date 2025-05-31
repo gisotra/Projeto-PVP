@@ -47,7 +47,7 @@ public class Player1 extends Entities{
         //inicio as propriedades do meu sprite player
         setWidth(32);
         setHeight(32);
-        setSpritesheet(playerSpriteSheet);
+        setSpritesheet(playerSpriteSheet, Universal.SCALE);
     }
 
     /*------------ GETTERS AND SETTERS ------------*/

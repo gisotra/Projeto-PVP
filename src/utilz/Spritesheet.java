@@ -32,7 +32,10 @@ public class Spritesheet { /*Classe para gerenciamento dos sprites*/
         }
         return img;
     }*/}
-    public int altura, largura;
+    public int frameHeightOriginal, frameWidthOriginal;
+    public float scale;
+    private int renderWidth;
+    private int renderHeight;
     BufferedImage spritesheet;
     BufferedImage[][] sprites;
     
@@ -46,12 +49,15 @@ public class Spritesheet { /*Classe para gerenciamento dos sprites*/
     int acaoAtual = Universal.IDLE;
     
     // Construtor do Sprite: carrega a sprite sheet e separa os frames
-    public Spritesheet(BufferedImage spritesheet, int altura, int largura, double time) {
+    public Spritesheet(BufferedImage spritesheet, int frameHeightOriginal, int frameWidthOriginal, double time, float scale) {
         this.spritesheet = spritesheet;
-        this.altura = altura;
-        this.largura = largura;
-        totalFrames = spritesheet.getWidth()/largura; 
-        totalIndices = spritesheet.getHeight()/altura;
+        this.frameHeightOriginal = frameHeightOriginal;
+        this.frameWidthOriginal = frameWidthOriginal;
+        this.scale = scale;
+        this.renderHeight = (int)(frameHeightOriginal * scale);
+        this.renderWidth = (int)(frameWidthOriginal * scale);
+        totalIndices = spritesheet.getHeight()/frameHeightOriginal;
+        totalFrames = spritesheet.getWidth()/frameWidthOriginal; 
         
         trocaDeFrames = (int)(Universal.FPS_SET * time / totalFrames);
 
@@ -62,7 +68,7 @@ public class Spritesheet { /*Classe para gerenciamento dos sprites*/
     public void initSprites(){
         for(int i = 0; i < totalIndices; i++){
             for(int j = 0; j < totalFrames; j++){
-                sprites[i][j] = getSpriteFromSheet(spritesheet, j * largura, i * altura, largura, altura);
+                sprites[i][j] = getSpriteFromSheet(spritesheet, j * frameWidthOriginal, i * frameHeightOriginal, frameWidthOriginal, frameHeightOriginal);
             }
         }
     }
@@ -87,25 +93,29 @@ public class Spritesheet { /*Classe para gerenciamento dos sprites*/
         if (frameAtual >= Universal.GetSpriteAmount(acaoAtual)) {
             frameAtual = 0;
         }
-        g2d.drawImage(sprites[acaoAtual][frameAtual], x, y,
-                (int) (largura * Universal.SCALE), (int) (altura * Universal.SCALE), null);
+        g2d.drawImage(sprites[acaoAtual][frameAtual], x, y, renderWidth, renderHeight, null);
     }
 
     public int getAltura() {
-        return altura;
+        return frameHeightOriginal;
     }
 
     public void setHeightSprite(int altura) {
-        this.altura = altura;
+        this.frameHeightOriginal = altura;
     }
 
     public int getLargura() {
-        return largura;
+        return frameWidthOriginal;
     }
 
     public void setWidthSprite(int largura) {
-        this.largura = largura;
+        this.frameWidthOriginal = largura;
     }
     
+    public void setScale(float scale) {
+        this.scale = scale;
+        this.renderWidth = (int) (frameWidthOriginal * scale);
+        this.renderHeight = (int) (frameHeightOriginal * scale);
+    }
     
 }

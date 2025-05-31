@@ -40,8 +40,8 @@ public abstract class Entities extends Objects{
         return hitbox;
     }
     
-    public void setSpritesheet(BufferedImage spritesheet) { //criação da sprite + settar a velocidade
-        sprite = new Spritesheet(spritesheet, width, height, 0.85); 
+    public void setSpritesheet(BufferedImage spritesheet, float renderScale) { //criação da sprite + settar a velocidade
+        sprite = new Spritesheet(spritesheet, width, height, 0.85, renderScale); 
     }
 
     

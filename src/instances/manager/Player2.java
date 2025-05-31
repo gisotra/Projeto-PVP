@@ -1,4 +1,4 @@
-package instances;
+package instances.manager;
 
 public class Player2 {
 

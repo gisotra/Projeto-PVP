@@ -1,8 +1,7 @@
 package instances.obstacles;
 
 import instances.Objects;
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import loop.GCanvas;
 import utilz.Screen;
@@ -18,7 +17,7 @@ public abstract class Obstacles extends Objects{ //muito similiar a classe Entit
     }
 
     /*------------ MÉTODOS HERDADOS ------------*/
-    protected abstract void drawObstHitbox(Graphics g);
+    protected abstract void drawObstHitbox(Graphics2D g2d); // método para debug
     {/*
     protected abstract void drawObstHitbox(Graphics g) {
         //para testar a hitbox
@@ -49,6 +48,12 @@ public abstract class Obstacles extends Objects{ //muito similiar a classe Entit
     */
     }
 
+    @Override
+    public abstract void update(double deltaTime);
+
+    @Override
+    public abstract void render(Graphics2D g2d);
+    
     public Rectangle2D.Float getObstHitbox(){
         return obs_hitbox;
     }
