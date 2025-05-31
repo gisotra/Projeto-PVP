@@ -29,11 +29,12 @@ public class Universal {
     public static float OBST_SPAWN_X = GAME_WIDTH + TILES_SIZE; 
     public static final int WALL_WIDTH = 70;
     public static final int WALL_HEIGHT = 120;
+    public static final int WALL_SPAWN_Y = TILES_SIZE * 4;
 
     // Bird
     public static final int BIRD_WIDTH = 120;
     public static final int BIRD_HEIGHT = 40;
-    public static final int BIRD_SPAWN_Y = TILES_SIZE * 5;
+    public static final int BIRD_SPAWN_Y = TILES_SIZE * 2;
 
     
     // Saw 

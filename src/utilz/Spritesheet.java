@@ -32,12 +32,12 @@ public class Spritesheet { /*Classe para gerenciamento dos sprites*/
         }
         return img;
     }*/}
-    public int frameHeightOriginal, frameWidthOriginal;
-    public float scale;
-    private int renderWidth;
-    private int renderHeight;
-    BufferedImage spritesheet;
-    BufferedImage[][] sprites;
+    public int frameHeightOriginal, frameWidthOriginal; //tamanho do frame original
+    public float scale; //escala aplicada para pintar o sprite na tela, utilizando a classe Universal
+    private int renderWidth; //produto final dos tamanhos do frame * escala
+    private int renderHeight; //produto final dos tamanhos do frame * escala
+    BufferedImage spritesheet; //meu spritesheet full 
+    BufferedImage[][] sprites; //o spritesheet dividido
     
     int frameAtual;
     int totalFrames;
@@ -86,6 +86,9 @@ public class Spritesheet { /*Classe para gerenciamento dos sprites*/
     }
     
     public void render(Graphics2D g2d, int x, int y) {
+        if(trocaDeFrames == 0){ //é um obstáculo
+        g2d.drawImage(sprites[0][0], x, y, renderWidth, renderHeight, null);
+        } else {
         contadorFrames++;
         if (contadorFrames % trocaDeFrames == 0) {
             frameAtual++;
@@ -94,6 +97,7 @@ public class Spritesheet { /*Classe para gerenciamento dos sprites*/
             frameAtual = 0;
         }
         g2d.drawImage(sprites[acaoAtual][frameAtual], x, y, renderWidth, renderHeight, null);
+        }
     }
 
     public int getAltura() {

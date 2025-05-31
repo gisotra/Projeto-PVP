@@ -23,25 +23,27 @@ public class Bird extends Obstacles{ //extends Obstacles{
     }
     
     public void initSprite() {
+        //passo qual é o spritesheet pro meu buffered image local
         try {
-            birdSpriteSheet = ImageIO.read(getClass().getResourceAsStream("/assets/player/playerAtualizado4.png")); //ainda nao tenho sprites :(
+            birdSpriteSheet = ImageIO.read(getClass().getResourceAsStream("/assets/player/bird.png")); 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         //altura e largura do meu passarinho
-        setWidth(32);
-        setHeight(32);
+        setWidth(32); //largura em px do FRAME ORIGINAL 
+        setHeight(32); //altura em px do FRAME ORIGINAL
         setSpritesheet(birdSpriteSheet, Universal.SCALE);
     }
     
     @Override
     protected void drawObstHitbox(Graphics2D g2d) {
-        // nao vou implementar agora
+        g2d.setColor(Color.BLUE);
+        g2d.drawRect((int) obs_hitbox.x, (int) obs_hitbox.y, (int) obs_hitbox.width, (int) obs_hitbox.height);
     }
     
     @Override
     public void initObstHitbox() {
-        this.obs_hitbox = new Rectangle2D.Float(getX(), getY(), getWidth(), (getHeight() / 2)); //metade do tamanho
+        this.obs_hitbox = new Rectangle2D.Float(getX(), getY(), Universal.TILES_SIZE, Universal.TILES_SIZE / 2); //metade do tamanho
     }
     
     @Override
@@ -53,12 +55,8 @@ public class Bird extends Obstacles{ //extends Obstacles{
     @Override
     public void render(Graphics2D g2d){
     
-        //para teste
-        g2d.setColor(Color.GRAY);
-
-
-        g2d.fillRect( (int)x, (int)y, width, height);
-    //sprite.render(g2d, (int) getX(), (int) getY()); vou usar esse
+    sprite.render(g2d, (int) getX(), (int) getY()); 
+    drawObstHitbox(g2d);
     }
     
     @Override
