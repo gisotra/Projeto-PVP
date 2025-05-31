@@ -90,4 +90,22 @@ public class Spritesheet { /*Classe para gerenciamento dos sprites*/
         g2d.drawImage(sprites[acaoAtual][frameAtual], x, y,
                 (int) (largura * Universal.SCALE), (int) (altura * Universal.SCALE), null);
     }
+
+    public int getAltura() {
+        return altura;
+    }
+
+    public void setHeightSprite(int altura) {
+        this.altura = altura;
+    }
+
+    public int getLargura() {
+        return largura;
+    }
+
+    public void setWidthSprite(int largura) {
+        this.largura = largura;
+    }
+    
+    
 }

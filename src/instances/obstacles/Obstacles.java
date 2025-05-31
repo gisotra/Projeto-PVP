@@ -1,38 +1,52 @@
-package room;
+package instances.obstacles;
 
+import instances.Objects;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
+import loop.GCanvas;
+import utilz.Screen;
 
-public abstract class Obstacles { //muito similiar a classe Entities, porém direcionada unicamente aos obstáculos
+public abstract class Obstacles extends Objects{ //muito similiar a classe Entities, porém direcionada unicamente aos obstáculos
     /*------------ ATRIBUTOS ------------*/
-    protected float x, y;
     protected float speed; //ele vai sempre vir pra esquerda 
-    protected int width, height;
-    protected Rectangle2D.Float obs_hitbox;
+    protected Rectangle2D.Float obs_hitbox; //desenvolver na criação dos objetos wall, saw, bird, etc
 
     /*------------ CONSTRUTOR ------------*/
-    public Obstacles(float x, float y, float speed, int width, int height) {
-        this.x = x;
-        this.y = y;
-        this.speed = speed;
-        this.width = width;
-        this.height = height;
+    public Obstacles(Screen screen, GCanvas gc) {
+        super(screen, gc);
     }
 
-    protected void drawObstHitbox(Graphics g) {
+    /*------------ MÉTODOS HERDADOS ------------*/
+    protected abstract void drawObstHitbox(Graphics g);
+    {/*
+    protected abstract void drawObstHitbox(Graphics g) {
         //para testar a hitbox
         g.setColor(Color.BLUE);
         g.drawRect((int) obs_hitbox.x, (int) obs_hitbox.y, (int) obs_hitbox.width, (int) obs_hitbox.height);
+    }        
+    
+    */
     }
     
-    public void initObstHitbox(float x, float y, float width, float height) {
+    /*transformar esse método em um abstrato, e modificar ele pra cada classe subsequente*/
+    protected abstract void initObstHitbox(float x, float y, float width, float height);
+    
+    {/* versão desenvolvida do initObst
+        public void initObstHitbox(float x, float y, float width, float height) {
         obs_hitbox = new Rectangle2D.Float(x, y, width, height);
     }
+    */}
     
+    protected abstract void updateObstHitbox();
+    
+    {
+    /*
     protected void updateObstHitbox(){
         obs_hitbox.x = (int)x; //atualizo a posição horizontal
         obs_hitbox.y = (int)y; //atualizo a posição vertical
+    }
+    */
     }
 
     public Rectangle2D.Float getObstHitbox(){
