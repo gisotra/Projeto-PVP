@@ -22,6 +22,7 @@ public class Player1 extends Entities{
         movement = new Movement(this);
         initSprite();
         setX(120);
+        setY(360);
         movement.isJumping = true;
     }    
     

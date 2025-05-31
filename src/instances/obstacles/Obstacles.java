@@ -3,12 +3,15 @@ package instances.obstacles;
 import instances.Objects;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 import loop.GCanvas;
 import utilz.Screen;
+import utilz.Spritesheet;
+import utilz.Universal;
 
 public abstract class Obstacles extends Objects{ //muito similiar a classe Entities, porém direcionada unicamente aos obstáculos
     /*------------ ATRIBUTOS ------------*/
-    protected float speed; //ele vai sempre vir pra esquerda 
+    protected float speed =  Universal.OBST_SPEED; //ele vai sempre vir pra esquerda 
     protected Rectangle2D.Float obs_hitbox; //desenvolver na criação dos objetos wall, saw, bird, etc
 
     /*------------ CONSTRUTOR ------------*/
@@ -29,7 +32,7 @@ public abstract class Obstacles extends Objects{ //muito similiar a classe Entit
     }
     
     /*transformar esse método em um abstrato, e modificar ele pra cada classe subsequente*/
-    protected abstract void initObstHitbox(float x, float y, float width, float height);
+    protected abstract void initObstHitbox();
     
     {/* versão desenvolvida do initObst
         public void initObstHitbox(float x, float y, float width, float height) {
@@ -46,6 +49,10 @@ public abstract class Obstacles extends Objects{ //muito similiar a classe Entit
         obs_hitbox.y = (int)y; //atualizo a posição vertical
     }
     */
+    }
+    
+    public void setSpritesheet(BufferedImage spritesheet, float renderScale) {  
+        sprite = new Spritesheet(spritesheet, width, height, 0.0, renderScale);
     }
 
     @Override

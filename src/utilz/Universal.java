@@ -26,20 +26,21 @@ public class Universal {
     
     /*Posição de spawn dos obstáculos do player2*/
     // Wall
-    public static final int wall_width = 70;
-    public static final int wall_height = 120;
-    public static float wall_spawn_x = GAME_WIDTH;
+    public static float OBST_SPAWN_X = GAME_WIDTH + TILES_SIZE; 
+    public static final int WALL_WIDTH = 70;
+    public static final int WALL_HEIGHT = 120;
 
     // Bird
-    public static final int bird_width = 120;
-    public static final int bird_height = 40;
-    public static float bird_spawn_x = GAME_WIDTH;
+    public static final int BIRD_WIDTH = 120;
+    public static final int BIRD_HEIGHT = 40;
+    public static final int BIRD_SPAWN_Y = TILES_SIZE * 5;
+
     
     // Saw 
     
     /*configuração de fps*/
     public static final int FPS_SET = 60;
-    public static final float obst_speed = -3.0f;
+    public static final float OBST_SPEED = -1.8f * SCALE;
     
     /*flags de direção para usar no player e na classe KeyInputs*/
     public static boolean right = false;

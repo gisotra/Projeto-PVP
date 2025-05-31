@@ -2,6 +2,7 @@ package utilz;
 
 import instances.Objects;
 import instances.entities.Player1;
+import instances.obstacles.Bird;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +19,15 @@ public class Screen {
     public GCanvas gc;
     List<Objects> objects = new ArrayList<Objects>(); //vou usar pra dar update e render no player e nos obstaculos simultaneamente (mto amigavel com a cpu)
     Player1 player1;
+    Bird bird;
     
     /*------------ CONSTRUTOR ------------*/
     public Screen(GCanvas gc){
         this.gc = gc;
         player1 = new Player1(this, this.gc);
+        bird = new Bird(this, this.gc);
         objects.add(player1);
+        objects.add(bird);
     }
     
     /*------------ MÉTODO RENDER ------------*/
