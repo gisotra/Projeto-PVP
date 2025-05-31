@@ -51,21 +51,45 @@ public class Spritesheet { /*Classe para gerenciamento dos sprites*/
     // Construtor do Sprite: carrega a sprite sheet e separa os frames
     public Spritesheet(BufferedImage spritesheet, int frameHeightOriginal, int frameWidthOriginal, double time, float scale) {
         this.spritesheet = spritesheet;
-        this.frameHeightOriginal = frameHeightOriginal;
+        this.frameHeightOriginal = frameHeightOriginal; 
         this.frameWidthOriginal = frameWidthOriginal;
         this.scale = scale;
         this.renderHeight = (int)(frameHeightOriginal * scale);
         this.renderWidth = (int)(frameWidthOriginal * scale);
-        totalIndices = spritesheet.getHeight()/frameHeightOriginal;
-        totalFrames = spritesheet.getWidth()/frameWidthOriginal; 
         
-        trocaDeFrames = (int)(Universal.FPS_SET * time / totalFrames);
+        /*Caso eu mosque e passe um sprite com tamanho bizonho*/
+        if (spritesheet.getWidth() % frameWidthOriginal != 0
+                || spritesheet.getHeight() % frameHeightOriginal != 0) {
+            System.out.println("spritesheet.getWidth(): " + spritesheet.getWidth());
+            System.out.println("spritesheet.getHeight(): " + spritesheet.getHeight());
+            System.out.println("frameWidthOriginal: " + frameWidthOriginal);
+            System.out.println("frameHeightOriginal: " + frameHeightOriginal);
+            throw new IllegalArgumentException("Tamanho da spritesheet não é múltiplo do tamanho do frame.");
+        }
+        
+        //Caso a spritesheet seja composta de 1 único frame
+        if(spritesheet.getHeight() == frameHeightOriginal &&
+                spritesheet.getWidth() == frameWidthOriginal){ 
+                totalIndices = 0;
+                totalFrames = 0;
+                trocaDeFrames = 0;
+                //vou usar somente meu atributo spritesheet
+        } else {
+        
+            totalIndices = spritesheet.getHeight()/frameHeightOriginal; 
+            totalFrames = spritesheet.getWidth()/frameWidthOriginal; 
+        
+            trocaDeFrames = (int)(Universal.FPS_SET * time / totalFrames);
 
-        sprites = new BufferedImage[totalIndices][totalFrames];
-        initSprites();
+            sprites = new BufferedImage[totalIndices][totalFrames];
+            initSprites();
+        }
     }
     
     public void initSprites(){
+        if(totalIndices == 0 && totalFrames == 0){
+            return;
+        }
         for(int i = 0; i < totalIndices; i++){
             for(int j = 0; j < totalFrames; j++){
                 sprites[i][j] = getSpriteFromSheet(spritesheet, j * frameWidthOriginal, i * frameHeightOriginal, frameWidthOriginal, frameHeightOriginal);
@@ -86,8 +110,8 @@ public class Spritesheet { /*Classe para gerenciamento dos sprites*/
     }
     
     public void render(Graphics2D g2d, int x, int y) {
-        if(trocaDeFrames == 0){ //é um obstáculo
-        g2d.drawImage(sprites[0][0], x, y, renderWidth, renderHeight, null);
+        if(totalIndices == 0 && totalFrames == 0 && trocaDeFrames == 0){ //é um obstáculo
+        g2d.drawImage(spritesheet, x, y, renderWidth, renderHeight, null);
         } else {
         contadorFrames++;
         if (contadorFrames % trocaDeFrames == 0) {

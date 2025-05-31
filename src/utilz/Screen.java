@@ -3,6 +3,7 @@ package utilz;
 import instances.Objects;
 import instances.entities.Player1;
 import instances.obstacles.Bird;
+import instances.obstacles.Saw;
 import instances.obstacles.Wall;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class Screen {
     //para debug
     Bird bird;
     Wall wall;
+    Saw saw;
     
     /*------------ CONSTRUTOR ------------*/
     public Screen(GCanvas gc){
@@ -30,9 +32,11 @@ public class Screen {
         player1 = new Player1(this, this.gc);
         bird = new Bird(this, this.gc);
         wall = new Wall(this, this.gc);
+        saw = new Saw(this, this.gc);
         objects.add(player1);
         objects.add(bird);
         objects.add(wall);
+        objects.add(saw);
     }
     
     /*------------ MÉTODO RENDER ------------*/

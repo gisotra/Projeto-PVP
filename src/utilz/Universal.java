@@ -35,10 +35,11 @@ public class Universal {
     public static final int BIRD_WIDTH = 120;
     public static final int BIRD_HEIGHT = 40;
     public static final int BIRD_SPAWN_Y = TILES_SIZE * 2;
-
     
     // Saw 
-    
+    public static final int SAW_WIDTH = 120;
+    public static final int SAW_HEIGHT = 40;
+    public static final int SAW_SPAWN_Y = GAME_HEIGHT - TILES_SIZE;    
     /*configuração de fps*/
     public static final int FPS_SET = 60;
     public static final float OBST_SPEED = -1.8f * SCALE;

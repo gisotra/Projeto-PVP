@@ -25,7 +25,7 @@ public class Movement {
     public Movement(Player1 player1){
         this.player1 = player1;
         heightGY = player1.getHeight();
-        groundLvl = this.groundY - this.heightGY;
+        groundLvl = this.groundY - this.heightGY; // 5 Tiles - 1 = 4 tiles
     }
     /*
     groundY, and height is used to find the value of y where the object is 

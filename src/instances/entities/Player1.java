@@ -35,8 +35,8 @@ public class Player1 extends Entities{
 
     @Override
     public void render(Graphics2D g2d){
-        sprite.setAtion(playerAction); // altero ou mantenho a linha do spritesheet
-        sprite.render(g2d, (int) getX(), (int) getY());
+        spritesheet.setAtion(playerAction); // altero ou mantenho a linha do spritesheet
+        spritesheet.render(g2d, (int) getX(), (int) getY());
     }
     
     public void initSprite(){
@@ -68,7 +68,7 @@ public class Player1 extends Entities{
     }
 
     public int getHeight() {
-        return height;
+        return heightO;
     }
 }
     

@@ -14,8 +14,8 @@ public abstract class Objects {
     Screen screen;
     GCanvas gc;
     public float x, y;
-    public int width, height;
-    public Spritesheet sprite;
+    public int widthO, heightO;
+    public Spritesheet spritesheet;
     
     public Objects(Screen screen, GCanvas gc){
         this.screen = screen;
@@ -40,23 +40,23 @@ public abstract class Objects {
     }
 
     public int getWidth() {
-        return width;
+        return widthO;
     }
 
     public int getHeight() {
-        return height;
+        return heightO;
     }
 
     public Spritesheet getSprite() {
-        return sprite;
+        return spritesheet;
     }
     
     public void setWidth(int width) {
-        this.width = width;
+        this.widthO = width;
     }
     
     public void setHeight(int height) {
-        this.height = height;
+        this.heightO = height;
     }
 
     /*------------ MÉTODOS ABSTRATOS ------------*/

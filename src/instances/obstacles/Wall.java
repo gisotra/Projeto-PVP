@@ -8,6 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import loop.GCanvas;
 import utilz.Screen;
+import utilz.Spritesheet;
 import utilz.Universal;
 
 public class Wall extends Obstacles{ //extends Obstacles
@@ -28,9 +29,9 @@ public class Wall extends Obstacles{ //extends Obstacles
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        //altura e largura do meu passarinho
+        
         setWidth(32); //largura em px do FRAME ORIGINAL 
-        setHeight(32); //altura em px do FRAME ORIGINAL
+        setHeight(64); //altura em px do FRAME ORIGINAL
         setSpritesheet(birdSpriteSheet, Universal.SCALE);
     }
     
@@ -54,12 +55,17 @@ public class Wall extends Obstacles{ //extends Obstacles
     @Override
     public void render(Graphics2D g2d){
     
-    sprite.render(g2d, (int) getX(), (int) getY()); 
+    spritesheet.render(g2d, (int) getX(), (int) getY()); 
     drawObstHitbox(g2d);
     }
     
     @Override
     protected void updateObstHitbox(){
         obs_hitbox.x = (int)getX(); //atualizo a posição horizontal
+    }
+    
+    @Override
+    public void setSpritesheet(BufferedImage spritesheet, float renderScale) {
+        this.spritesheet = new Spritesheet(spritesheet, heightO, widthO, 0.0, renderScale);
     }
 }

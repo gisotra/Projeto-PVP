@@ -41,7 +41,7 @@ public abstract class Entities extends Objects{
     }
     
     public void setSpritesheet(BufferedImage spritesheet, float renderScale) { //criação da sprite + settar a velocidade
-        sprite = new Spritesheet(spritesheet, width, height, 0.85, renderScale); 
+        this.spritesheet = new Spritesheet(spritesheet, widthO, heightO, 0.85, renderScale); 
     }
 
     

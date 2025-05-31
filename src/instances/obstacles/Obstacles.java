@@ -52,9 +52,7 @@ public abstract class Obstacles extends Objects{ //muito similiar a classe Entit
     }
     
     
-    public void setSpritesheet(BufferedImage spritesheet, float renderScale) {
-        sprite = new Spritesheet(spritesheet, width, height, 0.0, renderScale);
-    }
+    public abstract void setSpritesheet(BufferedImage spritesheet, float renderScale);
     
     @Override
     public abstract void update(double deltaTime);

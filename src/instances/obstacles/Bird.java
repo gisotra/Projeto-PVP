@@ -8,6 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import loop.GCanvas;
 import utilz.Screen;
+import utilz.Spritesheet;
 import utilz.Universal;
 
 public class Bird extends Obstacles{ //extends Obstacles{
@@ -55,12 +56,18 @@ public class Bird extends Obstacles{ //extends Obstacles{
     @Override
     public void render(Graphics2D g2d){
     
-    sprite.render(g2d, (int) getX(), (int) getY()); 
+    spritesheet.render(g2d, (int) getX(), (int) getY()); 
     drawObstHitbox(g2d);
     }
     
     @Override
     protected void updateObstHitbox(){
         obs_hitbox.x = (int)getX(); //atualizo a posição horizontal
+    }
+    
+    //coloquei em cada classe pois, por exemplo, o passaro pode ter diferentes frames
+    @Override
+    public void setSpritesheet(BufferedImage spritesheet, float renderScale) {
+        this.spritesheet = new Spritesheet(spritesheet, heightO, widthO, 0.0, renderScale); 
     }
 }
