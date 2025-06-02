@@ -41,8 +41,11 @@ Player1.java: Herda Entities, usa hitbox, animação e controle de pulo.
 Player2.java: Responsável por spawnar obstáculos com teclas.
 
 ----Obstáculos----
+
 Obstacles (abstrata): Atualiza constantemente o movimento horizontal.
 Wall, Bird, Saw: Implementações específicas, herdam Obstacles.
+
+
 
 ----Base----
 Objects.java (abstrata): Superclasse com posição, sprite, update() e render().

@@ -8,6 +8,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import loop.GCanvas;
 import utilz.Screen;
+import utilz.SpriteData;
+import utilz.SpriteLoader;
 import utilz.Spritesheet;
 import utilz.Universal;
 
@@ -24,9 +26,8 @@ public class Bird extends Obstacles{ //extends Obstacles{
     }
     
     public void initSprite() {
-        //passo qual é o spritesheet pro meu buffered image local
         try {
-            birdSpriteSheet = ImageIO.read(getClass().getResourceAsStream("/assets/player/bird.png")); 
+            birdSpriteSheet = ImageIO.read(getClass().getResourceAsStream("/assets/obstacles/bird.png")); 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -45,24 +46,6 @@ public class Bird extends Obstacles{ //extends Obstacles{
     @Override
     public void initObstHitbox() {
         this.obs_hitbox = new Rectangle2D.Float(getX(), getY(), Universal.TILES_SIZE, Universal.TILES_SIZE / 2); //metade do tamanho
-    }
-    
-    @Override
-    public void update(double deltaTime){
-        this.setX(this.getX() + speed);
-        updateObstHitbox();
-    }
-    
-    @Override
-    public void render(Graphics2D g2d){
-    
-    spritesheet.render(g2d, (int) getX(), (int) getY()); 
-    drawObstHitbox(g2d);
-    }
-    
-    @Override
-    protected void updateObstHitbox(){
-        obs_hitbox.x = (int)getX(); //atualizo a posição horizontal
     }
     
     //coloquei em cada classe pois, por exemplo, o passaro pode ter diferentes frames

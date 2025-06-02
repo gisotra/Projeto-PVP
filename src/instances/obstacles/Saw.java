@@ -25,7 +25,7 @@ public class Saw extends Obstacles{ //extends Obstacles
     
     public void initSprite() {
         try {
-            birdSpriteSheet = ImageIO.read(getClass().getResourceAsStream("/assets/player/saw.png")); 
+            birdSpriteSheet = ImageIO.read(getClass().getResourceAsStream("/assets/obstacles/saw.png")); 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -42,26 +42,8 @@ public class Saw extends Obstacles{ //extends Obstacles
     }
     
     @Override
-    public void initObstHitbox() {
-        this.obs_hitbox = new Rectangle2D.Float(getX(), getY(), Universal.TILES_SIZE, Universal.TILES_SIZE); //metade do tamanho
-    }
-    
-    @Override
-    public void update(double deltaTime){
-        this.setX(this.getX() + speed);
-        updateObstHitbox();
-    }
-    
-    @Override
-    public void render(Graphics2D g2d){
-    
-    spritesheet.render(g2d, (int) getX(), (int) getY()); 
-    drawObstHitbox(g2d);
-    }
-    
-    @Override
-    protected void updateObstHitbox(){
-        obs_hitbox.x = (int)getX(); //atualizo a posição horizontal
+    public void initObstHitbox() { //x, y, largura, altura
+        this.obs_hitbox = new Rectangle2D.Float(getX(), getY(), 2*Universal.TILES_SIZE, Universal.TILES_SIZE); //metade do tamanho
     }
     
     @Override

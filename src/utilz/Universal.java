@@ -26,7 +26,7 @@ public class Universal {
     
     /*Posição de spawn dos obstáculos do player2*/
     // Wall
-    public static float OBST_SPAWN_X = GAME_WIDTH + TILES_SIZE; 
+    public static float OBST_SPAWN_X = GAME_WIDTH + 2 * TILES_SIZE; 
     public static final int WALL_WIDTH = 70;
     public static final int WALL_HEIGHT = 120;
     public static final int WALL_SPAWN_Y = TILES_SIZE * 4;

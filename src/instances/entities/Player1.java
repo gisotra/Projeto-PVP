@@ -6,6 +6,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import loop.GCanvas;
 import utilz.Screen;
+import utilz.SpriteData;
+import utilz.SpriteLoader;
 import utilz.Universal;
 
 public class Player1 extends Entities{
@@ -41,7 +43,7 @@ public class Player1 extends Entities{
     
     public void initSprite(){
         try {
-            playerSpriteSheet = ImageIO.read(getClass().getResourceAsStream("/assets/player/playerAtualizado4.png"));
+            playerSpriteSheet = ImageIO.read(getClass().getResourceAsStream("/assets/player/player.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

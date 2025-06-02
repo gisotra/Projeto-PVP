@@ -40,25 +40,23 @@ public abstract class Obstacles extends Objects{ //muito similiar a classe Entit
     }
     */}
     
-    protected abstract void updateObstHitbox();
-    
-    {
-    /*
-    protected void updateObstHitbox(){
-        obs_hitbox.x = (int)x; //atualizo a posição horizontal
-        obs_hitbox.y = (int)y; //atualizo a posição vertical
+    protected void updateObstHitbox(){ //pode tirar e definir no obstacles
+        obs_hitbox.x = (int)getX(); //atualizo a posição horizontal
     }
-    */
-    }
-    
     
     public abstract void setSpritesheet(BufferedImage spritesheet, float renderScale);
     
     @Override
-    public abstract void update(double deltaTime);
-
+    public void update(double deltaTime) {
+        this.setX(this.getX() + speed);
+        updateObstHitbox();
+    }
+    
     @Override
-    public abstract void render(Graphics2D g2d);
+    public void render(Graphics2D g2d){
+    spritesheet.render(g2d, (int) getX(), (int) getY()); 
+    drawObstHitbox(g2d);
+    }
     
     public Rectangle2D.Float getObstHitbox(){
         return obs_hitbox;

@@ -25,7 +25,7 @@ public class Wall extends Obstacles{ //extends Obstacles
     
     public void initSprite() {
         try {
-            birdSpriteSheet = ImageIO.read(getClass().getResourceAsStream("/assets/player/wall.png")); 
+            birdSpriteSheet = ImageIO.read(getClass().getResourceAsStream("/assets/obstacles/wall.png")); 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -43,25 +43,7 @@ public class Wall extends Obstacles{ //extends Obstacles
     
     @Override
     public void initObstHitbox() {
-        this.obs_hitbox = new Rectangle2D.Float(getX(), getY(), Universal.TILES_SIZE, Universal.TILES_SIZE); //metade do tamanho
-    }
-    
-    @Override
-    public void update(double deltaTime){
-        this.setX(this.getX() + speed);
-        updateObstHitbox();
-    }
-    
-    @Override
-    public void render(Graphics2D g2d){
-    
-    spritesheet.render(g2d, (int) getX(), (int) getY()); 
-    drawObstHitbox(g2d);
-    }
-    
-    @Override
-    protected void updateObstHitbox(){
-        obs_hitbox.x = (int)getX(); //atualizo a posição horizontal
+        this.obs_hitbox = new Rectangle2D.Float(getX(), getY(), Universal.TILES_SIZE, 2*Universal.TILES_SIZE); //metade do tamanho
     }
     
     @Override
