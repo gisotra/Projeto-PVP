@@ -31,7 +31,7 @@ para calcular tamanho, movimento e ações do player, otimizando processamento
 [X] usar Swing
 [ ] som
 [ ] Interação usando redes
-[ ] Uso de XML
+[X] Uso de XML
 
 
 

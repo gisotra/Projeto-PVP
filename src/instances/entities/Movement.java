@@ -105,6 +105,11 @@ The class has three methods called update(), jump(), and isGrounded(). The metho
 
         //aplico a mudança no player
         player1.setX(player1.getX() + horizontalSpeed);
+        if(player1.getX() < 0){
+            player1.setX(0);
+        } else if (player1.getX() >= Universal.GAME_WIDTH - (Universal.TILES_SIZE)/2){
+            player1.setX((Universal.GAME_WIDTH - (Universal.TILES_SIZE)/2));
+        }
     }
     
     private boolean isGrounded() {

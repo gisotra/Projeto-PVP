@@ -1,14 +1,14 @@
 <sprites>
     <sprite name="player1">
-        <path>assets/player/player.png</path>
+        <path>/assets/player/player.png</path>
     </sprite>
     <sprite name="wall">
-        <path>assets/obstacles/wall.png</path>
+        <path>/assets/obstacles/wall.png</path>
     </sprite>
     <sprite name="saw">
-        <path>assets/obstacles/saw.png</path>
+        <path>/assets/obstacles/saw.png</path>
     </sprite>
-    <sprite name="bird">
-        <path>assets/obstacles/bird.png</path>
+    <sprite name="bird"> 
+        <path>/assets/obstacles/bird.png</path>
     </sprite>
 </sprites>

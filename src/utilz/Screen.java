@@ -19,7 +19,7 @@ public class Screen {
     */
     /*------------ ATRIBUTOS ------------*/
     public GCanvas gc;
-    List<Objects> objects = new ArrayList<Objects>(); //vou usar pra dar update e render no player e nos obstaculos simultaneamente (mto amigavel com a cpu)
+    List<Objects> objectsOnScreen = new ArrayList<Objects>(); //vou usar pra dar update e render no player e nos obstaculos simultaneamente (mto amigavel com a cpu)
     Player1 player1;
     //para debug
     Bird bird;
@@ -33,22 +33,22 @@ public class Screen {
         bird = new Bird(this, this.gc);
         wall = new Wall(this, this.gc);
         saw = new Saw(this, this.gc);
-        objects.add(player1);
-        objects.add(bird);
-        objects.add(wall);
-        objects.add(saw);
+        objectsOnScreen.add(player1);
+        objectsOnScreen.add(bird);
+        objectsOnScreen.add(wall);
+        objectsOnScreen.add(saw);
     }
     
     /*------------ MÉTODO RENDER ------------*/
     public void renderAll(Graphics2D g2d) {
-        for (Objects obj : objects) {
+        for (Objects obj : objectsOnScreen) {
             obj.render(g2d);
         }
     }
     
     /*------------ MÉTODO UPDATE ------------*/
     public void updateAll(double variacaoTempo) {
-        for (Objects obj : objects) {
+        for (Objects obj : objectsOnScreen) {
             obj.update(variacaoTempo);
         }
     }

@@ -12,19 +12,21 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 public class SpriteLoader { /*Classe auxiliar que terá um único método estático "spriteDataLoader", que vai
     retornar um hashmap do tipo <String, SpriteData>*/
+
+        public static HashMap<String, SpriteData> spriteMap = new HashMap<>();
     
-    public static HashMap<String, SpriteData> spriteDataLoader(){
-        HashMap<String, SpriteData> spriteMap = new HashMap<>();
-        try {
+        public static HashMap<String, SpriteData> spriteDataLoader(){
+            if (spriteMap != null) return spriteMap; // já carregado, retorna
+            try {
             // Abrindo o arquivo XML
-            InputStream is = SpriteLoader.class.getResourceAsStream("assets/sprites.xml");
+            InputStream is = SpriteLoader.class.getResourceAsStream("./assets/sprites.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(is);
             doc.getDocumentElement().normalize();
 
             // Pegando todos os elementos <sprite>
-            NodeList nodeList = doc.getElementsByTagName("sprite");
+            NodeList nodeList = doc.getElementsByTagName("");
 
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);

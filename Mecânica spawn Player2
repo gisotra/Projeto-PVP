@@ -1,0 +1,31 @@
+Mecânica de spawn do player 2 (sem redes ainda)
+
+Classes utilizadas:
+Objects: x, y, width, height, sprite pros obstáculos
+Obstacles && Wall, Saw, Bird (obstáculos que serão gerados)
+Screen: A list principal vai ser transformada em uma LinkedList (queue), que vai 
+reutilizar os obstáculos que saírem da tela, desse jeito não pesando na CPU && Nunca removerá 
+o player
+SpawnManager: vai receber essa LinkedList e vai spawnar os obstáculos de acordo com os inputs do
+KeyInpus
+Player2: Vai receber spawnManager em sua composição e vai ter mecanica de cooldown.
+
+Player2 adicionado na classe screen + novo list
+
+o método update vai verificar se os elementos estão visíveis na tela (novo Método)
+
+Screen: Atualiza, renderiza todos os objetos na lista, e remove obstáculos que saíram da tela
+
+if (!obstPool.isEmpty()) {
+    Obstacles reciclado = obstPool.remove();
+    reciclado.reinicializar(posX, posY);
+    screen.objectsOnScreen.add(reciclado);
+} else {
+    screen.objectsOnScreen.add(new Bird(screen, gc));
+}
+
+if (obstáculo está fora da tela) {
+    objectsOnScreen.remove(obst);
+    obstPool.add(obst); // coloca de volta na pool
+}
+

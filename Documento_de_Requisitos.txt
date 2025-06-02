@@ -27,32 +27,29 @@ RNF03	Usar apenas recursos nativos do Java (sem bibliotecas externas)
 RNF04	Jogo deve rodar em tela cheia ou janela sem travamentos
 RNF05	Utilizar constantes definidas em Universal.java para evitar cálculos desnecessários
 
-4. Arquitetura e Organização de Classes
+4. Arquitetura e Organização de Classes //feito
 ----Loop do Jogo----
 GRoom.java: Contém a thread de jogo e o game loop (FPS/UPS controlado).
 GCanvas.java: Painel principal que chama update() e render() para todos os elementos em uma ArrayList<Objects>.
 
-----Lógica do Jogo----
+----Lógica do Jogo---- //feito
 Main.java: Classe inicial, cria janela e instancia a engine.
 GWindow.java: JFrame que contém GCanvas.
 
-----Jogadores----
+----Jogadores---- 
 Player1.java: Herda Entities, usa hitbox, animação e controle de pulo.
 Player2.java: Responsável por spawnar obstáculos com teclas.
 
 ----Obstáculos----
-
 Obstacles (abstrata): Atualiza constantemente o movimento horizontal.
 Wall, Bird, Saw: Implementações específicas, herdam Obstacles.
-
-
 
 ----Base----
 Objects.java (abstrata): Superclasse com posição, sprite, update() e render().
 Entities.java: Especialização de Objects com colisores e movimento.
 Collisors.java: Detecção de colisões.
 
-----Utilitários----
+----Utilitários---- //sendo implementado
 Spritesheet.java: Gerencia todos os sprites do jogo, que serão lidos usando 
 XML uma única vez, com hashmap para evitar reprocessamento.
 

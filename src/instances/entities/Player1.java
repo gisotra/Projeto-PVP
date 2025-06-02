@@ -26,8 +26,8 @@ public class Player1 extends Entities{
         setX(120);
         setY(360);
         movement.isJumping = true;
-    }    
-    
+    }     
+   
     @Override
     public void update(double deltaTime){
         movement.updatePosY(deltaTime);
