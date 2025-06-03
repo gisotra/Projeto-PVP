@@ -16,7 +16,7 @@ public class SpriteLoader { /*Classe auxiliar que terá um único método estát
         public static HashMap<String, SpriteData> spriteMap = new HashMap<>();
     
         public static HashMap<String, SpriteData> spriteDataLoader(){
-            if (spriteMap != null) return spriteMap; // já carregado, retorna
+            if (!spriteMap.isEmpty()) return spriteMap; // já carregado, retorna
             try {
             // Abrindo o arquivo XML
             InputStream is = SpriteLoader.class.getResourceAsStream("/assets/sprites.xml");
@@ -26,7 +26,7 @@ public class SpriteLoader { /*Classe auxiliar que terá um único método estát
             doc.getDocumentElement().normalize();
 
             // Pegando todos os elementos <sprite>
-            NodeList nodeList = doc.getElementsByTagName("");
+            NodeList nodeList = doc.getElementsByTagName("sprite");
 
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);

@@ -8,7 +8,7 @@
     <sprite name="saw">
         <path>/assets/obstacles/saw.png</path>
     </sprite>
-    <sprite name="bird"> 
+    <sprite name="bird">
         <path>/assets/obstacles/bird.png</path>
     </sprite>
 </sprites>
