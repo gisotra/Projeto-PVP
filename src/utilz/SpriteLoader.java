@@ -19,7 +19,7 @@ public class SpriteLoader { /*Classe auxiliar que terá um único método estát
             if (spriteMap != null) return spriteMap; // já carregado, retorna
             try {
             // Abrindo o arquivo XML
-            InputStream is = SpriteLoader.class.getResourceAsStream("./assets/sprites.xml");
+            InputStream is = SpriteLoader.class.getResourceAsStream("/assets/sprites.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(is);

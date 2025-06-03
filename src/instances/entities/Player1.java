@@ -42,8 +42,9 @@ public class Player1 extends Entities{
     }
     
     public void initSprite(){
+        SpriteData playerData = SpriteLoader.spriteDataLoader().get("player1");
         try {
-            playerSpriteSheet = ImageIO.read(getClass().getResourceAsStream("/assets/player/player.png"));
+            playerSpriteSheet = ImageIO.read(getClass().getResource(playerData.getPath()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

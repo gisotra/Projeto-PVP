@@ -26,8 +26,9 @@ public class Bird extends Obstacles{ //extends Obstacles{
     }
     
     public void initSprite() {
+        SpriteData birdData = SpriteLoader.spriteDataLoader().get("bird");
         try {
-            birdSpriteSheet = ImageIO.read(getClass().getResourceAsStream("/assets/obstacles/bird.png")); 
+            birdSpriteSheet = ImageIO.read(getClass().getResource(birdData.getPath()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

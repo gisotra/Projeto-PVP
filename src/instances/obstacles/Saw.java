@@ -8,12 +8,14 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import loop.GCanvas;
 import utilz.Screen;
+import utilz.SpriteData;
+import utilz.SpriteLoader;
 import utilz.Spritesheet;
 import utilz.Universal;
 
 public class Saw extends Obstacles{ //extends Obstacles
     /*------------ ATRIBUTOS ------------*/
-    BufferedImage birdSpriteSheet;
+    BufferedImage sawSpriteSheet;
     /*------------ CONSTRUTOR ------------*/
     public Saw(Screen screen, GCanvas gc) {
         super(screen, gc);
@@ -24,15 +26,16 @@ public class Saw extends Obstacles{ //extends Obstacles
     }
     
     public void initSprite() {
+        SpriteData sawData = SpriteLoader.spriteDataLoader().get("saw");
         try {
-            birdSpriteSheet = ImageIO.read(getClass().getResourceAsStream("/assets/obstacles/saw.png")); 
+            sawSpriteSheet = ImageIO.read(getClass().getResource(sawData.getPath()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         
         setWidth(64); //largura em px do FRAME ORIGINAL 
         setHeight(32); //altura em px do FRAME ORIGINAL
-        setSpritesheet(birdSpriteSheet, Universal.SCALE);
+        setSpritesheet(sawSpriteSheet, Universal.SCALE);
     }
     
     @Override
