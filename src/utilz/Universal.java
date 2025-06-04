@@ -6,6 +6,8 @@ public class Universal {
     largura: 8 * 32 = 256 | OU | 16 * 32 = 512
     altura: 7 * 32 = 224
     */
+    /*configuração de fps*/
+    public static final int FPS_SET = 60;
     
     /*Configurações de resolução da tela*/
     public final static int TILES_DEFAULT_SIZE = 32;
@@ -16,6 +18,9 @@ public class Universal {
     public final static int GAME_WIDTH = TILES_IN_WIDTH * TILES_SIZE;
     public final static int GAME_HEIGHT = TILES_IN_HEIGHT * TILES_SIZE;
     
+    /*---------------- PLAYER1 ----------------*/
+    /*-----------------------------------------*/
+    /*-----------------------------------------*/
     /*Índices das animações dos sprites do player (vertical)*/
     public static final int IDLE = 0;
     public static final int RUNNING = 0;
@@ -24,38 +29,46 @@ public class Universal {
     public static final int IS_FALLING = 2;
     public static final int IS_DEAD = 4;
     
-    /*Posição de spawn dos obstáculos do player2*/
-    // Wall
-    public static float OBST_SPAWN_X = GAME_WIDTH + 2 * TILES_SIZE; 
-    public static final int WALL_WIDTH = 70;
-    public static final int WALL_HEIGHT = 120;
-    public static final int WALL_SPAWN_Y = TILES_SIZE * 4;
-
-    // Bird
-    public static final int BIRD_WIDTH = 120;
-    public static final int BIRD_HEIGHT = 40;
-    public static final int BIRD_SPAWN_Y = TILES_SIZE * 2;
-    
-    // Saw 
-    public static final int SAW_WIDTH = 120;
-    public static final int SAW_HEIGHT = 40;
-    public static final int SAW_SPAWN_Y = GAME_HEIGHT - TILES_SIZE;    
-    /*configuração de fps*/
-    public static final int FPS_SET = 60;
-    public static final float OBST_SPEED = -1.8f * SCALE;
-    
     /*flags de direção para usar no player e na classe KeyInputs*/
     public static boolean right = false;
     public static boolean left = false;
     public static boolean up = false;
     public static boolean down = false;
     public static boolean jump = false;
-    
+
     /*Direções de movimento para o SPRITE do player*/
     public static final int LEFT = 0;
     public static final int UP = 1;
     public static final int RIGHT = 2;
     public static final int DOWN = 3;
+    
+    /*-------------- OBSTÁCULOS ---------------*/
+    /*-------------------------- ---------------*/
+    /*-----------------------------------------*/
+    
+    /*Posição de spawn dos obstáculos do player2 + flags de spawn no KeyInputs*/
+    // Wall
+    public static float OBST_SPAWN_X = GAME_WIDTH + 2 * TILES_SIZE; 
+    public static final int WALL_WIDTH = 70;
+    public static final int WALL_HEIGHT = 120;
+    public static final int WALL_SPAWN_Y = TILES_SIZE * 4;
+    public static boolean wall = false; //flag de spawn
+
+    // Bird
+    public static final int BIRD_WIDTH = 120;
+    public static final int BIRD_HEIGHT = 40;
+    public static final int BIRD_SPAWN_Y = TILES_SIZE * 2;
+    public static boolean bird = false; //flag de spawn 
+    
+    // Saw 
+    public static final int SAW_WIDTH = 120;
+    public static final int SAW_HEIGHT = 40;
+    public static final int SAW_SPAWN_Y = GAME_HEIGHT - TILES_SIZE;    
+    public static boolean saw = false; //flag de spawn
+    
+    public static final float OBST_SPEED = -1.8f * SCALE;
+    
+
 
     
     /*Método que retorna quantos frames cada ação possui*/

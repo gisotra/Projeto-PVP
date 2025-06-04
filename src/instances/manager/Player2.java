@@ -1,6 +1,6 @@
 package instances.manager;
 
-public class Player2 {
+public class Player2 extends SpawnManager{
 
 
 }

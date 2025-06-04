@@ -20,6 +20,7 @@ public class KeyInputs implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
+            /*player1 - Movimentação*/
             case KeyEvent.VK_W:
                 Universal.up = false; //alteração do método receber para GameCanvas 
                 break;
@@ -35,12 +36,17 @@ public class KeyInputs implements KeyListener {
             case KeyEvent.VK_SPACE:
                 Universal.jump = false;
                 break; 
+            /*player2 - Spawn de Obstáculos*/    
+            case KeyEvent.VK_O:
+                Universal.wall = false;
+                break;    
         }
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
+            /*player1 - Movimentação*/
             case KeyEvent.VK_W:
                 Universal.up = true;
                 break;
@@ -53,14 +59,12 @@ public class KeyInputs implements KeyListener {
             case KeyEvent.VK_D:
                 Universal.right = true;
                 break;
-            /*case KeyEvent.VK_O:
-                gameCanvas.getGame().getPlayer2().spawnWall(
-                        gameCanvas.getGame().getObst(),
-                        gameCanvas.getGame().getGround()
-                );
-                break;*/
             case KeyEvent.VK_SPACE:
                 Universal.jump = true;
+                break;
+            /*player2 - Spawn de Obstáculos*/
+            case KeyEvent.VK_O:
+                Universal.wall = true;
                 break;
         }
     }
