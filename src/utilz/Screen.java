@@ -2,12 +2,11 @@ package utilz;
 
 import instances.Objects;
 import instances.entities.Player1;
+import instances.manager.Player2;
 import instances.obstacles.Bird;
 import instances.obstacles.Saw;
 import instances.obstacles.Wall;
 import java.awt.Graphics2D;
-import java.util.ArrayList;
-import java.util.List;
 import loop.GCanvas;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -26,6 +25,7 @@ public class Screen {
     public GCanvas gc;
     public static Queue<Objects> objectsOnScreen = new LinkedList<>(); //vou usar pra dar update e render no player e nos obstaculos simultaneamente (mto amigavel com a cpu)
     Player1 player1;
+    Player2 player2;
     //para debug
     
     /*------------ CONSTRUTOR ------------*/
@@ -33,6 +33,7 @@ public class Screen {
         this.gc = gc;
         player1 = new Player1(this, this.gc);
         objectsOnScreen.add(player1);
+        player2 = new Player2();
         for(int i = 0; i < 3; i++){ //3 por obstáculo, 9 no total. 
             objectsOnScreen.add(new Bird(this, this.gc));
             objectsOnScreen.add(new Wall(this, this.gc));
@@ -52,10 +53,19 @@ public class Screen {
     /*------------ MÉTODO UPDATE ------------*/
     public void updateAll(double variacaoTempo) {
         for (Objects obj : objectsOnScreen) {
+            if(obj.getX() < 0 - Universal.TILES_SIZE*4){
+                obj.setIsActive(false);
+                continue;
+            }
+            
             if(obj.getX() >= 0 - Universal.TILES_SIZE*4 && obj.getIsActive()){ //se estiver visível E estiver ativo
             obj.update(variacaoTempo);
             }
+            
+            
         }
+        
+        player2.play();
     }
     
     
