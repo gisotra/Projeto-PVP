@@ -16,6 +16,7 @@ public abstract class Objects {
     public float x, y;
     public int widthO, heightO;
     public Spritesheet spritesheet;
+    public boolean isActive = false;
     
     public Objects(Screen screen, GCanvas gc){
         this.screen = screen;
@@ -57,6 +58,14 @@ public abstract class Objects {
     
     public void setHeight(int height) {
         this.heightO = height;
+    }
+    
+    public boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
     }
 
     /*------------ MÉTODOS ABSTRATOS ------------*/

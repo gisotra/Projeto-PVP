@@ -23,6 +23,7 @@ public class Saw extends Obstacles{ //extends Obstacles
         setX(Universal.OBST_SPAWN_X); //fora da tela na direita
         initSprite();
         initObstHitbox();
+        setIsActive(false);
     }
     
     public void initSprite() {

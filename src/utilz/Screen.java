@@ -27,34 +27,34 @@ public class Screen {
     public static Queue<Objects> objectsOnScreen = new LinkedList<>(); //vou usar pra dar update e render no player e nos obstaculos simultaneamente (mto amigavel com a cpu)
     Player1 player1;
     //para debug
-    Bird bird;
-    Wall wall;
-    Saw saw;
     
     /*------------ CONSTRUTOR ------------*/
     public Screen(GCanvas gc){
         this.gc = gc;
         player1 = new Player1(this, this.gc);
-        bird = new Bird(this, this.gc);
-        wall = new Wall(this, this.gc);
-        saw = new Saw(this, this.gc);
         objectsOnScreen.add(player1);
-        objectsOnScreen.add(bird);
-        objectsOnScreen.add(wall);
-        objectsOnScreen.add(saw);
+        for(int i = 0; i < 3; i++){ //3 por obstáculo, 9 no total. 
+            objectsOnScreen.add(new Bird(this, this.gc));
+            objectsOnScreen.add(new Wall(this, this.gc));
+            objectsOnScreen.add(new Saw(this, this.gc));
+        }
     }
     
     /*------------ MÉTODO RENDER ------------*/
     public void renderAll(Graphics2D g2d) {
         for (Objects obj : objectsOnScreen) {
+            if(obj.getX() >= 0 - Universal.TILES_SIZE && obj.getIsActive()){ //se estiver visível
             obj.render(g2d);
+            }
         }
     }
     
     /*------------ MÉTODO UPDATE ------------*/
     public void updateAll(double variacaoTempo) {
         for (Objects obj : objectsOnScreen) {
+            if(obj.getX() >= 0 - Universal.TILES_SIZE*4 && obj.getIsActive()){ //se estiver visível E estiver ativo
             obj.update(variacaoTempo);
+            }
         }
     }
     

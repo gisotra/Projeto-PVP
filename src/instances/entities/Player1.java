@@ -26,6 +26,7 @@ public class Player1 extends Entities{
         setX(120);
         setY(360);
         movement.isJumping = true;
+        setIsActive(true);
     }     
    
     @Override

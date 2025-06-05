@@ -48,8 +48,10 @@ public abstract class Obstacles extends Objects{ //muito similiar a classe Entit
     
     @Override
     public void update(double deltaTime) {
-        this.setX(this.getX() + speed);
+        if(this.isActive){ // se estiver ativo
+        this.setX(this.getX() + speed); //atualizo a speed
         updateObstHitbox();
+        }
     }
     
     @Override
@@ -60,6 +62,7 @@ public abstract class Obstacles extends Objects{ //muito similiar a classe Entit
     
     public Rectangle2D.Float getObstHitbox(){
         return obs_hitbox;
-    }
+    }    
+    
 }
 

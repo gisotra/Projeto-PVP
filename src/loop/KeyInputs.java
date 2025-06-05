@@ -40,6 +40,12 @@ public class KeyInputs implements KeyListener {
             case KeyEvent.VK_O:
                 Universal.wall = false;
                 break;    
+            case KeyEvent.VK_I:
+                Universal.bird = false;
+                break;
+            case KeyEvent.VK_P:
+                Universal.saw = false;
+                break;    
         }
     }
 
@@ -65,6 +71,12 @@ public class KeyInputs implements KeyListener {
             /*player2 - Spawn de Obstáculos*/
             case KeyEvent.VK_O:
                 Universal.wall = true;
+                break;
+            case KeyEvent.VK_I:
+                Universal.bird = true;
+                break;
+            case KeyEvent.VK_P:
+                Universal.saw = true;
                 break;
         }
     }

@@ -29,3 +29,4 @@ if (obstáculo está fora da tela) {
     obstPool.add(obst); // coloca de volta na pool
 }
 
+https://infinite-runner-engine-docs.moremountains.com/object_pools.html
