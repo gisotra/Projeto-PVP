@@ -54,5 +54,9 @@ public abstract class Entities extends Objects{
     public float getHitboxHeight() {
         return (float) hitbox.height;
     }
+    
+    public float getHitboxWidth() {
+        return (float) hitbox.height;
+    }
 
 }

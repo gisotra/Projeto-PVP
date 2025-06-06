@@ -120,6 +120,9 @@ public class Spritesheet { /*Classe para gerenciamento dos sprites*/
         if (frameAtual >= Universal.GetSpriteAmount(acaoAtual)) {
             frameAtual = 0;
         }
+        if(Universal.dead){
+            contadorFrames = 0;
+        }
         g2d.drawImage(sprites[acaoAtual][frameAtual], x, y, renderWidth, renderHeight, null);
         }
     }

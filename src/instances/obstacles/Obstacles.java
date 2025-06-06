@@ -12,7 +12,7 @@ import utilz.Universal;
 public abstract class Obstacles extends Objects{ //muito similiar a classe Entities, porém direcionada unicamente aos obstáculos
     /*------------ ATRIBUTOS ------------*/
     protected float speed =  Universal.OBST_SPEED; //ele vai sempre vir pra esquerda 
-    protected Rectangle2D.Float obs_hitbox; //desenvolver na criação dos objetos wall, saw, bird, etc
+    public Rectangle2D.Float obs_hitbox; //desenvolver na criação dos objetos wall, saw, bird, etc
 
     /*------------ CONSTRUTOR ------------*/
     public Obstacles(Screen screen, GCanvas gc) {

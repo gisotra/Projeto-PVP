@@ -22,10 +22,11 @@ public class Player1 extends Entities{
     public Player1(Screen screen, GCanvas gc){
         super(screen, gc);
         movement = new Movement(this);
+        collider = new Collider(this);
         initSprite();
         setX(120);
         setY(360);
-        movement.isJumping = true;
+        movement.isJumping = true; //para ele cair logo de primeira
         setIsActive(true);
     }     
    
@@ -33,6 +34,12 @@ public class Player1 extends Entities{
     public void update(double deltaTime){
         movement.updatePosY(deltaTime);
         movement.updatePosX(deltaTime);
+        collider.updateCollisionArea();
+        
+        if(collider.verifyNearby()){ //somente se HÁ um obstáculo dentro da minha range de colisão 
+            collider.verifyCollission();
+        }
+        
         updateHitbox();
     }
 
@@ -41,6 +48,7 @@ public class Player1 extends Entities{
         spritesheet.setAtion(playerAction); // altero ou mantenho a linha do spritesheet
         spritesheet.render(g2d, (int) getX(), (int) getY());
         drawHitbox(g2d);
+        collider.drawCollisionArea(g2d);
     }
     
     public void initSprite(){

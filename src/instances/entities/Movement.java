@@ -16,7 +16,7 @@ public class Movement {
     public boolean isJumping = false;
     public float airSpeed = 0f; //Y
     public float gravity = 0.08f * Universal.SCALE;
-    public float jumpPower = -2.8f * Universal.SCALE; // Força do meu salto
+    public float jumpPower = -3.5f * Universal.SCALE; // Força do meu salto
     public boolean inAir = false;
     public float heightGY; //usado para achar a posição Y em que o player tá "no chão"
     public float groundLvl;

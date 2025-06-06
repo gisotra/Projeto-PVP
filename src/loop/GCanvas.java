@@ -33,7 +33,9 @@ public class GCanvas extends Canvas {
         Graphics2D g2D = (Graphics2D) bs.getDrawGraphics();
         g2D.setColor(Color.white);
         g2D.fillRect(0, 0, getWidth(), getHeight());
+        if(Universal.showGrid){
         drawGrid(g2D);
+        }
         screen.renderAll(g2D);
         g2D.dispose();
         bs.show();
