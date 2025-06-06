@@ -46,6 +46,11 @@ public class KeyInputs implements KeyListener {
             case KeyEvent.VK_P:
                 Universal.saw = false;
                 break;    
+                /*DEBUG*/
+            case KeyEvent.VK_U:
+                //Toggle Grid 
+                Universal.showGrid = !Universal.showGrid;
+                break;    
         }
     }
 
@@ -78,6 +83,12 @@ public class KeyInputs implements KeyListener {
             case KeyEvent.VK_P:
                 Universal.saw = true;
                 break;
+            /*DEBUG*/    
+            case KeyEvent.VK_U:
+                //Toggle Grid 
+                break;   
+             
+                
         }
     }
 }

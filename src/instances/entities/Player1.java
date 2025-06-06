@@ -40,6 +40,7 @@ public class Player1 extends Entities{
     public void render(Graphics2D g2d){
         spritesheet.setAtion(playerAction); // altero ou mantenho a linha do spritesheet
         spritesheet.render(g2d, (int) getX(), (int) getY());
+        drawHitbox(g2d);
     }
     
     public void initSprite(){

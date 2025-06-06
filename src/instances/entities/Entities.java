@@ -18,7 +18,7 @@ public abstract class Entities extends Objects{
     
     public Entities(Screen screen, GCanvas gc){
         super(screen, gc);
-        initHitbox(getX(), getY(), Universal.TILES_SIZE, Universal.TILES_SIZE);
+        initHitbox(getX(), getY(), 64, 72);
     }
     /*------------ MÉTODOS ------------*/
     protected void drawHitbox(Graphics g) {
@@ -50,5 +50,9 @@ public abstract class Entities extends Objects{
 
     @Override
     public abstract void render(Graphics2D g2d);
+    
+    public float getHitboxHeight() {
+        return (float) hitbox.height;
+    }
 
 }

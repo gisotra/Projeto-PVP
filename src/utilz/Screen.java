@@ -6,6 +6,7 @@ import instances.manager.Player2;
 import instances.obstacles.Bird;
 import instances.obstacles.Saw;
 import instances.obstacles.Wall;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import loop.GCanvas;
 import java.util.LinkedList;
@@ -43,29 +44,32 @@ public class Screen {
     
     /*------------ MÉTODO RENDER ------------*/
     public void renderAll(Graphics2D g2d) {
-        for (Objects obj : objectsOnScreen) {
-            if(obj.getX() >= 0 - Universal.TILES_SIZE && obj.getIsActive()){ //se estiver visível
-            obj.render(g2d);
+        
+            for (Objects obj : objectsOnScreen) {
+                if(obj.getX() >= 0 - Universal.TILES_SIZE && obj.getIsActive()){ //se estiver visível
+                obj.render(g2d);
+                }
             }
-        }
     }
     
     /*------------ MÉTODO UPDATE ------------*/
     public void updateAll(double variacaoTempo) {
-        for (Objects obj : objectsOnScreen) {
-            if(obj.getX() < 0 - Universal.TILES_SIZE*4){
-                obj.setIsActive(false);
-                continue;
+        if(!Universal.dead){ // se ele NÃO ESTIVER MORTO
+            for (Objects obj : objectsOnScreen) {
+                if(obj.getX() < 0 - Universal.TILES_SIZE*4){
+                    obj.setIsActive(false);
+                    continue;
+                }
+            
+                if(obj.getX() >= 0 - Universal.TILES_SIZE*4 && obj.getIsActive()){ //se estiver visível E estiver ativo
+                obj.update(variacaoTempo);
+                }
+            
+            
             }
-            
-            if(obj.getX() >= 0 - Universal.TILES_SIZE*4 && obj.getIsActive()){ //se estiver visível E estiver ativo
-            obj.update(variacaoTempo);
-            }
-            
-            
-        }
-        
         player2.play();
+        
+        }
     }
     
     

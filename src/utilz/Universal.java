@@ -18,6 +18,15 @@ public class Universal {
     public final static int GAME_WIDTH = TILES_IN_WIDTH * TILES_SIZE;
     public final static int GAME_HEIGHT = TILES_IN_HEIGHT * TILES_SIZE;
     
+    /*Opções para Debug*/
+    public static boolean showGrid = false;
+    
+    /*
+    Lógica utilizada para determinar a altura de spawn dos elementos:
+    AlturaSpawnY = ValorYDoChão - AlturaDaHitboxDoElemento;
+    */
+    public static final float groundY = 6 * Universal.TILES_SIZE; //usado para achar a posição Y em que o player tá "no chão"
+    
     /*---------------- PLAYER1 ----------------*/
     /*-----------------------------------------*/
     /*-----------------------------------------*/
@@ -35,6 +44,7 @@ public class Universal {
     public static boolean up = false;
     public static boolean down = false;
     public static boolean jump = false;
+    public static boolean dead = false;
 
     /*Direções de movimento para o SPRITE do player*/
     public static final int LEFT = 0;
@@ -57,18 +67,20 @@ public class Universal {
     // Bird
     public static final int BIRD_WIDTH = 120;
     public static final int BIRD_HEIGHT = 40;
-    public static final int BIRD_SPAWN_Y = TILES_SIZE * 2;
+    public static final int BIRD_SPAWN_Y = TILES_SIZE * 4;
     public static boolean bird = false; //flag de spawn 
     
     // Saw 
     public static final int SAW_WIDTH = 120;
     public static final int SAW_HEIGHT = 40;
-    public static final int SAW_SPAWN_Y = GAME_HEIGHT - TILES_SIZE;    
+    public static final int SAW_SPAWN_Y = GAME_HEIGHT - (2 * TILES_SIZE);    
     public static boolean saw = false; //flag de spawn
     
     public static final float OBST_SPEED = -1.8f * SCALE;
     
 
+    
+    
 
     
     /*Método que retorna quantos frames cada ação possui*/

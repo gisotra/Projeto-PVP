@@ -13,19 +13,18 @@ public class Movement {
     public double MAX_SPEED = 2.5f*Universal.SCALE;
     public float horizontalSpeed;
     public float atrito = 0.7f*Universal.SCALE;
-    public float groundY = 5 * Universal.TILES_SIZE; //usado para achar a posição Y em que o player tá "no chão"
-    public float heightGY; //usado para achar a posição Y em que o player tá "no chão"
     public boolean isJumping = false;
     public float airSpeed = 0f; //Y
     public float gravity = 0.08f * Universal.SCALE;
     public float jumpPower = -2.8f * Universal.SCALE; // Força do meu salto
     public boolean inAir = false;
+    public float heightGY; //usado para achar a posição Y em que o player tá "no chão"
     public float groundLvl;
     
     public Movement(Player1 player1){
         this.player1 = player1;
-        heightGY = player1.getHeight();
-        groundLvl = this.groundY - this.heightGY; // 5 Tiles - 1 = 4 tiles
+        heightGY = player1.getHitboxHeight();
+        groundLvl = Universal.groundY - heightGY; // 5 Tiles - 1 = 4 tiles
     }
     /*
     groundY, and height is used to find the value of y where the object is 
