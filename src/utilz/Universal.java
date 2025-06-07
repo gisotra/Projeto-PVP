@@ -11,8 +11,8 @@ public class Universal {
     
     /*Configurações de resolução da tela*/
     public final static int TILES_DEFAULT_SIZE = 32;
-    public final static float SCALE = 3f;
-    public final static int TILES_IN_WIDTH = 16;  //512px de COMPRIMENTO
+    public final static float SCALE = 3.3f;
+    public final static int TILES_IN_WIDTH = 14;  //512px de COMPRIMENTO
     public final static int TILES_IN_HEIGHT = 7;  //224px ALTURA
     public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
     public final static int GAME_WIDTH = TILES_IN_WIDTH * TILES_SIZE;
@@ -25,7 +25,7 @@ public class Universal {
     Lógica utilizada para determinar a altura de spawn dos elementos:
     AlturaSpawnY = ValorYDoChão - AlturaDaHitboxDoElemento;
     */
-    public static final float groundY = 6 * Universal.TILES_SIZE; //usado para achar a posição Y em que o player tá "no chão"
+    public static final float groundY = 5 * Universal.TILES_SIZE; //usado para achar a posição Y em que o player tá "no chão"
     
     /*---------------- PLAYER1 ----------------*/
     /*-----------------------------------------*/

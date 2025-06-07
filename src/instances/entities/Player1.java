@@ -36,7 +36,7 @@ public class Player1 extends Entities{
         movement.updatePosX(deltaTime);
         collider.updateCollisionArea();
         
-        if(collider.verifyNearby()){ //somente se HÁ um obstáculo dentro da minha range de colisão 
+        if(collider.verifyNearby()){ //somente se HÁ um obstáculo dedd asdasdas das dantro da minha range de colisão 
             collider.verifyCollission();
         }
         
@@ -47,8 +47,10 @@ public class Player1 extends Entities{
     public void render(Graphics2D g2d){
         spritesheet.setAtion(playerAction); // altero ou mantenho a linha do spritesheet
         spritesheet.render(g2d, (int) getX(), (int) getY());
-        drawHitbox(g2d);
-        collider.drawCollisionArea(g2d);
+        if(Universal.showGrid){
+            drawHitbox(g2d);
+            collider.drawCollisionArea(g2d);
+        }
     }
     
     public void initSprite(){

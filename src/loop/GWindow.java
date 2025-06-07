@@ -14,9 +14,9 @@ public class GWindow {
         janela.setUndecorated(true);
         janela.add(gc);
         janela.pack();
-        janela.setLocationRelativeTo(null);        
-        gc.initCanvas();
+        janela.setLocationRelativeTo(null);
         janela.setVisible(true);
+        gc.initCanvas();
     }
 
     public JFrame getJanela() {

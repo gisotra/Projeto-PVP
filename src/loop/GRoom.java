@@ -47,7 +47,10 @@ public class GRoom implements Runnable {
             if(renderizou){
                 render();
                 frames++;
-            }
+            }   else {
+            // Se não renderizou, libera a CPU pra outras threads
+            Thread.yield();
+        }
 
             // Exibe o FPS a cada segundo
             if (System.currentTimeMillis() - timer >= 1000) {

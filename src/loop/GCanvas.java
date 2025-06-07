@@ -31,14 +31,23 @@ public class GCanvas extends Canvas {
             return; // ainda não foi criado
         }
         Graphics2D g2D = (Graphics2D) bs.getDrawGraphics();
-        g2D.setColor(Color.white);
-        g2D.fillRect(0, 0, getWidth(), getHeight());
-        if(Universal.showGrid){
-        drawGrid(g2D);
+        try {
+            // Limpa o fundo para evitar artefatos de frames anteriores
+            g2D.setColor(Color.WHITE);
+            g2D.fillRect(0, 0, getWidth(), getHeight());
+            if (Universal.showGrid) {
+                drawGrid(g2D);
+            }
+            screen.renderAll(g2D);
+        } finally {
+            // Garante que o objeto Graphics será liberado mesmo que dê erro
+            g2D.dispose();
         }
-        screen.renderAll(g2D);
-        g2D.dispose();
+
+        // Exibe o buffer completo na tela
         bs.show();
+
+        // Sincroniza a atualização gráfica com o hardware para reduzir tearing
         Toolkit.getDefaultToolkit().sync();
     }
     
