@@ -46,7 +46,7 @@ public class Player1 extends Entities{
     @Override
     public void render(Graphics2D g2d){
         spritesheet.setAtion(playerAction); // altero ou mantenho a linha do spritesheet
-        spritesheet.render(g2d, (int) getX(), (int) getY());
+        spritesheet.render(g2d, (int) getX() - 12, (int) getY());
         if(Universal.showGrid){
             drawHitbox(g2d);
             collider.drawCollisionArea(g2d);

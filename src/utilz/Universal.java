@@ -7,7 +7,7 @@ public class Universal {
     altura: 7 * 32 = 224
     */
     /*configuração de fps*/
-    public static final int FPS_SET = 60;
+    public static final int FPS_SET = 65;
     
     /*Configurações de resolução da tela*/
     public final static int TILES_DEFAULT_SIZE = 32;

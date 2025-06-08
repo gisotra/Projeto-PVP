@@ -18,7 +18,7 @@ public abstract class Entities extends Objects{
     
     public Entities(Screen screen, GCanvas gc){
         super(screen, gc);
-        initHitbox(getX(), getY(), 64, 72);
+        initHitbox(getX(), getY(), 45, 78);
     }
     /*------------ MÉTODOS ------------*/
     protected void drawHitbox(Graphics g) {

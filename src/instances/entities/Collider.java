@@ -19,10 +19,10 @@ public class Collider {
     
     public Collider(Player1 player1) {
         this.player1 = player1;
-        this.collAreaWidth = player1.getHitboxWidth() * 1.5f;
-        this.collAreaHeight = player1.getHitboxHeight() * 1.5f;
-        this.areaXOffset = Universal.TILES_SIZE * 0.22f;
-        this.areaYOffset = Universal.TILES_SIZE * 0.19f;
+        this.collAreaWidth = player1.getHitboxWidth() * 1.2f;
+        this.collAreaHeight = player1.getHitboxHeight() * 1.4f;
+        this.areaXOffset = Universal.TILES_SIZE * 0.23f;
+        this.areaYOffset = Universal.TILES_SIZE * 0.15f;
         collisionArea = new Rectangle2D.Float(player1.x, player1.y, collAreaWidth, collAreaHeight);
     }
     
