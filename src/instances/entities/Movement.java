@@ -12,7 +12,7 @@ public class Movement {
     public double speedDT;
     public double MAX_SPEED = 2.5f*Universal.SCALE;
     public float horizontalSpeed;
-    public float atrito = 0.7f*Universal.SCALE;
+    public float atrito = 0.8f*Universal.SCALE;
     public boolean isJumping = false;
     public float airSpeed = 0f; //Y
     public float gravity = 0.08f * Universal.SCALE;

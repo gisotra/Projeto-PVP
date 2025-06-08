@@ -18,9 +18,6 @@ public class GCanvas extends Canvas {
         setFocusable(true);
         requestFocus();
         addKeyListener(new KeyInputs(this)); 
-        room = new GRoom(this);
-        loop = new Thread(room);
-        loop.start();
     }
 
     /*------------ O LENDÁRIO MÉTODO RENDER ------------*/
@@ -73,5 +70,11 @@ public class GCanvas extends Canvas {
             }
         }
         
+    }
+    
+    public void initGame(){
+        this.room = new GRoom(this);
+        this.loop = new Thread(room);
+        this.loop.start();
     }
 }

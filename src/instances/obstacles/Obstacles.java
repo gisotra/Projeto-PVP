@@ -57,7 +57,9 @@ public abstract class Obstacles extends Objects{ //muito similiar a classe Entit
     @Override
     public void render(Graphics2D g2d){
     spritesheet.render(g2d, (int) getX(), (int) getY()); 
-    drawObstHitbox(g2d);
+        if(Universal.showGrid){
+            drawObstHitbox(g2d);
+        }
     }
     
     public Rectangle2D.Float getObstHitbox(){

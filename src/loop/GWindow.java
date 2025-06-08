@@ -8,15 +8,22 @@ public class GWindow {
     private GCanvas gc;
 
     public GWindow() {
-        gc = new GCanvas();
+        gc = new GCanvas(); // Inicia a thread
         janela = new JFrame();
+        
+        // Configurações da janela antes de exibi-la
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        janela.setUndecorated(true);
+        janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        janela.setUndecorated(true);  // Defina isso antes de setVisible(true)
+        
         janela.add(gc);
-        janela.pack();
-        janela.setLocationRelativeTo(null);
-        janela.setVisible(true);
-        gc.initCanvas();
+        janela.pack();  // Ajusta o layout
+        janela.setLocationRelativeTo(null);  // Centraliza a janela
+        
+        gc.initCanvas();  // Inicializa o canvas
+        gc.initGame();  // Inicializa o jogo
+        
+        janela.setVisible(true);  // Por fim, torna a janela visível
     }
 
     public JFrame getJanela() {

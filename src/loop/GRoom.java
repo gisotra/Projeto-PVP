@@ -76,7 +76,5 @@ public class GRoom implements Runnable {
     public void render() {
         gc.render();
     }
-    
-    
 }
 
