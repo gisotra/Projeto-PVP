@@ -52,6 +52,6 @@ public class Wall extends Obstacles{ //extends Obstacles
     
     @Override
     public void setSpritesheet(BufferedImage spritesheet, float renderScale) {
-        this.spritesheet = new Spritesheet(spritesheet, heightO, widthO, 0.0, renderScale);
+        this.spritesheet = new Spritesheet(spritesheet, heightO, widthO, 1.0, renderScale);
     }
 }

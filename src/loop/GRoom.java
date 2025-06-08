@@ -55,6 +55,7 @@ public class GRoom implements Runnable {
             // Exibe o FPS a cada segundo
             if (System.currentTimeMillis() - timer >= 1000) {
                 System.out.println("FPS: " + frames);
+                System.out.println("Deltatime: " + dT);
                 frames = 0;
                 timer += 1000;
             }

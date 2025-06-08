@@ -5,33 +5,6 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 public class Spritesheet { /*Classe para gerenciamento dos sprites*/
-    {// sprites player
-    /*public static final String PLAYER_ATLAS = "player/playerAtualizado4.png";
-    
-    // sprites dos cenários
-    public static final String LAYER_GRASS = "environment/grama2.png";
-    public static final String LAYER_CEU = "environment/ceu2.png";
-    public static final String LAYER_CERCA = "environment/cerca2.png";
-    public static final String LAYER_NUVENS = "environment/nuvens2.png";*/
-    }
-    {/*public static BufferedImage GetSpritesheet(String fileName){
-        
-        BufferedImage img = null;
-                InputStream is = Spritesheet.class.getResourceAsStream("/assets/" + fileName); //leitura do spritesheet
-        try {
-            img = ImageIO.read(is); //instancia BufferedImage lê o meu spritesheet 
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return img;
-    }*/}
     public int frameHeightOriginal, frameWidthOriginal; //tamanho do frame original
     public float scale; //escala aplicada para pintar o sprite na tela, utilizando a classe Universal
     private int renderWidth; //produto final dos tamanhos do frame * escala
@@ -68,9 +41,7 @@ public class Spritesheet { /*Classe para gerenciamento dos sprites*/
         }
         
         //Caso a spritesheet seja composta de 1 único frame
-        if(spritesheet.getHeight() == frameHeightOriginal &&
-                spritesheet.getWidth() == frameWidthOriginal){ 
-                totalIndices = 0;
+        if(spritesheet.getWidth() == frameWidthOriginal){
                 totalFrames = 0;
                 trocaDeFrames = 0;
                 //vou usar somente meu atributo spritesheet
@@ -110,8 +81,9 @@ public class Spritesheet { /*Classe para gerenciamento dos sprites*/
     }
     
     public void render(Graphics2D g2d, int x, int y) {
-        if(totalIndices == 0 && totalFrames == 0 && trocaDeFrames == 0){ //é um obstáculo
+        if(totalIndices == 0 && totalFrames == 0 && trocaDeFrames == 0){ //é um obstáculo estático
         g2d.drawImage(spritesheet, x, y, renderWidth, renderHeight, null);
+            
         } else {
         contadorFrames++;
         if (contadorFrames % trocaDeFrames == 0) {
@@ -123,6 +95,7 @@ public class Spritesheet { /*Classe para gerenciamento dos sprites*/
         if(Universal.dead){
             contadorFrames = 0;
         }
+        
         g2d.drawImage(sprites[acaoAtual][frameAtual], x, y, renderWidth, renderHeight, null);
         }
     }

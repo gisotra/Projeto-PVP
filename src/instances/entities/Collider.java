@@ -16,7 +16,6 @@ public class Collider {
     public float areaXOffset;
     public float areaYOffset;
     
-    
     public Collider(Player1 player1) {
         this.player1 = player1;
         this.collAreaWidth = player1.getHitboxWidth() * 1.2f;

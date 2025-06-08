@@ -53,6 +53,6 @@ public class Bird extends Obstacles{ //extends Obstacles{
     //coloquei em cada classe pois, por exemplo, o passaro pode ter diferentes frames
     @Override
     public void setSpritesheet(BufferedImage spritesheet, float renderScale) {
-        this.spritesheet = new Spritesheet(spritesheet, heightO, widthO, 0.0, renderScale); 
+        this.spritesheet = new Spritesheet(spritesheet, heightO, widthO, 1.0, renderScale); 
     }
 }
