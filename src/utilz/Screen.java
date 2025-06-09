@@ -32,8 +32,7 @@ public class Screen {
     
     Player1 player1;
     Player2 player2;
-    Ground groundlayer1;
-    Ground groundlayer2;
+    Ground groundlayer;
     Grass grasslayer1;
     Grass grasslayer2;
     //para debug
@@ -51,19 +50,16 @@ public class Screen {
         }
         
         //grama
-        grasslayer1 = new Grass(this, this.gc);
+        /*grasslayer1 = new Grass(this, this.gc);
         objectsOnScreen.add(grasslayer1);
         grasslayer2 = new Grass(this, this.gc);
         objectsOnScreen.add(grasslayer2);
-        grasslayer2.setX(Universal.GAME_WIDTH);
+        grasslayer2.setX(Universal.GAME_WIDTH);*/
         
         
         //chão
-        groundlayer1 = new Ground(this, this.gc);
-        objectsOnScreen.add(groundlayer1);
-        groundlayer2 = new Ground(this, this.gc);
-        objectsOnScreen.add(groundlayer2);
-        groundlayer2.setX(Universal.GAME_WIDTH);
+        groundlayer = new Ground(this, this.gc);
+        objectsOnScreen.add(groundlayer);
         
         player2 = new Player2();
     }
