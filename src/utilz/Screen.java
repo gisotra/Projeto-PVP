@@ -38,28 +38,11 @@ public class Screen {
     Grass grasslayer2;
     //para debug
     
-    
-    
     /*------------ CONSTRUTOR ------------*/
     public Screen(GCanvas gc){
         this.gc = gc;
         player1 = new Player1(this, this.gc);
         objectsOnScreen.add(player1);
-        
-        /*Camadas do Cenário*/
-        //arvores2
-        /*trees2layer1 = new Trees2(this, this.gc);
-        objectsOnScreen.add(trees2layer1);
-        trees2layer2 = new Trees2(this, this.gc);
-        objectsOnScreen.add(trees2layer2);
-        trees2layer2.setX(Universal.GAME_WIDTH);
-
-        //arvores1
-        trees1layer1 = new Trees1(this, this.gc);
-        objectsOnScreen.add(trees1layer1);
-        trees1layer2 = new Trees1(this, this.gc);
-        objectsOnScreen.add(trees1layer2);
-        trees1layer2.setX(Universal.GAME_WIDTH);*/
         
         for(int i = 0; i < 4; i++){ //3 por obstáculo, 9 no total. 
             objectsOnScreen.add(new Bird(this, this.gc));

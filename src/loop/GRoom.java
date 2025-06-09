@@ -59,7 +59,6 @@ public class GRoom implements Runnable {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            
             proximoFrame += tempoPorFrame;
         }
     }
