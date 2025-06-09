@@ -47,11 +47,19 @@ public class Wall extends Obstacles{ //extends Obstacles
     
     @Override
     public void initObstHitbox() {
-        this.obs_hitbox = new Rectangle2D.Float(getX(), getY(), Universal.TILES_SIZE, Universal.TILES_SIZE); //metade do tamanho
+        this.obs_hitbox = new Rectangle2D.Float(getX(), getY(), Universal.WALL_HITBOX_WIDTH, Universal.WALL_HITBOX_HEIGHT); //metade do tamanho
     }
     
     @Override
     public void setSpritesheet(BufferedImage spritesheet, float renderScale) {
         this.spritesheet = new Spritesheet(spritesheet, heightO, widthO, 1.0, renderScale);
+    }
+    
+    @Override
+    public void render(Graphics2D g2d) {
+        spritesheet.render(g2d, (int) getX() - 14, (int) getY() - 6);
+        if (Universal.showGrid) {
+            drawObstHitbox(g2d);
+        }
     }
 }

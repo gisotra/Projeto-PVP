@@ -52,11 +52,11 @@ public class Screen {
         
         /*Camadas do Cenário*/
         //arvores2
-        /*trees2layer1 = new Trees2(this, this.gc);
+        trees2layer1 = new Trees2(this, this.gc);
         objectsOnScreen.add(trees2layer1);
         trees2layer2 = new Trees2(this, this.gc);
         objectsOnScreen.add(trees2layer2);
-        trees2layer2.setX(Universal.GAME_WIDTH);*/
+        trees2layer2.setX(Universal.GAME_WIDTH);
 
         //arvores1
         trees1layer1 = new Trees1(this, this.gc);

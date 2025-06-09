@@ -47,11 +47,19 @@ public class Saw extends Obstacles{ //extends Obstacles
     
     @Override
     public void initObstHitbox() { //x, y, largura, altura
-        this.obs_hitbox = new Rectangle2D.Float(getX(), getY(), 2*Universal.TILES_SIZE, Universal.TILES_SIZE); //metade do tamanho
+        this.obs_hitbox = new Rectangle2D.Float(getX(), getY(), Universal.SAW_HITBOX_WIDTH, Universal.SAW_HITBOX_HEIGHT); //metade do tamanho
     }
     
     @Override
     public void setSpritesheet(BufferedImage spritesheet, float renderScale) {
         this.spritesheet = new Spritesheet(spritesheet, heightO, widthO, 1.0, renderScale);
+    }
+    
+        @Override
+    public void render(Graphics2D g2d){
+    spritesheet.render(g2d, (int) getX() - 15, (int) getY() - 37); 
+        if(Universal.showGrid){
+            drawObstHitbox(g2d);
+        }
     }
 }

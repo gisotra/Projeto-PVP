@@ -13,7 +13,6 @@ public class GWindow {
         
         // Configurações da janela antes de exibi-la
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
         janela.setUndecorated(true);  // Defina isso antes de setVisible(true)
         
         janela.add(gc);

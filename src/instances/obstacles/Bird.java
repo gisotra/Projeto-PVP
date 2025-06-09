@@ -47,12 +47,20 @@ public class Bird extends Obstacles{ //extends Obstacles{
     
     @Override
     public void initObstHitbox() {
-        this.obs_hitbox = new Rectangle2D.Float(getX(), getY(), Universal.TILES_SIZE, Universal.TILES_SIZE / 2); //metade do tamanho
+        this.obs_hitbox = new Rectangle2D.Float(getX(), getY(), Universal.BIRD_HITBOX_WIDTH, Universal.BIRD_HITBOX_HEIGHT); //metade do tamanho
     }
     
     //coloquei em cada classe pois, por exemplo, o passaro pode ter diferentes frames
     @Override
     public void setSpritesheet(BufferedImage spritesheet, float renderScale) {
         this.spritesheet = new Spritesheet(spritesheet, heightO, widthO, 1.0, renderScale); 
+    }
+    
+    @Override
+    public void render(Graphics2D g2d) {
+        spritesheet.render(g2d, (int) getX() - 5, (int) getY() - 16);
+        if (Universal.showGrid) {
+            drawObstHitbox(g2d);
+        }
     }
 }
