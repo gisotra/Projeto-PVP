@@ -61,13 +61,11 @@ public class Screen {
         objectsOnScreen.add(trees1layer2);
         trees1layer2.setX(Universal.GAME_WIDTH);*/
         
-        
-        //chão
-        groundlayer1 = new Ground(this, this.gc);
-        objectsOnScreen.add(groundlayer1);
-        groundlayer2 = new Ground(this, this.gc);
-        objectsOnScreen.add(groundlayer2);
-        groundlayer2.setX(Universal.GAME_WIDTH);
+        for(int i = 0; i < 4; i++){ //3 por obstáculo, 9 no total. 
+            objectsOnScreen.add(new Bird(this, this.gc));
+            objectsOnScreen.add(new Wall(this, this.gc));
+            objectsOnScreen.add(new Saw(this, this.gc));
+        }
         
         //grama
         grasslayer1 = new Grass(this, this.gc);
@@ -76,12 +74,15 @@ public class Screen {
         objectsOnScreen.add(grasslayer2);
         grasslayer2.setX(Universal.GAME_WIDTH);
         
+        
+        //chão
+        groundlayer1 = new Ground(this, this.gc);
+        objectsOnScreen.add(groundlayer1);
+        groundlayer2 = new Ground(this, this.gc);
+        objectsOnScreen.add(groundlayer2);
+        groundlayer2.setX(Universal.GAME_WIDTH);
+        
         player2 = new Player2();
-        for(int i = 0; i < 3; i++){ //3 por obstáculo, 9 no total. 
-            objectsOnScreen.add(new Bird(this, this.gc));
-            objectsOnScreen.add(new Wall(this, this.gc));
-            objectsOnScreen.add(new Saw(this, this.gc));
-        }
     }
     
     /*------------ MÉTODO RENDER ------------*/

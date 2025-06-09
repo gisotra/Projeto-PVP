@@ -14,7 +14,7 @@ import utilz.Universal;
 public class Grass extends Environment {
 
     
-    private float speed = 1.9f * Universal.SCALE; // Velocidade relativa ao mundo
+    private float speed = 1.3f * Universal.SCALE; // Velocidade relativa ao mundo
     BufferedImage groundSpriteSheet;
     /*
     float drawX = x + i * (widthO * spritesheet.scale);
@@ -49,7 +49,7 @@ public class Grass extends Environment {
     @Override
     public void update(double deltaTime) {
         if (x + widthO * Universal.SCALE >= 0) {
-            x -= speed * deltaTime;
+            x -= speed;
             if (x <= -Universal.GAME_WIDTH) {
                 x = Universal.GAME_WIDTH;
             }

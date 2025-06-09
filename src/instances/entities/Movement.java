@@ -8,11 +8,11 @@ public class Movement {
     */
     
     Player1 player1;
-    public double speed = 1.8*Universal.SCALE;
+    public double speed = 2.2*Universal.SCALE;
     public double speedDT;
-    public double MAX_SPEED = 2.5f*Universal.SCALE;
+    public double MAX_SPEED = 3.5*Universal.SCALE;
     public float horizontalSpeed;
-    public float atrito = 0.8f*Universal.SCALE;
+    public float atrito = 25.0f*Universal.SCALE;
     public boolean isJumping = false;
     public float airSpeed = 0f; //Y
     public float gravity = 0.08f * Universal.SCALE;
@@ -26,17 +26,6 @@ public class Movement {
         heightGY = player1.getHitboxHeight();
         groundLvl = Universal.groundY - heightGY; // 5 Tiles - 1 = 4 tiles
     }
-    /*
-    groundY, and height is used to find the value of y where the object is 
-    considered grounded.
-
-jumpPower and jumpHeight controls the speed and distance the object can jump, 
-    and gravity controls how fast the object should return to the ground position
-    after jumps.
-
-The class has three methods called update(), jump(), and isGrounded(). The method
-    update() implements the jumping and gravity behaviour of the player. It 
-    contains four if statements with the following purpose:*/
     
     public void updatePosY(double deltaTime){ //ainda vou usar o deltaTime para movimentação horizontal depois
         if(Universal.jump && isGrounded()){
@@ -69,7 +58,7 @@ The class has three methods called update(), jump(), and isGrounded(). The metho
     }
     
     public void updatePosX(double deltaTime) {
-        speedDT = speed * deltaTime;
+        speedDT = speed ;
 
         if (Universal.right) {
 

@@ -15,9 +15,14 @@ public class GRoom implements Runnable {
         /*------------ MÉTODO RUN DA THREAD ------------*/
     @Override
     public void run() {
-        final double tempoPorFrame = 1_000_000_000.0 / Universal.FPS_SET;
-        long ultimoTempo = System.nanoTime();
-        double dT = 0;
+        double tempoPorFrame = 1_000_000_000.0 / Universal.FPS_SET;
+        double ultimoTempo = System.nanoTime();
+        double dT;
+        double threadSleep;
+        long threadSleepMS;
+        int threadSleepNano;
+        double proximoFrame = System.nanoTime() + tempoPorFrame;
+        
 
         long timer = System.currentTimeMillis();
         int frames = 0;
@@ -32,41 +37,30 @@ public class GRoom implements Runnable {
                 continue;
             }
             
-            long agora = System.nanoTime();
-            dT += (agora - ultimoTempo) / tempoPorFrame;
-            //dT = Math.min(dT, 0.1);
+            double agora = System.nanoTime();
+            dT = (System.nanoTime() - ultimoTempo) / 1_000_000_000;
             ultimoTempo = agora;
-            
-            boolean renderizou = false;
+            dT = Math.min(dT, 1.0 / 30.0);
+        
+            update(dT);
+            render();
 
-            if (dT >= 1) {
-                update(dT);
-                dT--;
-                renderizou = true;
+            threadSleep = ((proximoFrame - System.nanoTime()) / 1_000_000);
+            if(threadSleep < 0){
+                threadSleep = 0;
             }
-            
-            if(renderizou){
-                render();
-                frames++;
-            }   else {
-            // Se não renderizou, libera a CPU pra outras threads
-            Thread.yield();
-        }
-
-            // Exibe o FPS a cada segundo
-            if (System.currentTimeMillis() - timer >= 1000) {
-                System.out.println("FPS: " + frames);
-                System.out.println("Deltatime: " + dT);
-                frames = 0;
-                timer += 1000;
-            }
+           
+            threadSleepMS = (long) threadSleep;
+            threadSleepNano = (int) ((threadSleep - threadSleepMS) * 1_000_000); 
 
             // Dorme um pouco pra não travar a CPU
             try {
-                Thread.sleep(1);
+                Thread.sleep(threadSleepMS, threadSleepNano);
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+                throw new RuntimeException(e);
             }
+            
+            proximoFrame += tempoPorFrame;
         }
     }
     /*------------ MÉTODO UPDATE ------------*/

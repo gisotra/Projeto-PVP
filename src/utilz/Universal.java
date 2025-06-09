@@ -84,7 +84,7 @@ public class Universal {
     public static final int SAW_SPAWN_Y = GAME_HEIGHT - (2 * TILES_SIZE + (int)SAW_HITBOX_HEIGHT);    
     public static boolean saw = false; //flag de spawn
     
-    public static final float OBST_SPEED = -1.8f * SCALE;
+    public static final float OBST_SPEED = -4.8f * SCALE;
     
 
     

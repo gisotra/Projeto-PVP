@@ -53,7 +53,7 @@ public abstract class Obstacles extends Objects{ //muito similiar a classe Entit
             if(speed < -MAX_SPEED){
                 speed = -MAX_SPEED;
             }
-        this.setX(this.getX() + (speed *(float)deltaTime)); //atualizo a speed
+        this.setX(this.getX() + speed ); //atualizo a speed
         updateObstHitbox();
         }
     }
