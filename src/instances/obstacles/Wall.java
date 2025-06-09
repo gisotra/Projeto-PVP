@@ -35,7 +35,7 @@ public class Wall extends Obstacles{ //extends Obstacles
         }
         
         setWidth(32); //largura em px do FRAME ORIGINAL 
-        setHeight(64); //altura em px do FRAME ORIGINAL
+        setHeight(32); //altura em px do FRAME ORIGINAL
         setSpritesheet(wallSpriteSheet, Universal.SCALE);
     }
     
@@ -47,7 +47,7 @@ public class Wall extends Obstacles{ //extends Obstacles
     
     @Override
     public void initObstHitbox() {
-        this.obs_hitbox = new Rectangle2D.Float(getX(), getY(), Universal.TILES_SIZE, 2*Universal.TILES_SIZE); //metade do tamanho
+        this.obs_hitbox = new Rectangle2D.Float(getX(), getY(), Universal.TILES_SIZE, Universal.TILES_SIZE); //metade do tamanho
     }
     
     @Override

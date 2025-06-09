@@ -1,13 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package background;
 
-/**
- *
- * @author chern
- */
-public class Environment {
+import instances.Objects;
+import java.awt.Graphics2D;
+import loop.GCanvas;
+import utilz.Screen;
+
+
+public abstract class Environment extends Objects{
     
+    public Environment(Screen screen, GCanvas gc) {
+        super(screen, gc);
+    }
+    @Override
+    public abstract void update(double deltaTime);
+
+    @Override
+    public abstract void render(Graphics2D g2d);
 }

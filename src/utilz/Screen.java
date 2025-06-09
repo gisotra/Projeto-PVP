@@ -1,12 +1,14 @@
 package utilz;
 
+import background.Environment;
+import background.Grass;
+import background.Ground;
 import instances.Objects;
 import instances.entities.Player1;
 import instances.manager.Player2;
 import instances.obstacles.Bird;
 import instances.obstacles.Saw;
 import instances.obstacles.Wall;
-import java.awt.Color;
 import java.awt.Graphics2D;
 import loop.GCanvas;
 import java.util.LinkedList;
@@ -25,15 +27,28 @@ public class Screen {
     /*------------ ATRIBUTOS ------------*/
     public GCanvas gc;
     public static Queue<Objects> objectsOnScreen = new LinkedList<>(); //vou usar pra dar update e render no player e nos obstaculos simultaneamente (mto amigavel com a cpu)
+    
     Player1 player1;
     Player2 player2;
+    Ground groundlayer1;
+    Ground groundlayer2;
+    //Grass grasslayer;
     //para debug
+    
+    
     
     /*------------ CONSTRUTOR ------------*/
     public Screen(GCanvas gc){
         this.gc = gc;
         player1 = new Player1(this, this.gc);
         objectsOnScreen.add(player1);
+        groundlayer1 = new Ground(this, this.gc);
+        objectsOnScreen.add(groundlayer1);
+        groundlayer2 = new Ground(this, this.gc);
+        objectsOnScreen.add(groundlayer2);
+        groundlayer2.setX(Universal.GAME_WIDTH);
+        //grasslayer = new Grass(this, this.gc);
+        //objectsOnScreen.add(grasslayer);
         player2 = new Player2();
         for(int i = 0; i < 3; i++){ //3 por obstáculo, 9 no total. 
             objectsOnScreen.add(new Bird(this, this.gc));
@@ -49,6 +64,9 @@ public class Screen {
                 if(obj.getX() >= 0 - Universal.TILES_SIZE && obj.getIsActive()){ //se estiver visível
                 obj.render(g2d);
                 }
+                if(obj instanceof Environment){
+                    obj.render(g2d);
+                }
             }
     }
     
@@ -56,6 +74,10 @@ public class Screen {
     public void updateAll(double variacaoTempo) {
         if(!Universal.dead){ // se ele NÃO ESTIVER MORTO
             for (Objects obj : objectsOnScreen) {
+                if (obj instanceof Environment) {
+                    obj.update(variacaoTempo);
+                    continue;
+                }
                 if(obj.getX() < 0 - Universal.TILES_SIZE*4){
                     obj.setIsActive(false);
                     continue;
@@ -64,13 +86,8 @@ public class Screen {
                 if(obj.getX() >= 0 - Universal.TILES_SIZE*4 && obj.getIsActive()){ //se estiver visível E estiver ativo
                 obj.update(variacaoTempo);
                 }
-            
-            
             }
         player2.play();
-        
         }
-    }
-    
-    
+    }   
 }

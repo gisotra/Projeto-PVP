@@ -12,8 +12,8 @@ public class Universal {
     /*Configurações de resolução da tela*/
     public final static int TILES_DEFAULT_SIZE = 32;
     public final static float SCALE = 3.3f;
-    public final static int TILES_IN_WIDTH = 14;  //512px de COMPRIMENTO
-    public final static int TILES_IN_HEIGHT = 8;  //224px ALTURA
+    public final static int TILES_IN_WIDTH = 14;  //448px de COMPRIMENTO
+    public final static int TILES_IN_HEIGHT = 8;  //256px ALTURA
     public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
     public final static int GAME_WIDTH = TILES_IN_WIDTH * TILES_SIZE;
     public final static int GAME_HEIGHT = TILES_IN_HEIGHT * TILES_SIZE;
@@ -61,7 +61,7 @@ public class Universal {
     public static float OBST_SPAWN_X = GAME_WIDTH + TILES_SIZE; 
     public static final int WALL_WIDTH = 70;
     public static final int WALL_HEIGHT = 120;
-    public static final int WALL_SPAWN_Y = TILES_SIZE * 4;
+    public static final int WALL_SPAWN_Y = GAME_HEIGHT - (3 * TILES_SIZE);
     public static boolean wall = false; //flag de spawn
 
     // Bird
@@ -73,7 +73,7 @@ public class Universal {
     // Saw 
     public static final int SAW_WIDTH = 120;
     public static final int SAW_HEIGHT = 40;
-    public static final int SAW_SPAWN_Y = GAME_HEIGHT - (2 * TILES_SIZE);    
+    public static final int SAW_SPAWN_Y = GAME_HEIGHT - (3 * TILES_SIZE);    
     public static boolean saw = false; //flag de spawn
     
     public static final float OBST_SPEED = -1.8f * SCALE;

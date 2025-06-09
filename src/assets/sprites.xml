@@ -11,4 +11,10 @@
     <sprite name="bird">
         <path>/assets/obstacles/bird.png</path>
     </sprite>
+    <sprite name="ground">
+        <path>/assets/environment/ground.png</path>
+    </sprite>
+    <sprite name="grass">
+        <path>/assets/environment/grass.png</path>
+    </sprite>
 </sprites>

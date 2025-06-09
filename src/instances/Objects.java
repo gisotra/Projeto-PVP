@@ -11,8 +11,8 @@ o player1, quantos os obstáculos quanto o chão.*/
 
 public abstract class Objects { 
     /*------------ ATRIBUTOS ------------*/
-    Screen screen;
-    GCanvas gc;
+    public Screen screen;
+    public GCanvas gc;
     public float x, y;
     public int widthO, heightO;
     public Spritesheet spritesheet;
