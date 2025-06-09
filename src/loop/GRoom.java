@@ -34,6 +34,7 @@ public class GRoom implements Runnable {
             
             long agora = System.nanoTime();
             dT += (agora - ultimoTempo) / tempoPorFrame;
+            //dT = Math.min(dT, 0.1);
             ultimoTempo = agora;
             
             boolean renderizou = false;

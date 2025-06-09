@@ -11,17 +11,17 @@ import utilz.SpriteLoader;
 import utilz.Spritesheet;
 import utilz.Universal;
 
-public class Grass extends Environment {
+public class Trees1 extends Environment {
 
     
-    private float speed = 1.9f * Universal.SCALE; // Velocidade relativa ao mundo
+    private float speed = 1.3f * Universal.SCALE; // Velocidade relativa ao mundo
     BufferedImage groundSpriteSheet;
     /*
     float drawX = x + i * (widthO * spritesheet.scale);
     spritesheet.render(g2d, (int) drawX, (int) y);
     */
     
-    public Grass(Screen screen, GCanvas gc) {
+    public Trees1(Screen screen, GCanvas gc) {
         super(screen, gc);
         this.y = -3;
         this.x = 0;
@@ -30,9 +30,9 @@ public class Grass extends Environment {
     }
 
     public void initSprite() {
-        SpriteData grassData = SpriteLoader.spriteDataLoader().get("grass");
+        SpriteData trees1Data = SpriteLoader.spriteDataLoader().get("trees1");
         try {
-            groundSpriteSheet = ImageIO.read(getClass().getResource(grassData.getPath()));
+            groundSpriteSheet = ImageIO.read(getClass().getResource(trees1Data.getPath()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -62,5 +62,6 @@ public class Grass extends Environment {
             spritesheet.render(g2d, (int) x, (int) y);
         }
     }
-    
 }
+    
+

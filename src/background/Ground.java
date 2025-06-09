@@ -48,24 +48,19 @@ public class Ground extends Environment {
     
     @Override
     public void update(double deltaTime) {
-        x -= speed * deltaTime;
-        if(x <= -Universal.GAME_WIDTH){
-            x = Universal.GAME_WIDTH;
+        if (x + widthO * Universal.SCALE >= 0) {
+            x -= speed * deltaTime;
+            if (x <= -Universal.GAME_WIDTH) {
+                x = Universal.GAME_WIDTH;
+            }
         }
     }
 
     @Override
     public void render(Graphics2D g2d) {
-        spritesheet.render(g2d, (int) x, (int) y);
-        /*while(!Universal.dead){
-        spritesheet.render(g2d, (int) x, (int) y);
-        spritesheet.render(g2d, (int) x + Universal.GAME_WIDTH, (int) y);
-        if(x < -Universal.GAME_WIDTH){
-
-        
+        if (x + widthO * Universal.SCALE >= 0 && x <= Universal.GAME_WIDTH) {
+            spritesheet.render(g2d, (int) x, (int) y);
         }
-        
-        }*/
     }
 }
     
