@@ -36,10 +36,6 @@ public class Screen {
     Ground groundlayer2;
     Grass grasslayer1;
     Grass grasslayer2;
-    Trees1 trees1layer1;
-    Trees1 trees1layer2;
-    Trees2 trees2layer1;
-    Trees2 trees2layer2;
     //para debug
     
     
@@ -52,7 +48,7 @@ public class Screen {
         
         /*Camadas do Cenário*/
         //arvores2
-        trees2layer1 = new Trees2(this, this.gc);
+        /*trees2layer1 = new Trees2(this, this.gc);
         objectsOnScreen.add(trees2layer1);
         trees2layer2 = new Trees2(this, this.gc);
         objectsOnScreen.add(trees2layer2);
@@ -63,7 +59,7 @@ public class Screen {
         objectsOnScreen.add(trees1layer1);
         trees1layer2 = new Trees1(this, this.gc);
         objectsOnScreen.add(trees1layer2);
-        trees1layer2.setX(Universal.GAME_WIDTH);
+        trees1layer2.setX(Universal.GAME_WIDTH);*/
         
         
         //chão
