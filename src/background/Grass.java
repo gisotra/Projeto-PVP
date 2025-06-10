@@ -37,7 +37,7 @@ public class Grass extends Environment {
             throw new RuntimeException(e);
         }
         //altura e largura do meu sprite do chão (fullscreen)
-        setWidth(448); //largura em px do FRAME ORIGINAL 
+        setWidth(896); //largura em px do FRAME ORIGINAL 
         setHeight(256); //altura em px do FRAME ORIGINAL
         setSpritesheet(groundSpriteSheet, Universal.SCALE);
     }
@@ -50,8 +50,8 @@ public class Grass extends Environment {
     public void update(double deltaTime) {
         if (x + widthO * Universal.SCALE >= 0) {
             x -= speed;
-            if (x <= -Universal.GAME_WIDTH) {
-                x = Universal.GAME_WIDTH;
+            if (x <= -Universal.GAME_WIDTH ) {
+                x = 0;
             }
         }
     }

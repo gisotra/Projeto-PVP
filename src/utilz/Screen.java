@@ -33,13 +33,16 @@ public class Screen {
     Player1 player1;
     Player2 player2;
     Ground groundlayer;
-    Grass grasslayer1;
-    Grass grasslayer2;
+    Grass grasslayer;
     //para debug
     
     /*------------ CONSTRUTOR ------------*/
     public Screen(GCanvas gc){
         this.gc = gc;
+        //grama
+        grasslayer = new Grass(this, this.gc);
+        objectsOnScreen.add(grasslayer);
+        
         player1 = new Player1(this, this.gc);
         objectsOnScreen.add(player1);
         
@@ -48,13 +51,6 @@ public class Screen {
             objectsOnScreen.add(new Wall(this, this.gc));
             objectsOnScreen.add(new Saw(this, this.gc));
         }
-        
-        //grama
-        /*grasslayer1 = new Grass(this, this.gc);
-        objectsOnScreen.add(grasslayer1);
-        grasslayer2 = new Grass(this, this.gc);
-        objectsOnScreen.add(grasslayer2);
-        grasslayer2.setX(Universal.GAME_WIDTH);*/
         
         
         //chão
