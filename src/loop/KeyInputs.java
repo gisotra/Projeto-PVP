@@ -87,6 +87,9 @@ public class KeyInputs implements KeyListener {
             case KeyEvent.VK_U:
                 //Toggle Grid 
                 break;   
+            case KeyEvent.VK_ESCAPE:
+                System.exit(0);
+                break;
              
                 
         }

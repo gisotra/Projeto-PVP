@@ -6,6 +6,7 @@ public class Universal {
     largura: 8 * 32 = 256 | OU | 16 * 32 = 512
     altura: 7 * 32 = 224
     */
+    
     /*configuração de fps*/
     public static final int FPS_SET = 60;
     

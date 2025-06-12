@@ -35,3 +35,17 @@ para calcular tamanho, movimento e ações do player, otimizando processamento
 
 
 
+Próximos passos:
+Branch sockets:
+- Implementar redes na branch separada
+
+Branch main:
+- Concluir uso dos gamestates
+- Implementar Menu, Playing, e Offline
+- Implementar mouse com sprite
+- Começar a providenciar animações e sprites melhores
+
+
+
+
+

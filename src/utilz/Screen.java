@@ -3,8 +3,8 @@ package utilz;
 import background.Environment;
 import background.Grass;
 import background.Ground;
-import background.Trees1;
-import background.Trees2;
+import gamestates.Gamestate;
+import static gamestates.Gamestate.MENU;
 import instances.Objects;
 import instances.entities.Player1;
 import instances.manager.Player2;
@@ -63,16 +63,31 @@ public class Screen {
     /*------------ MÉTODO RENDER ------------*/
     public void renderAll(Graphics2D g2d) {
         
-            for (Objects obj : objectsOnScreen) {
-            if (obj instanceof Environment || (obj.getX() >= -Universal.TILES_SIZE && obj.getIsActive())) {
-                obj.render(g2d);
+        switch (Gamestate.state) {
+            case MENU: {
+
+                break;
+            }
+            case PLAYING:{
+                for (Objects obj : objectsOnScreen) {
+                        if (obj instanceof Environment || (obj.getX() >= -Universal.TILES_SIZE && obj.getIsActive())) {
+                            obj.render(g2d);
+                        }    
+                }
+            
             }
         }
     }
     
     /*------------ MÉTODO UPDATE ------------*/
     public void updateAll(double variacaoTempo) {
-        if (!Universal.dead) {
+        switch(Gamestate.state){
+            case MENU:{
+                
+            break;
+            }
+            case PLAYING:{
+                if (!Universal.dead) {
             for (Objects obj : objectsOnScreen) {
                 if (!obj.getIsActive()) {
                     continue;
@@ -95,5 +110,12 @@ public class Screen {
 
             player2.play();
         }
+            }
+            default:{
+                break;
+            }
+            
+        }
+        
     }   
 }
