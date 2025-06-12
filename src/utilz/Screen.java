@@ -51,7 +51,7 @@ public class Screen {
             objectsOnScreen.add(new Wall(this, this.gc));
             objectsOnScreen.add(new Saw(this, this.gc));
         }
-        
+
         
         //chão
         groundlayer = new Ground(this, this.gc);
