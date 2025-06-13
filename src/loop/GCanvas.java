@@ -3,7 +3,13 @@ package loop;
 import utilz.Universal;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import utilz.Screen;
+import utilz.SpriteData;
+import utilz.SpriteLoader;
+import utilz.Spritesheet;
 
 public class GCanvas extends Canvas {
 
@@ -11,12 +17,18 @@ public class GCanvas extends Canvas {
     private GRoom room;
     Thread loop; 
     public Screen screen = new Screen(this);
+    Point mousePoint;
+    Cursor cursor;
+    BufferedImage cursorMouse;
+    Spritesheet spriteMouse;
+    
 
     /*------------ CONSTRUTOR ------------*/
     public GCanvas() {
         setPreferredSize(new Dimension(Universal.GAME_WIDTH, Universal.GAME_HEIGHT));
         setFocusable(true);
         requestFocus();
+        initMouseSprites();
         addKeyListener(new KeyInputs(this)); 
     }
 
@@ -36,6 +48,11 @@ public class GCanvas extends Canvas {
                 drawGrid(g2D);
             }
             screen.renderAll(g2D);
+            mousePoint = getMousePosition();
+            if(mousePoint != null){
+                spriteMouse.render(g2D, (int) mousePoint.getX(), (int)mousePoint.getY());
+            }
+            
         } finally {
             // Garante que o objeto Graphics será liberado mesmo que dê erro
             g2D.dispose();
@@ -71,6 +88,25 @@ public class GCanvas extends Canvas {
         }
         
     }
+    
+    //mudar o sprite do meu cursor
+    public void initMouseSprites(){
+        
+        SpriteData mouseData = SpriteLoader.spriteDataLoader().get("cursor");
+        try {
+            cursorMouse = ImageIO.read(getClass().getResource(mouseData.getPath()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        //inicio as propriedades do meu sprite player
+        this.spriteMouse = new Spritesheet(cursorMouse, 32, 32, 0.85, Universal.SCALE);
+        
+        cursor = Toolkit.getDefaultToolkit().createCustomCursor(
+        new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB), new Point(0, 0), "blank cursor");
+        setCursor(cursor);
+
+    }
+    
     
     public void initGame(){
         this.room = new GRoom(this);

@@ -40,8 +40,8 @@ public class Screen {
     public Screen(GCanvas gc){
         this.gc = gc;
         //grama
-        grasslayer = new Grass(this, this.gc);
-        objectsOnScreen.add(grasslayer);
+        /*grasslayer = new Grass(this, this.gc);
+        objectsOnScreen.add(grasslayer);*/
         
         player1 = new Player1(this, this.gc);
         objectsOnScreen.add(player1);
@@ -68,7 +68,7 @@ public class Screen {
 
                 break;
             }
-            case PLAYING:{
+            case PLAYING_OFFLINE:{
                 for (Objects obj : objectsOnScreen) {
                         if (obj instanceof Environment || (obj.getX() >= -Universal.TILES_SIZE && obj.getIsActive())) {
                             obj.render(g2d);
@@ -86,7 +86,7 @@ public class Screen {
                 
             break;
             }
-            case PLAYING:{
+            case PLAYING_OFFLINE:{
                 if (!Universal.dead) {
             for (Objects obj : objectsOnScreen) {
                 if (!obj.getIsActive()) {

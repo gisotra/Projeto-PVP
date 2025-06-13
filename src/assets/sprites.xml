@@ -23,4 +23,7 @@
     <sprite name="trees2">
         <path>/assets/environment/trees2.png</path>
     </sprite>
+    <sprite name="cursor">
+        <path>/assets/ui/mouse.png</path>
+    </sprite>
 </sprites>

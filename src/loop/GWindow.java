@@ -12,12 +12,7 @@ public class GWindow {
 
     public GWindow() {
         gc = new GCanvas(); // Inicia a thread
-        janela = new JFrame();
-        bar = new JProgressBar(0, 100);
-        
-        bar.setBounds((Universal.GAME_WIDTH / 2) - Universal.TILES_SIZE, (Universal.GAME_HEIGHT - Universal.TILES_SIZE), Universal.TILES_SIZE * 2, 34);
-        janela.add(bar);
-        
+        janela = new JFrame();        
         
         // Configurações da janela antes de exibi-la
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

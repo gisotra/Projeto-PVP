@@ -1,6 +1,0 @@
-package gamestates;
-
-
-public interface StateMethods {
-    
-}
