@@ -7,7 +7,7 @@ import gamestates.Gamestate;
 import static gamestates.Gamestate.MENU;
 import instances.Objects;
 import instances.entities.Player1;
-import instances.manager.Player2;
+import instances.manager.Spawner;
 import instances.obstacles.Bird;
 import instances.obstacles.Saw;
 import instances.obstacles.Wall;
@@ -31,7 +31,7 @@ public class Screen {
     public static Queue<Objects> objectsOnScreen = new LinkedList<>(); //vou usar pra dar update e render no player e nos obstaculos simultaneamente (mto amigavel com a cpu)
     
     Player1 player1;
-    Player2 player2;
+    Spawner player2;
     Ground groundlayer;
     Grass grasslayer;
     //para debug
@@ -46,7 +46,7 @@ public class Screen {
         player1 = new Player1(this, this.gc);
         objectsOnScreen.add(player1);
         
-        for(int i = 0; i < 4; i++){ //3 por obstáculo, 9 no total. 
+        for(int i = 0; i < 5; i++){ //3 por obstáculo, 9 no total. 
             objectsOnScreen.add(new Bird(this, this.gc));
             objectsOnScreen.add(new Wall(this, this.gc));
             objectsOnScreen.add(new Saw(this, this.gc));
@@ -54,10 +54,10 @@ public class Screen {
         
         
         //chão
-        groundlayer = new Ground(this, this.gc);
-        objectsOnScreen.add(groundlayer);
+        /*groundlayer = new Ground(this, this.gc);
+        objectsOnScreen.add(groundlayer);*/
         
-        player2 = new Player2();
+        player2 = new Spawner();
     }
     
     /*------------ MÉTODO RENDER ------------*/
@@ -70,7 +70,7 @@ public class Screen {
             }
             case PLAYING_OFFLINE:{
                 for (Objects obj : objectsOnScreen) {
-                        if (obj instanceof Environment || (obj.getX() >= -Universal.TILES_SIZE && obj.getIsActive())) {
+                        if (obj instanceof Environment || (obj.getX() >= -Universal.TILES_SIZE * 4 && obj.getIsActive())) {
                             obj.render(g2d);
                         }    
                 }

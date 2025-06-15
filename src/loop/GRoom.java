@@ -44,7 +44,9 @@ public class GRoom implements Runnable {
         
             update(dT);
             render();
-
+            Universal.SCORE += (int) (100 * dT);
+            //Universal.globalCooldown -= dT;
+            
             threadSleep = ((proximoFrame - System.nanoTime()) / 1_000_000);
             if(threadSleep < 0){
                 threadSleep = 0;
@@ -60,6 +62,7 @@ public class GRoom implements Runnable {
                 throw new RuntimeException(e);
             }
             proximoFrame += tempoPorFrame;
+            System.out.println("Global Cooldown: " + Universal.globalCooldown);
         }
     }
     /*------------ MÉTODO UPDATE ------------*/

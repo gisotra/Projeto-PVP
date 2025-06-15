@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
 import javax.imageio.ImageIO;
 import utilz.Screen;
 import utilz.SpriteData;
@@ -16,6 +17,8 @@ public class GCanvas extends Canvas {
     /*------------ ATRIBUTOS ------------*/
     private GRoom room;
     Thread loop; 
+    Font chickenFont;
+    Font fontInGame;
     public Screen screen = new Screen(this);
     Point mousePoint;
     Cursor cursor;
@@ -30,7 +33,17 @@ public class GCanvas extends Canvas {
         requestFocus();
         initMouseSprites();
         addKeyListener(new KeyInputs(this)); 
-    }
+        try {
+            InputStream is = getClass().getResourceAsStream("/assets/font/Chicken Font.ttf");
+            chickenFont = Font.createFont(Font.TRUETYPE_FONT, is);
+            fontInGame = chickenFont.deriveFont(Font.PLAIN, 25f); //aplico as mudanças de tamanho
+        } catch (FontFormatException e){
+            e.printStackTrace();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        
+        }
 
     /*------------ O LENDÁRIO MÉTODO RENDER ------------*/
     public void render() {
@@ -52,9 +65,14 @@ public class GCanvas extends Canvas {
             if(mousePoint != null){
                 spriteMouse.render(g2D, (int) mousePoint.getX(), (int)mousePoint.getY());
             }
+            //g2D.setFont(chickenFont.deriveFont(Font.PLAIN, 25f));
+            g2D.setFont(fontInGame);
+            g2D.setColor(Color.BLACK);
+            g2D.drawString("SCORE:   " + String.valueOf(Universal.SCORE), Universal.GAME_WIDTH - 500, 40);
             
         } finally {
             // Garante que o objeto Graphics será liberado mesmo que dê erro
+            
             g2D.dispose();
         }
 

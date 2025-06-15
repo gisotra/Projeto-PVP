@@ -26,4 +26,7 @@
     <sprite name="cursor">
         <path>/assets/ui/mouse.png</path>
     </sprite>
+    <sprite name="fundo">
+        <path>/assets/menu/fundoProto.png</path>
+    </sprite>
 </sprites>
