@@ -1,0 +1,40 @@
+<sprites>
+    <sprite name="player1">
+        <path>/assets/player/player.png</path>
+    </sprite>
+    <sprite name="wall">
+        <path>/assets/obstacles/wall.png</path>
+    </sprite>
+    <sprite name="saw">
+        <path>/assets/obstacles/saw.png</path>
+    </sprite>
+    <sprite name="bird">
+        <path>/assets/obstacles/bird.png</path>
+    </sprite>
+    <sprite name="ground">
+        <path>/assets/environment/ground.png</path>
+    </sprite>
+    <sprite name="grass">
+        <path>/assets/environment/grass.png</path>
+    </sprite>
+    <sprite name="trees1">
+        <path>/assets/environment/trees1.png</path>
+    </sprite>
+    <sprite name="trees2">
+        <path>/assets/environment/trees2.png</path>
+    </sprite>
+    <!-- Mouse -->
+    <sprite name="cursor">
+        <path>/assets/ui/mouse.png</path>
+    </sprite>
+    <!-- Fundos dos Gamestates -->
+    <sprite name="fundoMenu">
+        <path>/assets/menu/fundoProto.png</path>
+    </sprite>
+    <sprite name="fundoGameOver">
+        <path>/assets/menu/fundoProto.png</path>
+    </sprite>
+    <sprite name="fundoAbout">
+        <path>/assets/menu/fundoProto.png</path>
+    </sprite>
+</sprites>

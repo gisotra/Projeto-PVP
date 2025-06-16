@@ -27,7 +27,8 @@ public class Buttons {
     public void initSpritesheet(BufferedImage image){
         this.spritesheetB = new Spritesheet(spriteButton, height, width, x, x);
     }
-    
+
+
     /*------------- GETTERS & SETTERS -------------*/
     
     public Rectangle getDimensoes(){
