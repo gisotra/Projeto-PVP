@@ -1,6 +1,6 @@
 package ui;
 
-import java.awt.Rectangle;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import utilz.Spritesheet;
 
@@ -28,6 +28,9 @@ public class Buttons {
         this.spritesheetB = new Spritesheet(spriteButton, height, width, x, x);
     }
 
+    public void render(Graphics2D g2d){
+        this.spritesheetB.render(g2d, this.x, this.y);
+    }
 
     /*------------- GETTERS & SETTERS -------------*/
     

@@ -37,4 +37,11 @@
     <sprite name="fundoAbout">
         <path>/assets/menu/fundoProto.png</path>
     </sprite>
+    <!-- BOTÕES DOS GAMESTATES -->
+    <sprite name="menuButton">
+        <path>/assets/ui/gameover_menu_b.png</path>
+    </sprite>
+    <sprite name="restartButton">
+        <path>/assets/ui/gameover_restart_b.png</path>
+    </sprite>
 </sprites>

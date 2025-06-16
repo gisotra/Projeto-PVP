@@ -17,6 +17,8 @@ import java.awt.Graphics2D;
 import loop.GCanvas;
 import java.util.LinkedList;
 import java.util.Queue;
+
+import ui.GameOver;
 import ui.Menu;
 
 public class Screen { 
@@ -33,17 +35,20 @@ public class Screen {
     public GCanvas gc;
     public static Queue<Objects> objectsOnScreen = new LinkedList<>(); //vou usar pra dar update e render no player e nos obstaculos simultaneamente (mto amigavel com a cpu)
     
-    Menu menu;
     Player1 player1;
     Spawner spawner;
     Ground groundlayer;
     Grass grasslayer;
+    /*--- game states ---*/
+    Menu menuscreen;
+    GameOver gameoverscreen;
     //para debug
     
     /*------------ CONSTRUTOR ------------*/
     public Screen(GCanvas gc){
         this.gc = gc;
-        menu = new Menu();
+        menuscreen = new Menu();
+        gameoverscreen = new GameOver();
         //grama 
         /*grasslayer = new Grass(this, this.gc);
         objectsOnScreen.add(grasslayer);*/
@@ -69,7 +74,7 @@ public class Screen {
     public void renderAll(Graphics2D g2d) {
         switch (Gamestate.state) {
             case MENU: {
-                menu.render(g2d);
+                menuscreen.render(g2d);
                 break;
             }
             case PLAYING_OFFLINE:{
@@ -86,7 +91,8 @@ public class Screen {
             case ABOUT:{
                 break;
             }
-            case TUTORIAL:{
+            case GAME_OVER:{
+                gameoverscreen.render(g2d);
                 break;
             }
         }
