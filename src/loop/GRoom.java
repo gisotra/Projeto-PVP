@@ -43,7 +43,16 @@ public class GRoom implements Runnable {
             if(Gamestate.state == PLAYING_OFFLINE){
                 Universal.SCORE += (int) (100 * dT);
                 if(Universal.SCORE % 1000 == 0){
-                    Universal.globalCooldown -= 500; 
+                    if(Universal.SCORE > 2000){
+                        continue;
+                    }
+                    Universal.globalCooldown -= 500;
+                    
+                }
+                if(Universal.SCORE > 2000){
+                    if(Universal.SCORE % 1000 == 0){
+                    Universal.OBST_SPEED -= 0.25f * Universal.SCALE;
+                    }
                 }
             }
 

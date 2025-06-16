@@ -59,8 +59,8 @@ public class Screen {
         
         
         //chão
-        /*groundlayer = new Ground(this, this.gc);
-        objectsOnScreen.add(groundlayer);*/
+        groundlayer = new Ground(this, this.gc);
+        objectsOnScreen.add(groundlayer);
         
         spawner = new Spawner();
     }
@@ -147,6 +147,7 @@ public class Screen {
     public void resetCoordenates(){
         for (Objects obj : objectsOnScreen) {
                         if (obj instanceof Obstacles) {
+                            obj.setIsActive(false);
                             obj.setX(Universal.OBST_SPAWN_X);
                         }    
                         if (obj instanceof Entities){

@@ -13,6 +13,7 @@ import utilz.Screen;
 import utilz.SpriteData;
 import utilz.SpriteLoader;
 import utilz.Spritesheet;
+import static utilz.Universal.SCALE;
 
 public class GCanvas extends Canvas {
 
@@ -131,6 +132,7 @@ public class GCanvas extends Canvas {
     
     
     public void initGame(){
+        Universal.OBST_SPEED = -1.8f * Universal.SCALE;
         this.room = new GRoom(this);
         this.loop = new Thread(room);
         this.loop.start();

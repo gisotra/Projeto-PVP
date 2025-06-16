@@ -2,6 +2,7 @@ package ui;
 
 import java.awt.Button;
 import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -41,5 +42,9 @@ public class GameOver {
     
     public void render(Graphics2D g2D){
         gameoversheet.render(g2D, 0, 0);
+    }
+    
+    public boolean isIn(MouseEvent e, Buttons mb) {
+        return mb.getDimensoes().contains(e.getX(), e.getY());
     }
 }

@@ -9,6 +9,7 @@ public class Buttons {
     public Rectangle dimensoes; //vou usar isso pra inserir o click do mouse
     public BufferedImage spriteButton;
     public Spritesheet spritesheetB;
+    public boolean cursorOver, cursorPressed;
 
     public Buttons(int x, int y, int width, int height, BufferedImage image) {
         this.x = x;
@@ -25,6 +26,28 @@ public class Buttons {
     
     public void initSpritesheet(BufferedImage image){
         this.spritesheetB = new Spritesheet(spriteButton, height, width, x, x);
+    }
+    
+    /*------------- GETTERS & SETTERS -------------*/
+    
+    public Rectangle getDimensoes(){
+        return dimensoes;
+    }
+
+    public boolean isCursorOver() {
+        return cursorOver;
+    }
+
+    public void setCursorOver(boolean cursorOver) {
+        this.cursorOver = cursorOver;
+    }
+
+    public boolean isCursorPressed() {
+        return cursorPressed;
+    }
+
+    public void setCursorPressed(boolean cursorPressed) {
+        this.cursorPressed = cursorPressed;
     }
     
     

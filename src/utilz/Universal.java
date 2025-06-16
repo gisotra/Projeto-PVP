@@ -87,7 +87,7 @@ public class Universal {
     public static final int SAW_SPAWN_Y = GAME_HEIGHT - (2 * TILES_SIZE + (int)SAW_HITBOX_HEIGHT);    
     public static boolean saw = false; //flag de spawn
     
-    public static final float OBST_SPEED = -4.8f * SCALE;
+    public static float OBST_SPEED = 0;
     
     /*Método que retorna quantos frames cada ação possui*/
     public static int GetSpriteAmount(int player_action) {
@@ -107,6 +107,7 @@ public class Universal {
     }
     
     public static void resetGameValues(){
+        OBST_SPEED = 0; //-1.8f * SCALE
         globalCooldown = 2000;
         SCORE = 0;
         dead = false;
