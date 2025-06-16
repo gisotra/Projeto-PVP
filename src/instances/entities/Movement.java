@@ -9,14 +9,13 @@ public class Movement {
     
     Player1 player1;
     public double speed = 2.2*Universal.SCALE;
-    public double speedDT;
     public double MAX_SPEED = 3.5*Universal.SCALE;
     public float horizontalSpeed;
     public float atrito = 25.0f*Universal.SCALE;
-    public boolean isJumping = false;
+    public static boolean isJumping = false;
     public float airSpeed = 0f; //Y
     public float gravity = 0.08f * Universal.SCALE;
-    public float jumpPower = -3.5f * Universal.SCALE; // Força do meu salto
+    public float jumpPower = -2.8f * Universal.SCALE; // Força do meu salto
     public boolean inAir = false;
     public float heightGY; //usado para achar a posição Y em que o player tá "no chão"
     public float groundLvl;
@@ -58,15 +57,15 @@ public class Movement {
     }
     
     public void updatePosX(double deltaTime) {
-        speedDT = speed ;
+        
 
         if (Universal.right) {
 
-            horizontalSpeed += speedDT;
+            horizontalSpeed = (float) speed;
 
         } else if (Universal.left) {
 
-            horizontalSpeed -= speedDT;
+            horizontalSpeed = (float) -speed;
 
         } else {
 

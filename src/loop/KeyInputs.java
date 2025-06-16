@@ -1,5 +1,7 @@
 package loop;
 
+import gamestates.Gamestate;
+import static gamestates.Gamestate.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import utilz.Universal;
@@ -36,15 +38,7 @@ public class KeyInputs implements KeyListener {
             case KeyEvent.VK_SPACE:
                 Universal.jump = false;
                 break; 
-            /*player2 - Spawn de Obstáculos*/    
-            case KeyEvent.VK_O:
-                Universal.wall = false;
-                break;    
-            case KeyEvent.VK_I:
-                Universal.bird = false;
-                break;
             case KeyEvent.VK_P:
-                Universal.saw = false;
                 break;    
                 /*DEBUG*/
             case KeyEvent.VK_U:
@@ -73,15 +67,17 @@ public class KeyInputs implements KeyListener {
             case KeyEvent.VK_SPACE:
                 Universal.jump = true;
                 break;
-            /*player2 - Spawn de Obstáculos*/
-            case KeyEvent.VK_O:
-                Universal.wall = true;
+            case KeyEvent.VK_P:
+                if (Gamestate.state != MENU) {
+                    Gamestate.state = MENU;
+                } else {
+                    Gamestate.state = PLAYING_OFFLINE;
+                }
                 break;
             case KeyEvent.VK_I:
-                Universal.bird = true;
-                break;
-            case KeyEvent.VK_P:
-                Universal.saw = true;
+                if (Gamestate.state == GAME_OVER) {
+                    Gamestate.state = PLAYING_OFFLINE;
+                }
                 break;
             /*DEBUG*/    
             case KeyEvent.VK_U:

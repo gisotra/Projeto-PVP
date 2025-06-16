@@ -4,17 +4,20 @@ import background.Environment;
 import background.Grass;
 import background.Ground;
 import gamestates.Gamestate;
-import static gamestates.Gamestate.MENU;
+import static gamestates.Gamestate.*;
 import instances.Objects;
+import instances.entities.Entities;
 import instances.entities.Player1;
 import instances.manager.Spawner;
 import instances.obstacles.Bird;
+import instances.obstacles.Obstacles;
 import instances.obstacles.Saw;
 import instances.obstacles.Wall;
 import java.awt.Graphics2D;
 import loop.GCanvas;
 import java.util.LinkedList;
 import java.util.Queue;
+import ui.Menu;
 
 public class Screen { 
     /*
@@ -30,8 +33,9 @@ public class Screen {
     public GCanvas gc;
     public static Queue<Objects> objectsOnScreen = new LinkedList<>(); //vou usar pra dar update e render no player e nos obstaculos simultaneamente (mto amigavel com a cpu)
     
+    Menu menu;
     Player1 player1;
-    Spawner player2;
+    Spawner spawner;
     Ground groundlayer;
     Grass grasslayer;
     //para debug
@@ -39,7 +43,8 @@ public class Screen {
     /*------------ CONSTRUTOR ------------*/
     public Screen(GCanvas gc){
         this.gc = gc;
-        //grama
+        menu = new Menu();
+        //grama 
         /*grasslayer = new Grass(this, this.gc);
         objectsOnScreen.add(grasslayer);*/
         
@@ -57,15 +62,14 @@ public class Screen {
         /*groundlayer = new Ground(this, this.gc);
         objectsOnScreen.add(groundlayer);*/
         
-        player2 = new Spawner();
+        spawner = new Spawner();
     }
     
     /*------------ MÉTODO RENDER ------------*/
     public void renderAll(Graphics2D g2d) {
-        
         switch (Gamestate.state) {
             case MENU: {
-
+                menu.render(g2d);
                 break;
             }
             case PLAYING_OFFLINE:{
@@ -74,7 +78,16 @@ public class Screen {
                             obj.render(g2d);
                         }    
                 }
-            
+                break;
+            }
+            case PLAYING_ONLINE:{
+                break;
+            }
+            case ABOUT:{
+                break;
+            }
+            case TUTORIAL:{
+                break;
             }
         }
     }
@@ -83,33 +96,44 @@ public class Screen {
     public void updateAll(double variacaoTempo) {
         switch(Gamestate.state){
             case MENU:{
-                
+
             break;
             }
             case PLAYING_OFFLINE:{
                 if (!Universal.dead) {
-            for (Objects obj : objectsOnScreen) {
-                if (!obj.getIsActive()) {
-                    continue;
-                }
+                    for (Objects obj : objectsOnScreen) {
+                    if (!obj.getIsActive()) {
+                        continue;
+                    }
 
-                // Atualiza fundo sempre
-                if (obj instanceof Environment) {
+                    // Atualiza fundo sempre
+                    if (obj instanceof Environment) {
+                        obj.update(variacaoTempo);
+                        continue;
+                    }
+
+                    // Se saiu completamente da tela, desativa
+                    if (obj.getX() < -Universal.TILES_SIZE * 4) {
+                        obj.setIsActive(false);
+                        continue;
+                    }
+
                     obj.update(variacaoTempo);
-                    continue;
-                }
+                    }
 
-                // Se saiu completamente da tela, desativa
-                if (obj.getX() < -Universal.TILES_SIZE * 4) {
-                    obj.setIsActive(false);
-                    continue;
+                spawner.play();
+                } else { //o player morreu
+                    Universal.resetGameValues();
+                    resetCoordenates();
+                    Gamestate.state = GAME_OVER;
+                    break;
                 }
-
-                obj.update(variacaoTempo);
             }
-
-            player2.play();
-        }
+            break;
+            case GAME_OVER:{
+                System.out.println("morreu");
+                this.gc.sleepGame();
+                break;
             }
             default:{
                 break;
@@ -118,4 +142,17 @@ public class Screen {
         }
         
     }   
+    
+    /*------------ MÉTODO QUE RESETA AS COORDENADAS DAS INSTANCIAS NA TELA ------------*/
+    public void resetCoordenates(){
+        for (Objects obj : objectsOnScreen) {
+                        if (obj instanceof Obstacles) {
+                            obj.setX(Universal.OBST_SPAWN_X);
+                        }    
+                        if (obj instanceof Entities){
+                            obj.setX(120);
+                            obj.setY(360);
+                        }
+                }
+    }
 }

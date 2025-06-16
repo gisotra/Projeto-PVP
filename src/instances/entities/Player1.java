@@ -85,6 +85,10 @@ public class Player1 extends Entities{
     public int getHeight() {
         return heightO;
     }
+    
+    public Movement getMovement(){
+        return movement;
+    }
 }
     
     

@@ -10,29 +10,23 @@ public class Buttons {
     public BufferedImage spriteButton;
     public Spritesheet spritesheetB;
 
-    public Buttons(int x, int y, int width, int height) {
+    public Buttons(int x, int y, int width, int height, BufferedImage image) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        initRectangle();
+        initSpritesheet(image);
     }
-    
-    /*public void initSprites(){
-        SpriteData menuButtonData = 
-        try{
-            
-        } catch(){
-            
-        }
-    }*/
     
     public void initRectangle(){
             dimensoes = new Rectangle(this.x, this.y, this.width, this.height);
     }
     
-    public void spritesheet(){
+    public void initSpritesheet(BufferedImage image){
         this.spritesheetB = new Spritesheet(spriteButton, height, width, x, x);
     }
+    
     
     
     

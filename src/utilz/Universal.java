@@ -89,11 +89,6 @@ public class Universal {
     
     public static final float OBST_SPEED = -4.8f * SCALE;
     
-
-    
-    
-
-    
     /*Método que retorna quantos frames cada ação possui*/
     public static int GetSpriteAmount(int player_action) {
         switch (player_action) {
@@ -109,5 +104,11 @@ public class Universal {
             default:
                 return 1;
         }
+    }
+    
+    public static void resetGameValues(){
+        globalCooldown = 2000;
+        SCORE = 0;
+        dead = false;
     }
 }

@@ -23,10 +23,18 @@
     <sprite name="trees2">
         <path>/assets/environment/trees2.png</path>
     </sprite>
+    <!-- Mouse -->
     <sprite name="cursor">
         <path>/assets/ui/mouse.png</path>
     </sprite>
-    <sprite name="fundo">
+    <!-- Fundos dos Gamestates -->
+    <sprite name="fundoMenu">
+        <path>/assets/menu/fundoProto.png</path>
+    </sprite>
+    <sprite name="fundoGameOver">
+        <path>/assets/menu/fundoProto.png</path>
+    </sprite>
+    <sprite name="fundoAbout">
         <path>/assets/menu/fundoProto.png</path>
     </sprite>
 </sprites>

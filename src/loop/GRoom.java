@@ -1,5 +1,7 @@
 package loop;
 
+import gamestates.Gamestate;
+import static gamestates.Gamestate.*;
 import utilz.Universal;
 
 public class GRoom implements Runnable {
@@ -7,6 +9,15 @@ public class GRoom implements Runnable {
     /*------------ ATRIBUTOS ------------*/
     
     GCanvas gc;
+    public double tempoPorFrame = 1_000_000_000.0 / Universal.FPS_SET;
+    public double ultimoTempo = System.nanoTime();
+    public double dT;
+    public double threadSleep;
+    public long threadSleepMS;
+    public int threadSleepNano;
+    public double proximoFrame = System.nanoTime() + tempoPorFrame;
+    long timer = System.currentTimeMillis();
+    int frames = 0;
         
     /*------------ CONSTRUTOR ------------*/
 	public GRoom(GCanvas gc) {
@@ -15,25 +26,9 @@ public class GRoom implements Runnable {
         /*------------ MÉTODO RUN DA THREAD ------------*/
     @Override
     public void run() {
-        double tempoPorFrame = 1_000_000_000.0 / Universal.FPS_SET;
-        double ultimoTempo = System.nanoTime();
-        double dT;
-        double threadSleep;
-        long threadSleepMS;
-        int threadSleepNano;
-        double proximoFrame = System.nanoTime() + tempoPorFrame;
-        
-
-        long timer = System.currentTimeMillis();
-        int frames = 0;
-
         while (true) {
             if(!gc.isDisplayable() || !gc.isFocusOwner()){
-                try{
-                    Thread.sleep(100);
-                } catch (InterruptedException e){
-                    Thread.currentThread().interrupt();
-                }
+                sleepEngine();
                 continue;
             }
             
@@ -44,9 +39,14 @@ public class GRoom implements Runnable {
         
             update(dT);
             render();
-            Universal.SCORE += (int) (100 * dT);
-            //Universal.globalCooldown -= dT;
             
+            if(Gamestate.state == PLAYING_OFFLINE){
+                Universal.SCORE += (int) (100 * dT);
+                if(Universal.SCORE % 1000 == 0){
+                    Universal.globalCooldown -= 500; 
+                }
+            }
+
             threadSleep = ((proximoFrame - System.nanoTime()) / 1_000_000);
             if(threadSleep < 0){
                 threadSleep = 0;
@@ -64,6 +64,7 @@ public class GRoom implements Runnable {
             proximoFrame += tempoPorFrame;
             System.out.println("Global Cooldown: " + Universal.globalCooldown);
         }
+        
     }
     /*------------ MÉTODO UPDATE ------------*/
     public void update(double dT) {
@@ -73,6 +74,16 @@ public class GRoom implements Runnable {
     /*------------ MÉTODO RENDER ------------*/
     public void render() {
         gc.render();
+    }
+    
+    public void sleepEngine(){
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        proximoFrame = System.nanoTime() + tempoPorFrame; 
+        ultimoTempo = System.nanoTime();
     }
 }
 

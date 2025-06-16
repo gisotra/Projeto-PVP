@@ -1,5 +1,7 @@
 package loop;
 
+import gamestates.Gamestate;
+import static gamestates.Gamestate.*;
 import utilz.Universal;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -65,10 +67,12 @@ public class GCanvas extends Canvas {
             if(mousePoint != null){
                 spriteMouse.render(g2D, (int) mousePoint.getX(), (int)mousePoint.getY());
             }
-            //g2D.setFont(chickenFont.deriveFont(Font.PLAIN, 25f));
+            if(Gamestate.state == PLAYING_OFFLINE){
             g2D.setFont(fontInGame);
             g2D.setColor(Color.BLACK);
             g2D.drawString("SCORE:   " + String.valueOf(Universal.SCORE), Universal.GAME_WIDTH - 500, 40);
+            }
+            
             
         } finally {
             // Garante que o objeto Graphics será liberado mesmo que dê erro
@@ -130,5 +134,9 @@ public class GCanvas extends Canvas {
         this.room = new GRoom(this);
         this.loop = new Thread(room);
         this.loop.start();
+    }
+    
+    public void sleepGame(){
+        this.room.sleepEngine();
     }
 }
