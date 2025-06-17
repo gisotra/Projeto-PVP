@@ -5,6 +5,7 @@ import static gamestates.Gamestate.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import utilz.Screen;
+import static utilz.Screen.resetCoordenates;
 import utilz.Universal;
 
 public class KeyInputs implements KeyListener {
@@ -81,6 +82,7 @@ public class KeyInputs implements KeyListener {
                 //meu player morreu, e eu apertei i (provisorio)
                 if (Gamestate.state == GAME_OVER) {
                     Gamestate.state = PLAYING_OFFLINE;
+                    Screen.resetCoordenates();
                     Screen.startCoordenates();
                 }
                 

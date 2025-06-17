@@ -27,35 +27,76 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
                 break;
             case PLAYING_OFFLINE:{
                 
-            } 
+            }
                 break;
+            case PLAYING_ONLINE:{
+                
+            }
+                break;
+        
         }
     }
     
     @Override
     public void mouseClicked(MouseEvent e){
-        
+        switch(Gamestate.state){
+            case MENU:{
+            }
+                break;
+            case PLAYING_OFFLINE:{
+                
+            }
+                break;
+            case PLAYING_ONLINE:{
+                
+            }
+                break;            
+        }
     }
     
     
     @Override
     public void mousePressed(MouseEvent e){
-        
+        switch (Gamestate.state) {
+            case MENU: {
+            }
+            break;
+            case PLAYING_OFFLINE: {
+
+            }
+            break;
+            case PLAYING_ONLINE: {
+
+            }
+            break;
+        }
     }
     
     @Override
     public void mouseReleased(MouseEvent e){
-        
+        switch (Gamestate.state) {
+            case MENU: {
+            }
+            break;
+            case PLAYING_OFFLINE: {
+
+            }
+            break;
+            case PLAYING_ONLINE: {
+
+            }
+            break;
+        }
     }
     
     @Override
     public void mouseEntered(MouseEvent e){
-        
+        //TODO
     }
     
     @Override
     public void mouseExited(MouseEvent e){
-        
+        //TODO
     }
     
     

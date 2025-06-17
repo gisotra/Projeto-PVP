@@ -22,6 +22,7 @@ public interface ScreenStates {
     public void keyReleased(KeyEvent e);
 
     public boolean isIn(MouseEvent e, Buttons mb);
+    // a ser implementado em cada gamestate
     //public boolean isIn(MouseEvent e, MenuButton mb) {
         //return mb.getBounds().contains(e.getX(), e.getY());
     //}

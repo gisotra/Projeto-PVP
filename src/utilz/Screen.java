@@ -94,6 +94,11 @@ public class Screen {
             }
             case GAME_OVER:{
                 gameoverscreen.render(g2d);
+                for (Objects obj : objectsOnScreen) {
+                    if (obj instanceof Environment || (obj.getX() >= -Universal.TILES_SIZE * 4 && !obj.getIsActive())) {
+                        obj.render(g2d);
+                    }
+                }
                 break;
             }
         }
@@ -151,7 +156,6 @@ public class Screen {
                 }
                 spawner.play();
                 if(Universal.dead){
-                    resetCoordenates();
                     Gamestate.state = GAME_OVER;
                     break;
                 }
@@ -191,7 +195,7 @@ public class Screen {
         Universal.dead = false;
     }
     
-    public void resetCoordenates(){
+    public static void resetCoordenates(){
         for (Objects obj : objectsOnScreen) {
                 obj.setIsActive(false);
                 if(obj instanceof Obstacles){
