@@ -81,7 +81,7 @@ public class GRoom implements Runnable {
                 throw new RuntimeException(e);
             }
             proximoFrame += tempoPorFrame;
-            System.out.println("Global Cooldown: " + Universal.globalCooldown);
+            //System.out.println("Global Cooldown: " + Universal.globalCooldown);
         }
         
     }

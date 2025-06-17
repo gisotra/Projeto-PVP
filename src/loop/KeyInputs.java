@@ -4,6 +4,7 @@ import gamestates.Gamestate;
 import static gamestates.Gamestate.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import utilz.Screen;
 import utilz.Universal;
 
 public class KeyInputs implements KeyListener {
@@ -12,6 +13,8 @@ public class KeyInputs implements KeyListener {
 
     public KeyInputs(GCanvas gameCanvas) {
         this.gameCanvas = gameCanvas;
+        
+        
     }
 
     @Override
@@ -75,9 +78,12 @@ public class KeyInputs implements KeyListener {
                 }
                 break;
             case KeyEvent.VK_I:
+                //meu player morreu, e eu apertei i (provisorio)
                 if (Gamestate.state == GAME_OVER) {
                     Gamestate.state = PLAYING_OFFLINE;
+                    Screen.startCoordenates();
                 }
+                
                 break;
             /*DEBUG*/    
             case KeyEvent.VK_U:

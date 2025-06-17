@@ -14,8 +14,8 @@ public class Player1 extends Entities{
     
     //https://www.youtube.com/watch?v=rTVoyWu8r6g
     /*------------ ATRIBUTOS ------------*/
-    Movement movement;
-    Collider collider;
+    public Movement movement;
+    public Collider collider;
     BufferedImage playerSpriteSheet;
     public int playerAction = Universal.IDLE;
     

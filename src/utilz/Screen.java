@@ -85,6 +85,7 @@ public class Screen {
                 }
                 break;
             }
+            
             case PLAYING_ONLINE:{
                 break;
             }
@@ -105,8 +106,12 @@ public class Screen {
             break;
             }
             case PLAYING_OFFLINE:{
-                if (!Universal.dead) {
+                {/*if (!Universal.dead) {
+                    //meu player está VIVO
                     for (Objects obj : objectsOnScreen) {
+                        if (obj instanceof Entities) {
+                            obj.setIsActive(true);
+                        }
                     if (!obj.getIsActive()) {
                         continue;
                     }
@@ -124,16 +129,38 @@ public class Screen {
                     obj.update(variacaoTempo);
                     }
                 spawner.play();
-                } else { //o player morreu
+                } else { 
+                    //meu player está MORTO
                     resetCoordenates();
                     break;
                 }
-            }
-            break;
+            */}
+                for(Objects obj : objectsOnScreen){
+                    if(!obj.getIsActive()){
+                        continue; //se estiver desativado, nada acontece, nao é atualizado
+                    }
+                    if (obj instanceof Environment) {
+                        obj.update(variacaoTempo);
+                        continue;
+                    }
+                    if (obj.getX() < -Universal.TILES_SIZE * 4) {
+                        obj.setIsActive(false);
+                        continue;
+                    }
+                    obj.update(variacaoTempo);
+                }
+                spawner.play();
+                if(Universal.dead){
+                    resetCoordenates();
+                    Gamestate.state = GAME_OVER;
+                    break;
+                }
+            }break;
             case GAME_OVER:{
                 for (Objects obj : objectsOnScreen) {
                         obj.setIsActive(false);
                 }
+                System.out.println("Status: GAME OVER");
                 break;
             }
             default:{
@@ -145,19 +172,32 @@ public class Screen {
     }   
     
     /*------------ MÉTODO QUE RESETA AS COORDENADAS DAS INSTANCIAS NA TELA ------------*/
+    public static void startCoordenates(){
+        for (Objects obj : objectsOnScreen) {
+            if (obj instanceof Entities) {
+                obj.setIsActive(true);
+                obj.setX(120);
+                obj.setY(360);
+                ((Player1)obj).movement.isJumping = true;
+            }
+            if(obj instanceof Environment){
+                obj.setIsActive(true);
+            }
+            
+            if(obj instanceof Obstacles){
+                ((Obstacles)obj).updateObstHitbox();
+            }
+        }
+        Universal.dead = false;
+    }
+    
     public void resetCoordenates(){
         for (Objects obj : objectsOnScreen) {
-                        if (obj instanceof Obstacles) {
-                            obj.setIsActive(false);
-                            obj.setX(Universal.OBST_SPAWN_X);
-                        }    
-                        if (obj instanceof Entities){
-                            obj.setIsActive(true);
-                            obj.setX(120);
-                            obj.setY(360);
-                        }
+                obj.setIsActive(false);
+                if(obj instanceof Obstacles){
+                    obj.setX(Universal.OBST_SPAWN_X);
+                }
         }
         Universal.resetGameValues();
-        Gamestate.state = GAME_OVER;
     }
 }
