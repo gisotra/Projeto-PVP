@@ -32,7 +32,7 @@
         <path>/assets/menu/fundoProto.png</path>
     </sprite>
     <sprite name="fundoGameOver">
-        <path>/assets/menu/fundoProto.png</path>
+        <path>/assets/menu/fundoGameOverProto.png</path>
     </sprite>
     <sprite name="fundoAbout">
         <path>/assets/menu/fundoProto.png</path>
