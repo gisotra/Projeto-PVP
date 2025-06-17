@@ -37,11 +37,28 @@
     <sprite name="fundoAbout">
         <path>/assets/menu/fundoProto.png</path>
     </sprite>
+    
     <!-- BOTÕES DOS GAMESTATES -->
-    <sprite name="menuButton">
+    
+    <!-- tela de menu -->
+    <sprite name="menu_playOfflineButton">
+        <path>/assets/ui/menu_playOffline_button.png</path>
+    </sprite>
+    <sprite name="menu_playOnlineButton">
+        <path>/assets/ui/menu_playOnline_button.png</path>
+    </sprite>
+    <sprite name="menu_exitButton">
+        <path>/assets/ui/menu_exit_button.png</path>
+    </sprite>
+    
+    
+    <!-- tela de game over -->
+    <sprite name="gameover_menuButton">
         <path>/assets/ui/gameover_menu_b.png</path>
     </sprite>
-    <sprite name="restartButton">
+    <sprite name="gameover_restartButton">
         <path>/assets/ui/gameover_restart_b.png</path>
     </sprite>
+    
+    
 </sprites>

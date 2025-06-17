@@ -23,7 +23,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
     public void mouseMoved(MouseEvent e){
         switch(Gamestate.state){
             case MENU:{
-                //gc.getScreen().getMenu().mouseMoved(e);
+                gc.getScreen().getMenu().mouseMoved(e);
             }
                 break;
             case PLAYING_OFFLINE:{
@@ -42,7 +42,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
     public void mouseClicked(MouseEvent e){
         switch(Gamestate.state){
             case MENU:{
-                //gc.getScreen().getMenu().mouseClicked(e);            
+                gc.getScreen().getMenu().mouseClicked(e);            
             }
                 break;
             case PLAYING_OFFLINE:{
@@ -61,7 +61,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
     public void mousePressed(MouseEvent e){
         switch (Gamestate.state) {
             case MENU: {
-                //gc.getScreen().getGameOver().mouseClicked(e);
+                gc.getScreen().getMenu().mousePressed(e);
             }
             break;
             case PLAYING_OFFLINE: {
@@ -79,7 +79,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
     public void mouseReleased(MouseEvent e){
         switch (Gamestate.state) {
             case MENU: {
-                //gc.getScreen().getMenu().mouseClicked(e);
+                gc.getScreen().getMenu().mouseReleased(e);
             }
             break;
             case PLAYING_OFFLINE: {

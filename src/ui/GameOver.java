@@ -24,15 +24,15 @@ public class GameOver implements ScreenStates{
     
     
     public GameOver(){
-        initSpriteMenu();
+        initSpriteGameOver();
         botoes[0] = new Buttons(4*Universal.TILES_SIZE, 3*Universal.TILES_SIZE + (Universal.TILES_SIZE/4), 48, 48, botaoMenuSprite, Gamestate.MENU); //botão de voltar ao menu
         botoes[1] = new Buttons(8*Universal.TILES_SIZE + (Universal.TILES_SIZE/2)  , 3*Universal.TILES_SIZE + (Universal.TILES_SIZE/4), 48, 48, botaoRestartSprite, Gamestate.PLAYING_OFFLINE); //botao de voltar ao loop do jogo
     }
     
-    public void initSpriteMenu(){
+    public void initSpriteGameOver(){
         SpriteData gameoverData = SpriteLoader.spriteDataLoader().get("fundoGameOver");
-        SpriteData buttMenuData = SpriteLoader.spriteDataLoader().get("menuButton");
-        SpriteData buttRestartData = SpriteLoader.spriteDataLoader().get("restartButton");
+        SpriteData buttMenuData = SpriteLoader.spriteDataLoader().get("gameover_menuButton");
+        SpriteData buttRestartData = SpriteLoader.spriteDataLoader().get("gameover_restartButton");
 
         try {
             gameOverFundo = ImageIO.read(getClass().getResource(gameoverData.getPath()));

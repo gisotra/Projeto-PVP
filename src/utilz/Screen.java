@@ -101,6 +101,9 @@ public class Screen {
                 }
                 break;
             }
+            case END:{
+                System.exit(0);
+            }
         }
     }
     
