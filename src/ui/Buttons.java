@@ -3,6 +3,7 @@ package ui;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import utilz.Spritesheet;
+import utilz.Universal;
 
 public class Buttons {
     public int x, y, width, height;
@@ -16,6 +17,7 @@ public class Buttons {
         this.y = y;
         this.width = width;
         this.height = height;
+        this.spriteButton = image;
         initRectangle();
         initSpritesheet(image);
     }
@@ -25,7 +27,7 @@ public class Buttons {
     }
     
     public void initSpritesheet(BufferedImage image){
-        this.spritesheetB = new Spritesheet(spriteButton, height, width, x, x);
+        this.spritesheetB = new Spritesheet(spriteButton, image.getHeight(), image.getWidth(), 0, Universal.SCALE);
     }
 
     public void render(Graphics2D g2d){

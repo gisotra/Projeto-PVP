@@ -102,7 +102,6 @@ public class Screen {
     public void updateAll(double variacaoTempo) {
         switch(Gamestate.state){
             case MENU:{
-
             break;
             }
             case PLAYING_OFFLINE:{
@@ -117,28 +116,24 @@ public class Screen {
                         obj.update(variacaoTempo);
                         continue;
                     }
-
                     // Se saiu completamente da tela, desativa
                     if (obj.getX() < -Universal.TILES_SIZE * 4) {
                         obj.setIsActive(false);
                         continue;
                     }
-
                     obj.update(variacaoTempo);
                     }
-
                 spawner.play();
                 } else { //o player morreu
-                    Universal.resetGameValues();
                     resetCoordenates();
-                    Gamestate.state = GAME_OVER;
                     break;
                 }
             }
             break;
             case GAME_OVER:{
-                System.out.println("morreu");
-                this.gc.sleepGame();
+                for (Objects obj : objectsOnScreen) {
+                        obj.setIsActive(false);
+                }
                 break;
             }
             default:{
@@ -157,9 +152,12 @@ public class Screen {
                             obj.setX(Universal.OBST_SPAWN_X);
                         }    
                         if (obj instanceof Entities){
+                            obj.setIsActive(true);
                             obj.setX(120);
                             obj.setY(360);
                         }
-                }
+        }
+        Universal.resetGameValues();
+        Gamestate.state = GAME_OVER;
     }
 }

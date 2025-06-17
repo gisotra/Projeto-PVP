@@ -11,8 +11,8 @@ import utilz.Universal;
 
 public abstract class Obstacles extends Objects{ //muito similiar a classe Entities, porém direcionada unicamente aos obstáculos
     /*------------ ATRIBUTOS ------------*/
-    public float speed; //ele vai sempre vir pra esquerda 
-    public float MAX_SPEED = 1.8f*Universal.SCALE;
+    public double speed; //ele vai sempre vir pra esquerda 
+    public double MAX_SPEED = 1.8f*Universal.SCALE;
     public Rectangle2D.Float obs_hitbox; //desenvolver na criação dos objetos wall, saw, bird, etc
 
     /*------------ CONSTRUTOR ------------*/
@@ -54,7 +54,7 @@ public abstract class Obstacles extends Objects{ //muito similiar a classe Entit
             /*if(speed < -MAX_SPEED){
                 speed = -MAX_SPEED;
             }*/
-        this.setX(this.getX() + Universal.OBST_SPEED ); //atualizo a speed
+        this.setX(this.getX() + (float) Universal.OBST_SPEED ); //atualizo a speed
         updateObstHitbox();
         }
     }

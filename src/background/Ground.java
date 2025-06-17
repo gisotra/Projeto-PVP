@@ -49,7 +49,7 @@ public class Ground extends Environment {
     @Override
     public void update(double deltaTime) {
         if (x + widthO * Universal.SCALE >= 0) {
-            x -= speed;
+            this.setX(this.getX() + (float) Universal.OBST_SPEED );
             if (x <= -Universal.GAME_WIDTH ) {
                 x = 0;
             }

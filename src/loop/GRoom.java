@@ -27,6 +27,7 @@ public class GRoom implements Runnable {
     @Override
     public void run() {
         while (true) {
+
             if(!gc.isDisplayable() || !gc.isFocusOwner()){
                 sleepEngine();
                 continue;
@@ -40,18 +41,27 @@ public class GRoom implements Runnable {
             update(dT);
             render();
             
-            if(Gamestate.state == PLAYING_OFFLINE){
+            //dificuldade crescente 
+            if (Gamestate.state == PLAYING_OFFLINE) {
                 Universal.SCORE += (int) (100 * dT);
-                if(Universal.SCORE % 1000 == 0){
-                    if(Universal.SCORE > 2000){
-                        continue;
-                    }
-                    Universal.globalCooldown -= 500;
-                    
-                }
-                if(Universal.SCORE > 2000){
-                    if(Universal.SCORE % 1000 == 0){
-                    Universal.OBST_SPEED -= 0.25f * Universal.SCALE;
+
+                if (Universal.SCORE - Universal.lastSpeedUpScore >= 1000) {
+                    Universal.lastSpeedUpScore = (Universal.SCORE / 1000) * 1000;
+
+                    // Diminuição do cooldown inicial até 2000
+                    if (Universal.SCORE <= 2000) {
+                        Universal.globalCooldown -= 500;
+                    } else {
+                        // Aumento de velocidade com limite
+                        Universal.increaseAllSpeed();
+
+                        // A partir de 7000, cooldown diminui progressivamente, de 100 em 100, até 500
+                        if (Universal.SCORE >= 4000 && Universal.globalCooldown > 100) {
+                            Universal.globalCooldown -= 150;
+                            if (Universal.globalCooldown < 500) {
+                                Universal.globalCooldown = 500;
+                            }
+                        }
                     }
                 }
             }

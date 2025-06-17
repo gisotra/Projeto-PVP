@@ -87,7 +87,10 @@ public class Universal {
     public static final int SAW_SPAWN_Y = GAME_HEIGHT - (2 * TILES_SIZE + (int)SAW_HITBOX_HEIGHT);    
     public static boolean saw = false; //flag de spawn
     
-    public static float OBST_SPEED = 0;
+    public static double OBST_SPEED = 0;
+    public static int lastSpeedUpScore = 0;
+    public static int speedUpgrades = 0;
+    public static final int MAX_SPEED_UPGRADES = 7;
     
     /*Método que retorna quantos frames cada ação possui*/
     public static int GetSpriteAmount(int player_action) {
@@ -107,9 +110,18 @@ public class Universal {
     }
     
     public static void resetGameValues(){
-        OBST_SPEED = 0; //-1.8f * SCALE
+        OBST_SPEED = -1.8 * (double) SCALE;
         globalCooldown = 2000;
         SCORE = 0;
         dead = false;
+        lastSpeedUpScore = 0;
+        speedUpgrades = 0;
+    }
+    
+    public static void increaseAllSpeed(){
+        if (speedUpgrades < MAX_SPEED_UPGRADES) {
+            OBST_SPEED -= 1.5;
+            speedUpgrades++;
+        }
     }
 }

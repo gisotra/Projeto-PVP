@@ -40,7 +40,6 @@ public class GameOver {
         }
         //inicio as propriedades do meu sprite player
         this.gameoversheet = new Spritesheet(gameOverFundo, 256, 448, 0.0, Universal.SCALE);
-
     }
     
     public void update(){
@@ -49,7 +48,7 @@ public class GameOver {
     
     public void render(Graphics2D g2D){
 
-        gameoversheet.render(g2D, 0, 0);
+        //gameoversheet.render(g2D, 0, 0);
 
         for(Buttons but : botoes){
             but.render(g2D);
