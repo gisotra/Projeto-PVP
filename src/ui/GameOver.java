@@ -1,11 +1,13 @@
 package ui;
 
+import gamestates.Gamestate;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import utilz.Screen;
 import utilz.SpriteData;
 import utilz.SpriteLoader;
 import utilz.Spritesheet;
@@ -23,8 +25,8 @@ public class GameOver implements ScreenStates{
     
     public GameOver(){
         initSpriteMenu();
-        botoes[0] = new Buttons(4*Universal.TILES_SIZE, 3*Universal.TILES_SIZE + (Universal.TILES_SIZE/4), 48, 48, botaoMenuSprite); //botão de voltar ao menu
-        botoes[1] = new Buttons(8*Universal.TILES_SIZE + (Universal.TILES_SIZE/2)  , 3*Universal.TILES_SIZE + (Universal.TILES_SIZE/4), 48, 48, botaoRestartSprite); //botao de voltar ao loop do jogo
+        botoes[0] = new Buttons(4*Universal.TILES_SIZE, 3*Universal.TILES_SIZE + (Universal.TILES_SIZE/4), 48, 48, botaoMenuSprite, Gamestate.MENU); //botão de voltar ao menu
+        botoes[1] = new Buttons(8*Universal.TILES_SIZE + (Universal.TILES_SIZE/2)  , 3*Universal.TILES_SIZE + (Universal.TILES_SIZE/4), 48, 48, botaoRestartSprite, Gamestate.PLAYING_OFFLINE); //botao de voltar ao loop do jogo
     }
     
     public void initSpriteMenu(){
@@ -47,7 +49,11 @@ public class GameOver implements ScreenStates{
     
     @Override
     public void update() {
-
+        for(Buttons but : botoes){
+            if(but.cursorOver){
+                //depois eu quero fazer um efeito de scale quando der hover nele, sei la
+            } 
+        }
     }
 
     @Override
@@ -65,22 +71,56 @@ public class GameOver implements ScreenStates{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        //
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        for(Buttons but : botoes){
+            if(isIn(e, but)) {
+                but.setCursorPressed(true);
+            }
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        for(Buttons but : botoes){
+            if(isIn(e, but)) {
+                if(but.isCursorPressed()){
+                    if(but.getState() == Gamestate.PLAYING_OFFLINE){
+                        but.applyGamestate();
+                        Screen.resetCoordenates();
+                        Screen.startCoordenates();
+                    } else {
+                        but.applyGamestate();
+                    }
+                    break;
+                }
+            }
+        }
+        
+        resetButtons();
     }
 
+    private void resetButtons(){
+        for(Buttons but : botoes){
+            but.resetBooleans();
+        }
+    }
+    
     @Override
     public void mouseMoved(MouseEvent e) {
-
+        for(Buttons but : botoes){
+            but.setCursorOver(false);
+        }
+        
+        for(Buttons but : botoes){
+            if(isIn(e, but)) {
+                but.setCursorOver(true);
+                break;
+            }
+        }
     }
 
     @Override

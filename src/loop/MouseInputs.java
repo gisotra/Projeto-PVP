@@ -23,14 +23,15 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
     public void mouseMoved(MouseEvent e){
         switch(Gamestate.state){
             case MENU:{
+                //gc.getScreen().getMenu().mouseMoved(e);
             }
                 break;
             case PLAYING_OFFLINE:{
                 
             }
                 break;
-            case PLAYING_ONLINE:{
-                
+            case GAME_OVER:{
+                gc.getScreen().getGameOver().mouseMoved(e);
             }
                 break;
         
@@ -41,14 +42,15 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
     public void mouseClicked(MouseEvent e){
         switch(Gamestate.state){
             case MENU:{
+                //gc.getScreen().getMenu().mouseClicked(e);            
             }
                 break;
             case PLAYING_OFFLINE:{
-                
+            //
             }
                 break;
-            case PLAYING_ONLINE:{
-                
+            case GAME_OVER:{
+                gc.getScreen().getGameOver().mouseClicked(e);
             }
                 break;            
         }
@@ -59,14 +61,15 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
     public void mousePressed(MouseEvent e){
         switch (Gamestate.state) {
             case MENU: {
+                //gc.getScreen().getGameOver().mouseClicked(e);
             }
             break;
             case PLAYING_OFFLINE: {
-
+                //
             }
             break;
-            case PLAYING_ONLINE: {
-
+            case GAME_OVER: {
+                gc.getScreen().getGameOver().mousePressed(e);
             }
             break;
         }
@@ -76,14 +79,15 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
     public void mouseReleased(MouseEvent e){
         switch (Gamestate.state) {
             case MENU: {
+                //gc.getScreen().getMenu().mouseClicked(e);
             }
             break;
             case PLAYING_OFFLINE: {
 
             }
             break;
-            case PLAYING_ONLINE: {
-
+            case GAME_OVER: {
+                gc.getScreen().getGameOver().mouseReleased(e);
             }
             break;
         }

@@ -36,6 +36,7 @@ public class GCanvas extends Canvas {
         requestFocus();
         initMouseSprites();
         addKeyListener(new KeyInputs(this)); 
+        addMouseListener(new MouseInputs(this));
         try {
             InputStream is = getClass().getResourceAsStream("/assets/font/Chicken Font.ttf");
             chickenFont = Font.createFont(Font.TRUETYPE_FONT, is);
@@ -91,6 +92,10 @@ public class GCanvas extends Canvas {
     /*------------ MÉTODO QUE RETORNA A SALA PARA USO DO KEYINPUTS ------------*/
     public GRoom getGame() {
         return room;
+    }
+    
+    public Screen getScreen() {
+        return screen;
     }
     
     public void update(double dT) {

@@ -204,4 +204,14 @@ public class Screen {
         }
         Universal.resetGameValues();
     }
+    
+    /*------------- GETTERS E SETTERS QUE FORAM NECESSARIOS NA JORNADA -------------*/
+    public Menu getMenu(){
+        return menuscreen;
+    }
+    
+    public GameOver getGameOver(){
+        return gameoverscreen;
+    }
+    
 }
