@@ -19,6 +19,10 @@ public class Movement {
     public boolean inAir = false;
     public float heightGY; //usado para achar a posição Y em que o player tá "no chão"
     public float groundLvl;
+    /*"animação" de morte*/
+    public boolean deathJump = false; //usei isso aqui pra animação de morte 
+    public float deathJumpPower = -1.8f * Universal.SCALE;
+    public int cont = 0;
     
     public Movement(Player1 player1){
         this.player1 = player1;
@@ -27,46 +31,67 @@ public class Movement {
     }
     
     public void updatePosY(double deltaTime){ //ainda vou usar o deltaTime para movimentação horizontal depois
-        if(Universal.jump && isGrounded()){
-            player1.playerAction = Universal.JUMP;
-            airSpeed = jumpPower;
-            isJumping = true;
-        }
         
-        if(isJumping){ //caso eu esteja pulando, eu continuamente somo a gravidade na airSpeed
-            airSpeed += gravity;
-            player1.setY(player1.getY() + airSpeed); //altero o Y do player
-                if(airSpeed > 0){ //estou caindo
-                    player1.playerAction = Universal.IS_FALLING;
-                }
-            
-
-            //cheguei no chão, então preciso resetar o pulo
-            if (player1.getY() >= groundLvl) {
-                player1.setY(groundLvl);
-                airSpeed = 0f;
-                isJumping = false;
-                player1.playerAction = Universal.IDLE;
-                
+        if(!Universal.dead){
+            deathJump = false;
+            if(Universal.jump && isGrounded()){
+                player1.playerAction = Universal.JUMP;
+                airSpeed = jumpPower;
+                isJumping = true;
             }
-        } else if (!isGrounded()){ //cai de uma plataforma ou qualquer evento alternativo
-            airSpeed += gravity;
-            player1.setY(player1.getY() + airSpeed);
-            player1.playerAction = Universal.IS_FALLING;
-        }
+        
+            if(isJumping){ //caso eu esteja pulando, eu continuamente somo a gravidade na airSpeed
+                airSpeed += gravity;
+                player1.setY(player1.getY() + airSpeed); //altero o Y do player
+                    if(airSpeed > 0){ //estou caindo
+                        player1.playerAction = Universal.IS_FALLING;
+                    }
+
+                //cheguei no chão, então preciso resetar o pulo
+                if (player1.getY() >= groundLvl) {
+                    player1.setY(groundLvl);
+                    airSpeed = 0f;
+                    isJumping = false;
+                    player1.playerAction = Universal.IDLE;
+                
+                }
+            } else if (!isGrounded()){ //cai de uma plataforma ou qualquer evento alternativo
+                airSpeed += gravity;
+                player1.setY(player1.getY() + airSpeed);
+                player1.playerAction = Universal.IS_FALLING;
+            }
+        } else {
+            //player morreu 
+            //faço ele pular e corto o limitador vertical do chão
+            //quando ele ultrapassar o tamanho da tela, eu setto o state como gameover 
+            if(!deathJump){
+            airSpeed = deathJumpPower; //jogo pra cima 
+            deathJump = true;
+            isJumping = true; //true 
+            player1.playerAction = Universal.IS_DEAD; //muda a animação
+            }
+            
+            if (isJumping) { //caso eu esteja pulando, eu continuamente somo a gravidade na airSpeed
+                airSpeed += gravity; //começo a diminuir a altura 
+                player1.setY(player1.getY() + airSpeed);
+            }
+            
+            }
     }
     
     public void updatePosX(double deltaTime) {
         
 
-        if (Universal.right) {
+        if (Universal.right && !Universal.dead) {
 
             horizontalSpeed = (float) speed;
 
-        } else if (Universal.left) {
+        } else if (Universal.left && !Universal.dead) {
 
             horizontalSpeed = (float) -speed;
 
+        } else if (Universal.dead){
+            horizontalSpeed = 0;
         } else {
 
             //não estou apertando tecla alguma E estou no chão 

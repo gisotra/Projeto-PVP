@@ -39,7 +39,7 @@ public class Universal {
     public static final int JUMP = 1;
     public static final int LANDING = 2;
     public static final int IS_FALLING = 2;
-    public static final int IS_DEAD = 4;
+    public static final int IS_DEAD = 3;
     
     /*flags de direção para usar no player e na classe KeyInputs*/
     public static boolean right = false;

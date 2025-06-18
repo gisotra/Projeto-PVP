@@ -53,9 +53,6 @@ public class Screen {
         /*grasslayer = new Grass(this, this.gc);
         objectsOnScreen.add(grasslayer);*/
         
-        player1 = new Player1(this, this.gc);
-        objectsOnScreen.add(player1);
-        
         for(int i = 0; i < 5; i++){ //3 por obstáculo, 9 no total. 
             objectsOnScreen.add(new Bird(this, this.gc));
             objectsOnScreen.add(new Wall(this, this.gc));
@@ -67,6 +64,9 @@ public class Screen {
         groundlayer = new Ground(this, this.gc);
         objectsOnScreen.add(groundlayer);
         
+        
+        player1 = new Player1(this, this.gc);
+        objectsOnScreen.add(player1);
         spawner = new Spawner();
     }
     
@@ -93,12 +93,12 @@ public class Screen {
                 break;
             }
             case GAME_OVER:{
-                gameoverscreen.render(g2d);
                 for (Objects obj : objectsOnScreen) {
                     if (obj instanceof Environment || (obj.getX() >= -Universal.TILES_SIZE * 4 && !obj.getIsActive())) {
                         obj.render(g2d);
                     }
                 }
+                gameoverscreen.render(g2d);
                 break;
             }
             case END:{
@@ -159,7 +159,18 @@ public class Screen {
                 }
                 spawner.play();
                 if(Universal.dead){
-                    Gamestate.state = GAME_OVER;
+                    
+                    /*for (Objects obj : objectsOnScreen){
+                        if(obj instanceof Entities){
+                            Universal.jump = true;
+                        }
+                    }*/
+                    
+                    for (Objects obj : objectsOnScreen){
+                        if(obj instanceof Entities && obj.getY() > Universal.GAME_HEIGHT){
+                            Gamestate.state = GAME_OVER;
+                        }
+                    }
                     break;
                 }
             }break;
