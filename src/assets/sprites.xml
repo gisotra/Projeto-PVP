@@ -1,7 +1,16 @@
 <sprites>
+    <!-- Player -->
     <sprite name="player1">
         <path>/assets/player/player.png</path>
     </sprite>
+    <sprite name="shadow">
+        <path>/assets/player/shadow.png</path>
+    </sprite>
+    <sprite name="mark">
+        <path>/assets/player/floormark.png</path>
+    </sprite>
+    
+    <!-- Obstáculos -->
     <sprite name="wall">
         <path>/assets/obstacles/wall.png</path>
     </sprite>

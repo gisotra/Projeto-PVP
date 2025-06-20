@@ -8,6 +8,7 @@ import loop.GCanvas;
 import utilz.Screen;
 import utilz.SpriteData;
 import utilz.SpriteLoader;
+import utilz.Spritesheet;
 import utilz.Universal;
 
 public class Player1 extends Entities{
@@ -17,6 +18,10 @@ public class Player1 extends Entities{
     public Movement movement;
     public Collider collider;
     BufferedImage playerSpriteSheet;
+    BufferedImage shadow;
+    BufferedImage floormark;
+    Spritesheet shadowsprite;
+    Spritesheet floormarksprite;
     public int playerAction = Universal.IDLE;
     
     public Player1(Screen screen, GCanvas gc){
@@ -30,6 +35,25 @@ public class Player1 extends Entities{
         setIsActive(true);
     }     
    
+    public void initSprite(){
+        SpriteData playerData = SpriteLoader.spriteDataLoader().get("player1");
+        SpriteData shadowData = SpriteLoader.spriteDataLoader().get("shadow");
+        SpriteData markData = SpriteLoader.spriteDataLoader().get("mark");
+        try {
+            playerSpriteSheet = ImageIO.read(getClass().getResource(playerData.getPath()));
+            shadow = ImageIO.read(getClass().getResource(shadowData.getPath()));
+            floormark = ImageIO.read(getClass().getResource(markData.getPath()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        //inicio as propriedades do meu sprite player
+        setWidth(32);
+        setHeight(32);
+        setSpritesheet(playerSpriteSheet, Universal.SCALE);
+        shadowsprite = new Spritesheet(shadow, 32, 32, 0, Universal.SCALE);
+        floormarksprite = new Spritesheet(floormark, 32, 32, 0, Universal.SCALE);
+    }
+    
     @Override
     public void update(double deltaTime){
         movement.updatePosY(deltaTime);
@@ -39,32 +63,26 @@ public class Player1 extends Entities{
         if(collider.verifyNearby()){ //somente se HÁ um obstáculo dedd asdasdas das dantro da minha range de colisão 
             collider.verifyCollission();
         }
-        
         updateHitbox();
     }
 
     @Override
     public void render(Graphics2D g2d){
         spritesheet.setAtion(playerAction); // altero ou mantenho a linha do spritesheet
+        /*if(movement.isGrounded() && !Universal.dead){ //estou no chão
+        shadowsprite.render(g2d, (int) getX() - 21, (int) Universal.groundY - (Universal.TILES_SIZE / 6));            
+        } else { //estou pulando
+        floormarksprite.render(g2d, (int) getX() - 21, (int) Universal.groundY - (Universal.TILES_SIZE / 6));            
+        }*/
+        shadowsprite.render(g2d, (int) getX() - 21, (int) Universal.groundY - (Universal.TILES_SIZE / 6));
         spritesheet.render(g2d, (int) getX() - 12, (int) getY());
+        
         if(Universal.showGrid){
             drawHitbox(g2d);
             collider.drawCollisionArea(g2d);
         }
     }
     
-    public void initSprite(){
-        SpriteData playerData = SpriteLoader.spriteDataLoader().get("player1");
-        try {
-            playerSpriteSheet = ImageIO.read(getClass().getResource(playerData.getPath()));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        //inicio as propriedades do meu sprite player
-        setWidth(32);
-        setHeight(32);
-        setSpritesheet(playerSpriteSheet, Universal.SCALE);
-    }
 
     /*------------ GETTERS AND SETTERS ------------*/
     public float getX() {

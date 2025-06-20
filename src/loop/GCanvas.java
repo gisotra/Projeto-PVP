@@ -59,7 +59,7 @@ public class GCanvas extends Canvas {
         Graphics2D g2D = (Graphics2D) bs.getDrawGraphics();
         try {
             // Limpa o fundo para evitar artefatos de frames anteriores
-            g2D.setColor(Color.WHITE);
+            g2D.setColor(new Color(80, 48, 179));
             g2D.fillRect(0, 0, getWidth(), getHeight());
             if (Universal.showGrid) {
                 drawGrid(g2D);

@@ -53,11 +53,6 @@ public class Screen {
         /*grasslayer = new Grass(this, this.gc);
         objectsOnScreen.add(grasslayer);*/
         
-        for(int i = 0; i < 5; i++){ //3 por obstáculo, 9 no total. 
-            objectsOnScreen.add(new Bird(this, this.gc));
-            objectsOnScreen.add(new Wall(this, this.gc));
-            objectsOnScreen.add(new Saw(this, this.gc));
-        }
         
         
         //chão
@@ -68,6 +63,11 @@ public class Screen {
         player1 = new Player1(this, this.gc);
         objectsOnScreen.add(player1);
         spawner = new Spawner();
+        for(int i = 0; i < 5; i++){ //3 por obstáculo, 9 no total. 
+            objectsOnScreen.add(new Bird(this, this.gc));
+            objectsOnScreen.add(new Wall(this, this.gc));
+            objectsOnScreen.add(new Saw(this, this.gc));
+        }
     }
     
     /*------------ MÉTODO RENDER ------------*/

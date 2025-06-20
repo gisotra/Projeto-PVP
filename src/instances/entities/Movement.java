@@ -124,7 +124,7 @@ public class Movement {
         }
     }
     
-    private boolean isGrounded() {
+    public boolean isGrounded() {
         if (player1.getY() >= groundLvl) {
             return true;
         } else {
