@@ -60,7 +60,7 @@ public class Universal {
     /*-----------------------------------------*/
     
     /*Posição de spawn dos obstáculos do player2 + flags de spawn no KeyInputs*/
-    // Wall
+    // =============== Wall =============== 
     public static float OBST_SPAWN_X = GAME_WIDTH + TILES_SIZE; 
     public static final int WALL_WIDTH = 70;
     public static final int WALL_HEIGHT = 120;
@@ -69,24 +69,29 @@ public class Universal {
     public static final float WALL_HITBOX_HEIGHT = 0.65f * Universal.TILES_SIZE;
     public static final int WALL_SPAWN_Y = GAME_HEIGHT - (2 * TILES_SIZE + (int)WALL_HITBOX_HEIGHT);
 
-    // Bird
+    // =============== Bird =============== 
     public static final int BIRD_WIDTH = 120;
     public static final int BIRD_HEIGHT = 40;
-
     public static boolean bird = false; //flag de spawn 
     public static final float BIRD_HITBOX_WIDTH = 0.7f * TILES_SIZE;
     public static final float BIRD_HITBOX_HEIGHT = 0.3f * Universal.TILES_SIZE;
     public static final int BIRD_SPAWN_Y = GAME_HEIGHT - (3 * TILES_SIZE + (int)BIRD_HITBOX_HEIGHT);
     
-    // Saw 
+    // =============== Saw =============== 
     public static final int SAW_WIDTH = 120;
     public static final int SAW_HEIGHT = 40;
     public static final float SAW_HITBOX_WIDTH = 1.7f*TILES_SIZE;
     public static final float SAW_HITBOX_HEIGHT = 0.65f*Universal.TILES_SIZE;
-    
     public static final int SAW_SPAWN_Y = GAME_HEIGHT - (2 * TILES_SIZE + (int)SAW_HITBOX_HEIGHT);    
     public static boolean saw = false; //flag de spawn
     
+    // =============== Fall Block ===============
+    public static final float BLOCK_HITBOX_WIDTH = 2f*TILES_SIZE;
+    public static final float BLOCK_HITBOX_HEIGHT = 2f*TILES_SIZE;
+    public static final int BLOCK_SPAWN_Y = GAME_HEIGHT - (2 * TILES_SIZE + (int) BLOCK_HITBOX_HEIGHT);
+    public static boolean block = false; //flag de spawn 
+    
+    // =============== Geral =============== 
     public static double OBST_SPEED = 0;
     public static int lastSpeedUpScore = 0;
     public static int speedUpgrades = 0;

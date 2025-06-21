@@ -10,6 +10,7 @@ import instances.entities.Entities;
 import instances.entities.Player1;
 import instances.manager.Spawner;
 import instances.obstacles.Bird;
+import instances.obstacles.FallBlock;
 import instances.obstacles.Obstacles;
 import instances.obstacles.Saw;
 import instances.obstacles.Wall;
@@ -39,6 +40,7 @@ public class Screen {
     Spawner spawner;
     Ground groundlayer;
     Grass grasslayer;
+    FallBlock block;
     /*--- game states ---*/
     Menu menuscreen;
     GameOver gameoverscreen;
@@ -63,10 +65,11 @@ public class Screen {
         player1 = new Player1(this, this.gc);
         objectsOnScreen.add(player1);
         spawner = new Spawner();
-        for(int i = 0; i < 5; i++){ //3 por obstáculo, 9 no total. 
+        for(int i = 0; i < 4; i++){ //3 por obstáculo, 9 no total. 
             objectsOnScreen.add(new Bird(this, this.gc));
             objectsOnScreen.add(new Wall(this, this.gc));
             objectsOnScreen.add(new Saw(this, this.gc));
+            objectsOnScreen.add(new FallBlock(this, this.gc));
         }
     }
     

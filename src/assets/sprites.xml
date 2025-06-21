@@ -14,6 +14,9 @@
     <sprite name="wall">
         <path>/assets/obstacles/wall.png</path>
     </sprite>
+    <sprite name="fallblock">
+        <path>/assets/obstacles/fallblock.png</path>
+    </sprite>
     <sprite name="saw">
         <path>/assets/obstacles/saw.png</path>
     </sprite>

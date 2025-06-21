@@ -22,7 +22,7 @@ public class Spawner{
         if(currentTime - lastGlobalSpawn < Universal.globalCooldown){ //evita spam do player2 
             return;
         }
-        spawnpoint = r.nextInt(8);
+        spawnpoint = r.nextInt(9);
         switch(spawnpoint){
             case 1:
                 Universal.wall = true;
@@ -32,6 +32,9 @@ public class Spawner{
                 break;
             case 3:
                 Universal.bird = true;
+                break;
+            case 4:
+                Universal.block = true;
                 break;
             default:
                 break;
@@ -57,6 +60,14 @@ public class Spawner{
             
             lastGlobalSpawn = currentTime;
             Universal.bird = false;
+            return;
+        }
+        
+        if(Universal.block){
+            spm.spawnBlock();
+            
+            lastGlobalSpawn = currentTime;
+            Universal.block = false;
             return;
         }
         

@@ -69,7 +69,6 @@ public abstract class Obstacles extends Objects{ //muito similiar a classe Entit
     
     public Rectangle2D.Float getObstHitbox(){
         return obs_hitbox;
-    }    
-    
+    }
 }
 

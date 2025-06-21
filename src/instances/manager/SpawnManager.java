@@ -1,6 +1,7 @@
 package instances.manager;
 import instances.Objects;
 import instances.obstacles.Bird;
+import instances.obstacles.FallBlock;
 import instances.obstacles.Saw;
 import instances.obstacles.Wall;
 import utilz.Screen;
@@ -46,6 +47,18 @@ public class SpawnManager {
             }
         }
     }
+
+    public void spawnBlock(){
+        for(Objects obj : Screen.objectsOnScreen) {
+            if(!obj.getIsActive() && obj instanceof FallBlock ){
+                obj.setX(Universal.OBST_SPAWN_X);
+                obj.setY(Universal.BLOCK_SPAWN_Y);
+                obj.setIsActive(true);
+                return; //acontece 1 única vez
+            }
+        }
+    }
+    
     
     /*
     Lógica usada:

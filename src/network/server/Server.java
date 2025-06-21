@@ -12,7 +12,7 @@ public class Server {
         this.serverSocket = serverSocket;
     }
     
-    public void startServer(){
+    /*public void startServer(){
         
         try {
             while(!serverSocket.isClosed()){
@@ -43,5 +43,5 @@ public class Server {
         Server server = new Server(serverSocket);
         server.startServer();
     }
-    
+    */
 }
