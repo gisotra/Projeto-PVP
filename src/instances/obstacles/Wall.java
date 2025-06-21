@@ -34,8 +34,8 @@ public class Wall extends Obstacles{ //extends Obstacles
             throw new RuntimeException(e);
         }
         
-        setWidth(32); //largura em px do FRAME ORIGINAL 
-        setHeight(32); //altura em px do FRAME ORIGINAL
+        setWidth(64); //largura em px do FRAME ORIGINAL 
+        setHeight(64); //altura em px do FRAME ORIGINAL
         setSpritesheet(wallSpriteSheet, Universal.SCALE);
     }
     
@@ -57,7 +57,7 @@ public class Wall extends Obstacles{ //extends Obstacles
     
     @Override
     public void render(Graphics2D g2d) {
-        spritesheet.render(g2d, (int) getX() - 14, (int) getY() - 6);
+        spritesheet.render(g2d, (int) getX() - 84, (int) getY() - 50);
         if (Universal.showGrid) {
             drawObstHitbox(g2d);
         }

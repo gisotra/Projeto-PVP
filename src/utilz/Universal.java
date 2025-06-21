@@ -65,8 +65,8 @@ public class Universal {
     public static final int WALL_WIDTH = 70;
     public static final int WALL_HEIGHT = 120;
     public static boolean wall = false; //flag de spawn
-    public static final float WALL_HITBOX_WIDTH = 0.7f * TILES_SIZE;
-    public static final float WALL_HITBOX_HEIGHT = 0.94f * Universal.TILES_SIZE;
+    public static final float WALL_HITBOX_WIDTH = 0.5f * TILES_SIZE;
+    public static final float WALL_HITBOX_HEIGHT = 0.65f * Universal.TILES_SIZE;
     public static final int WALL_SPAWN_Y = GAME_HEIGHT - (2 * TILES_SIZE + (int)WALL_HITBOX_HEIGHT);
 
     // Bird
