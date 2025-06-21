@@ -14,8 +14,6 @@ public class KeyInputs implements KeyListener {
 
     public KeyInputs(GCanvas gameCanvas) {
         this.gameCanvas = gameCanvas;
-        
-        
     }
 
     @Override
