@@ -65,7 +65,7 @@ public class Collider {
                 Obstacles obstacle = (Obstacles) obj;
 
                 if (player1.getHitbox().intersects(obstacle.obs_hitbox)) {
-                    //Universal.dead = true; //MORTE DO PLAYER1 r.i.p
+                    Universal.dead = true; //MORTE DO PLAYER1 r.i.p
                 }
             }
         }

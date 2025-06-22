@@ -18,10 +18,12 @@ public class FallBlock extends Obstacles{ //extends Obstacles
     BufferedImage BlockSpriteSheet;
     public boolean shouldFall;
     public float block_speed = 0;
-    public float block_gravity = 0.08f * Universal.SCALE;
-    public float block_levitate = -1f * Universal.SCALE;
+    public float block_gravity = 0.095f * Universal.SCALE;
+    public float block_levitate = -0.85f * Universal.SCALE;
     public float block_heightGY; //usado para achar a posição Y em que o bloco tá "no chão"
     public float groundLvl;
+    BufferedImage blockshadow;
+    Spritesheet blockshadowsprite;
     
     /*------------ CONSTRUTOR ------------*/
     public FallBlock(Screen screen, GCanvas gc) {
@@ -32,14 +34,16 @@ public class FallBlock extends Obstacles{ //extends Obstacles
         initSprite();
         initObstHitbox();
         block_heightGY = getHitboxHeight();
-        groundLvl = Universal.groundY; // 5 Tiles - 1 = 4 tiles
+        groundLvl = Universal.groundY - block_heightGY + 45; // 
         setIsActive(false);
     }
     
     public void initSprite() {
         SpriteData blockData = SpriteLoader.spriteDataLoader().get("fallblock");
+        SpriteData shadowData = SpriteLoader.spriteDataLoader().get("blockshadow");
         try {
             BlockSpriteSheet = ImageIO.read(getClass().getResource(blockData.getPath()));
+            blockshadow = ImageIO.read(getClass().getResource(shadowData.getPath()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -47,17 +51,18 @@ public class FallBlock extends Obstacles{ //extends Obstacles
         setWidth(64); //largura em px do FRAME ORIGINAL 
         setHeight(48); //altura em px do FRAME ORIGINAL
         setSpritesheet(BlockSpriteSheet, Universal.SCALE);
+        blockshadowsprite = new Spritesheet(blockshadow, 32, 64, 0, Universal.SCALE);
     }
     
     @Override
     protected void drawObstHitbox(Graphics2D g2d) {
-        g2d.setColor(Color.BLUE);
+        g2d.setColor(Color.WHITE);
         g2d.drawRect((int) obs_hitbox.x, (int) obs_hitbox.y, (int) obs_hitbox.width, (int) obs_hitbox.height);
     }
     
     @Override
     public void initObstHitbox() {
-        this.obs_hitbox = new Rectangle2D.Float(getX(), getY(), Universal.BLOCK_HITBOX_WIDTH, Universal.BLOCK_HITBOX_HEIGHT); 
+        this.obs_hitbox = new Rectangle2D.Float(getX() - (Universal.TILES_SIZE), getY(), Universal.BLOCK_HITBOX_WIDTH, Universal.BLOCK_HITBOX_HEIGHT); 
     }
     
     @Override
@@ -67,7 +72,8 @@ public class FallBlock extends Obstacles{ //extends Obstacles
     
     @Override
     public void render(Graphics2D g2d) {
-        spritesheet.render(g2d, (int) getX() - 84, (int) getY() - 50);
+        blockshadowsprite.render(g2d, (int) getX() - 45, (int) Universal.groundY - (Universal.TILES_SIZE / 6));
+        spritesheet.render(g2d, (int) getX() - 32, (int) getY() - 21);
         if (Universal.showGrid) {
             drawObstHitbox(g2d);
         }
@@ -103,8 +109,8 @@ public class FallBlock extends Obstacles{ //extends Obstacles
         if(!shouldFall){
             block_speed = block_levitate;
             setY(getY() + block_speed);
-            if(getY() <= Universal.TILES_SIZE * 2){
-                setY(Universal.TILES_SIZE * 2);
+            if(getY() <= (Universal.BLOCK_SKY_LEVEL)){
+                setY(Universal.BLOCK_SKY_LEVEL);
                 block_speed = 0;
                 shouldFall = true;
             }

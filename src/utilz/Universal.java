@@ -86,9 +86,10 @@ public class Universal {
     public static boolean saw = false; //flag de spawn
     
     // =============== Fall Block ===============
-    public static final float BLOCK_HITBOX_WIDTH = 2f*TILES_SIZE;
-    public static final float BLOCK_HITBOX_HEIGHT = 2f*TILES_SIZE;
+    public static final float BLOCK_HITBOX_WIDTH = 1.05f*TILES_SIZE;
+    public static final float BLOCK_HITBOX_HEIGHT = 1.3f*TILES_SIZE;
     public static final int BLOCK_SPAWN_Y = GAME_HEIGHT - (2 * TILES_SIZE + (int) BLOCK_HITBOX_HEIGHT);
+    public static final int BLOCK_SKY_LEVEL = 2 * Universal.TILES_SIZE - 64;
     public static boolean block = false; //flag de spawn 
     
     // =============== Geral =============== 
