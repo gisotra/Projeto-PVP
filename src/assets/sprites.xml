@@ -44,7 +44,7 @@
     </sprite>
     <!-- Fundos dos Gamestates -->
     <sprite name="fundoMenu">
-        <path>/assets/menu/fundoGameOverProto.png</path>
+        <path>/assets/menu/fundoMenu.png</path>
     </sprite>
     <sprite name="fundoGameOver">
         <path>/assets/menu/fundoGameOverProto.png</path>
@@ -54,6 +54,9 @@
     </sprite>
     
     <!-- BOTÕES DOS GAMESTATES -->
+    <sprite name="exitbutton">
+        <path>/assets/ui/exit_button.png</path>
+    </sprite>
     
     <!-- tela de menu -->
     <sprite name="menu_playOfflineButton">
@@ -73,6 +76,14 @@
     </sprite>
     <sprite name="gameover_restartButton">
         <path>/assets/ui/gameover_restart_b.png</path>
+    </sprite>
+    
+    <!-- tela de Multiplayer -->
+    <sprite name="asServerButton">
+        <path>/assets/ui/playAsServer_button.png</path>
+    </sprite>
+    <sprite name="asClientButton">
+        <path>/assets/ui/playAsClient_button.png</path>
     </sprite>
     
     

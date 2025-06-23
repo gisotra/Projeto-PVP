@@ -13,37 +13,38 @@ import utilz.SpriteLoader;
 import utilz.Spritesheet;
 import utilz.Universal;
 
-public class Menu implements ScreenStates {
-    BufferedImage menuFundo;
-    Spritesheet menusheet;
+public class MultiplayerMenu implements ScreenStates {
+    BufferedImage multMenuFundo;
+    Spritesheet multMenusheet;
     Buttons[] botoesMenu = new Buttons[3];
-    BufferedImage botaoOfflineSprite;
-    BufferedImage botaoOnlineSprite;
-    BufferedImage botaoExitSprite;
+    BufferedImage botaoAsServer;
+    BufferedImage botaoAsClient;
+    BufferedImage botaoExit;
     
-    public Menu(){
+    public MultiplayerMenu(){
         initSpriteMenu();
-        botoesMenu[0] = new Buttons(2 * Universal.TILES_SIZE, 1 * Universal.TILES_SIZE, 64, 48, botaoOfflineSprite, Gamestate.PLAYING_OFFLINE); //OFFLINE
-        botoesMenu[1] = new Buttons(2 * Universal.TILES_SIZE, 3 * Universal.TILES_SIZE, 64, 48, botaoOnlineSprite, Gamestate.MULTIPLAYER_MENU); //ONLINE
-        botoesMenu[2] = new Buttons(2 * Universal.TILES_SIZE, 5 * Universal.TILES_SIZE, 64, 48, botaoExitSprite, Gamestate.END); //EXIT
+        botoesMenu[0] = new Buttons(4*Universal.TILES_SIZE, 3*Universal.TILES_SIZE + (Universal.TILES_SIZE/4), 48, 48, botaoAsServer, Gamestate.SERVER_HOSTING); //servidor
+        botoesMenu[1] = new Buttons(8*Universal.TILES_SIZE + (Universal.TILES_SIZE/2)  , 3*Universal.TILES_SIZE + (Universal.TILES_SIZE/4), 48, 48, botaoAsClient, Gamestate.CLIENT_CONNECTING); //cliente
+        botoesMenu[2] = new Buttons(20, 20, 48, 48, botaoExit, Gamestate.MENU); //voltar
     }
     
     public void initSpriteMenu(){
         SpriteData menuData = SpriteLoader.spriteDataLoader().get("fundoMenu");
-        SpriteData buttOfflineData = SpriteLoader.spriteDataLoader().get("menu_playOfflineButton");
-        SpriteData buttOnlineData = SpriteLoader.spriteDataLoader().get("menu_playOnlineButton");
-        SpriteData buttExitData = SpriteLoader.spriteDataLoader().get("menu_exitButton");
+        SpriteData asClientData = SpriteLoader.spriteDataLoader().get("asServerButton");
+        SpriteData asServerData = SpriteLoader.spriteDataLoader().get("asClientButton");
+        SpriteData exitData = SpriteLoader.spriteDataLoader().get("exitbutton");
         
         try {
-            menuFundo = ImageIO.read(getClass().getResource(menuData.getPath()));
-            botaoOfflineSprite = ImageIO.read(getClass().getResource(buttOfflineData.getPath()));
-            botaoOnlineSprite = ImageIO.read(getClass().getResource(buttOnlineData.getPath()));
-            botaoExitSprite = ImageIO.read(getClass().getResource(buttExitData.getPath()));
+            multMenuFundo = ImageIO.read(getClass().getResource(menuData.getPath()));
+            botaoAsServer = ImageIO.read(getClass().getResource(asClientData.getPath()));
+            botaoAsClient = ImageIO.read(getClass().getResource(asServerData.getPath()));
+            botaoExit = ImageIO.read(getClass().getResource(exitData.getPath()));
+            
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         //inicio as propriedades do meu sprite player
-        this.menusheet = new Spritesheet(menuFundo, 256, 448, 0.0, Universal.SCALE); 
+        this.multMenusheet = new Spritesheet(multMenuFundo, 256, 448, 0.0, Universal.SCALE); 
     }
 
     /*-------------- MÉTODOS HERDADOS --------------*/
@@ -54,7 +55,7 @@ public class Menu implements ScreenStates {
 
     @Override
     public void render(Graphics2D g2D) {
-        menusheet.render(g2D, 0, 0);
+        multMenusheet.render(g2D, 0, 0);
         for (Buttons but : botoesMenu) {
             but.render(g2D);
         }
@@ -84,13 +85,7 @@ public class Menu implements ScreenStates {
         for (Buttons but : botoesMenu) {
             if (isIn(e, but)) {
                 if (but.isCursorPressed()) {
-                    if (but.getState() == Gamestate.PLAYING_OFFLINE) {
                         but.applyGamestate();
-                        Screen.resetCoordenates();
-                        Screen.startCoordenates();
-                    } else {
-                        but.applyGamestate();
-                    }
                 }
             }
         }

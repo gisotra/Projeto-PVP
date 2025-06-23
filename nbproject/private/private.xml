@@ -4,9 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/chern/OneDrive/Área%20de%20Trabalho/Projeto-PVP/src/instances/obstacles/Obstacles.java</file>
-            <file>file:/C:/Users/chern/OneDrive/Área%20de%20Trabalho/Projeto-PVP/src/instances/entities/Player1.java</file>
-            <file>file:/C:/Users/chern/OneDrive/Área%20de%20Trabalho/Projeto-PVP/src/utilz/Universal.java</file>
-            <file>file:/C:/Users/chern/OneDrive/Área%20de%20Trabalho/Projeto-PVP/src/utilz/Screen.java</file>
+            <file>file:/C:/Users/chern/OneDrive/Área%20de%20Trabalho/Projeto-PVP/src/ui/MultiplayerMenu.java</file>
+            <file>file:/C:/Users/chern/OneDrive/Área%20de%20Trabalho/Projeto-PVP/src/ui/Menu.java</file>
+            <file>file:/C:/Users/chern/OneDrive/Área%20de%20Trabalho/Projeto-PVP/src/ui/GameOver.java</file>
+            <file>file:/C:/Users/chern/OneDrive/Área%20de%20Trabalho/Projeto-PVP/src/assets/sprites.xml</file>
+            <file>file:/C:/Users/chern/OneDrive/Área%20de%20Trabalho/Projeto-PVP/src/loop/GCanvas.java</file>
+            <file>file:/C:/Users/chern/OneDrive/Área%20de%20Trabalho/Projeto-PVP/src/gamestates/Gamestate.java</file>
         </group>
     </open-files>
 </project-private>

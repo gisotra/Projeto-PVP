@@ -34,6 +34,10 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
                 gc.getScreen().getGameOver().mouseMoved(e);
             }
                 break;
+            case MULTIPLAYER_MENU: {
+                gc.getScreen().getMultMenu().mouseMoved(e);
+                break;
+            }
         
         }
     }
@@ -53,6 +57,10 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
                 gc.getScreen().getGameOver().mouseClicked(e);
             }
                 break;            
+            case MULTIPLAYER_MENU: {
+                gc.getScreen().getMultMenu().mouseClicked(e);
+                break;
+            }
         }
     }
     
@@ -72,6 +80,10 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
                 gc.getScreen().getGameOver().mousePressed(e);
             }
             break;
+            case MULTIPLAYER_MENU: {
+                gc.getScreen().getMultMenu().mousePressed(e);
+                break;
+            }
         }
     }
     
@@ -90,6 +102,10 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
                 gc.getScreen().getGameOver().mouseReleased(e);
             }
             break;
+            case MULTIPLAYER_MENU: {
+                gc.getScreen().getMultMenu().mouseReleased(e);
+            break;
+            }
         }
     }
     

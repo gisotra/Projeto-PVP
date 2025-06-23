@@ -21,6 +21,7 @@ import java.util.Queue;
 
 import ui.GameOver;
 import ui.Menu;
+import ui.MultiplayerMenu;
 
 public class Screen { 
     /*
@@ -38,12 +39,13 @@ public class Screen {
     
     Player1 player1;
     Spawner spawner;
+    /*--- obstáculos ---*/
     Ground groundlayer;
     Grass grasslayer;
-    FallBlock block;
     /*--- game states ---*/
     Menu menuscreen;
     GameOver gameoverscreen;
+    MultiplayerMenu multmenuscreen;
     //para debug
     
     /*------------ CONSTRUTOR ------------*/
@@ -51,6 +53,7 @@ public class Screen {
         this.gc = gc;
         menuscreen = new Menu();
         gameoverscreen = new GameOver();
+        multmenuscreen = new MultiplayerMenu();
         //grama 
         /*grasslayer = new Grass(this, this.gc);
         objectsOnScreen.add(grasslayer);*/
@@ -88,7 +91,10 @@ public class Screen {
                 }
                 break;
             }
-            
+            case MULTIPLAYER_MENU: {
+                multmenuscreen.render(g2d);
+                break;
+            }
             case PLAYING_ONLINE:{
                 break;
             }
@@ -229,6 +235,10 @@ public class Screen {
     
     public GameOver getGameOver(){
         return gameoverscreen;
+    }
+
+    public MultiplayerMenu getMultMenu(){
+        return multmenuscreen;
     }
     
 }
