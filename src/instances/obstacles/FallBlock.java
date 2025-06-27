@@ -34,7 +34,7 @@ public class FallBlock extends Obstacles{ //extends Obstacles
         initSprite();
         initObstHitbox();
         block_heightGY = getHitboxHeight();
-        groundLvl = Universal.groundY - block_heightGY + 45; // 
+        groundLvl = Universal.groundY - block_heightGY + 60; // 
         setIsActive(false);
     }
     
@@ -72,7 +72,7 @@ public class FallBlock extends Obstacles{ //extends Obstacles
     
     @Override
     public void render(Graphics2D g2d) {
-        blockshadowsprite.render(g2d, (int) getX() - 45, (int) Universal.groundY - (Universal.TILES_SIZE / 6));
+        blockshadowsprite.render(g2d, (int) getX() - 45, (int) Universal.groundY - (Universal.TILES_SIZE / 6) + 25) ;
         spritesheet.render(g2d, (int) getX() - 32, (int) getY() - 21);
         if (Universal.showGrid) {
             drawObstHitbox(g2d);

@@ -69,13 +69,13 @@ public class Player1 extends Entities{
     @Override
     public void render(Graphics2D g2d){
         spritesheet.setAtion(playerAction); // altero ou mantenho a linha do spritesheet
-        shadowsprite.render(g2d, (int) getX() - 21, (int) Universal.groundY - (Universal.TILES_SIZE / 6));
+        shadowsprite.render(g2d, (int) getX() - 21, (int) Universal.groundY - (Universal.TILES_SIZE / 6) + 40);
         spritesheet.render(g2d, (int) getX() - 12, (int) getY());
         
         if(Universal.showGrid){
             drawHitbox(g2d);
             collider.drawCollisionArea(g2d);
-            floormarksprite.render(g2d, (int) getX() - 21, (int) Universal.groundY - (Universal.TILES_SIZE / 6));
+            floormarksprite.render(g2d, (int) getX() - 21, (int) Universal.groundY - (Universal.TILES_SIZE / 6) + 40);
         }
     }
     

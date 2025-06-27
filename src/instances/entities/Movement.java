@@ -27,7 +27,7 @@ public class Movement {
     public Movement(Player1 player1){
         this.player1 = player1;
         heightGY = player1.getHitboxHeight();
-        groundLvl = Universal.groundY - heightGY; // 5 Tiles - 1 = 4 tiles
+        groundLvl = Universal.groundY - heightGY + 40; // 5 Tiles - 1 = 4 tiles
     }
     
     public void updatePosY(double deltaTime){ //ainda vou usar o deltaTime para movimentação horizontal depois

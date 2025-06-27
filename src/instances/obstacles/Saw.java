@@ -34,8 +34,8 @@ public class Saw extends Obstacles{ //extends Obstacles
             throw new RuntimeException(e);
         }
         
-        setWidth(64); //largura em px do FRAME ORIGINAL 
-        setHeight(32); //altura em px do FRAME ORIGINAL
+        setWidth(80); //largura em px do FRAME ORIGINAL 
+        setHeight(64); //altura em px do FRAME ORIGINAL
         setSpritesheet(sawSpriteSheet, Universal.SCALE);
     }
     

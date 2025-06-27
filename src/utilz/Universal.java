@@ -67,7 +67,7 @@ public class Universal {
     public static boolean wall = false; //flag de spawn
     public static final float WALL_HITBOX_WIDTH = 0.5f * TILES_SIZE;
     public static final float WALL_HITBOX_HEIGHT = 0.65f * Universal.TILES_SIZE;
-    public static final int WALL_SPAWN_Y = GAME_HEIGHT - (2 * TILES_SIZE + (int)WALL_HITBOX_HEIGHT);
+    public static final int WALL_SPAWN_Y = GAME_HEIGHT - (2 * TILES_SIZE + (int)WALL_HITBOX_HEIGHT) + 40;
 
     // =============== Bird =============== 
     public static final int BIRD_WIDTH = 120;
@@ -75,20 +75,20 @@ public class Universal {
     public static boolean bird = false; //flag de spawn 
     public static final float BIRD_HITBOX_WIDTH = 0.7f * TILES_SIZE;
     public static final float BIRD_HITBOX_HEIGHT = 0.3f * Universal.TILES_SIZE;
-    public static final int BIRD_SPAWN_Y = GAME_HEIGHT - (3 * TILES_SIZE + (int)BIRD_HITBOX_HEIGHT);
+    public static final int BIRD_SPAWN_Y = GAME_HEIGHT - (3 * TILES_SIZE + (int)BIRD_HITBOX_HEIGHT) + 40;
     
     // =============== Saw =============== 
     public static final int SAW_WIDTH = 120;
     public static final int SAW_HEIGHT = 40;
     public static final float SAW_HITBOX_WIDTH = 1.7f*TILES_SIZE;
     public static final float SAW_HITBOX_HEIGHT = 0.65f*Universal.TILES_SIZE;
-    public static final int SAW_SPAWN_Y = GAME_HEIGHT - (2 * TILES_SIZE + (int)SAW_HITBOX_HEIGHT);    
+    public static final int SAW_SPAWN_Y = GAME_HEIGHT - (2 * TILES_SIZE + (int)SAW_HITBOX_HEIGHT) + 40;    
     public static boolean saw = false; //flag de spawn
     
     // =============== Fall Block ===============
     public static final float BLOCK_HITBOX_WIDTH = 1.05f*TILES_SIZE;
     public static final float BLOCK_HITBOX_HEIGHT = 1.3f*TILES_SIZE;
-    public static final int BLOCK_SPAWN_Y = GAME_HEIGHT - (2 * TILES_SIZE + (int) BLOCK_HITBOX_HEIGHT);
+    public static final int BLOCK_SPAWN_Y = GAME_HEIGHT - (2 * TILES_SIZE + (int) BLOCK_HITBOX_HEIGHT) + 40;
     public static final int BLOCK_SKY_LEVEL = 2 * Universal.TILES_SIZE - 64;
     public static boolean block = false; //flag de spawn 
     
