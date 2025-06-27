@@ -30,7 +30,7 @@ public class FallBlock extends Obstacles{ //extends Obstacles
         super(screen, gc);
         setY(Universal.WALL_SPAWN_Y);
         setX(Universal.OBST_SPAWN_X); //fora da tela na direita
-        this.shouldFall = true;
+        this.shouldFall = false;
         initSprite();
         initObstHitbox();
         block_heightGY = getHitboxHeight();

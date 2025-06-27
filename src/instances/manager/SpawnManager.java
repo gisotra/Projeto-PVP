@@ -52,7 +52,7 @@ public class SpawnManager {
         for(Objects obj : Screen.objectsOnScreen) {
             if(!obj.getIsActive() && obj instanceof FallBlock ){
                 obj.setX(Universal.OBST_SPAWN_X);
-                obj.setY(Universal.BLOCK_SPAWN_Y);
+                obj.setY(Universal.BLOCK_SKY_LEVEL);
                 obj.setIsActive(true);
                 return; //acontece 1 única vez
             }
