@@ -22,6 +22,7 @@ import java.util.Queue;
 import ui.GameOver;
 import ui.Menu;
 import ui.MultiplayerMenu;
+import ui.POffline;
 
 public class Screen { 
     /*
@@ -46,6 +47,7 @@ public class Screen {
     Menu menuscreen;
     GameOver gameoverscreen;
     MultiplayerMenu multmenuscreen;
+    //POffline pofflinescreen;
     //para debug
     
     /*------------ CONSTRUTOR ------------*/
@@ -54,6 +56,7 @@ public class Screen {
         menuscreen = new Menu();
         gameoverscreen = new GameOver();
         multmenuscreen = new MultiplayerMenu();
+        //pofflinescreen = new POffline();
         //grama 
         /*grasslayer = new Grass(this, this.gc);
         objectsOnScreen.add(grasslayer);*/
@@ -84,6 +87,7 @@ public class Screen {
                 break;
             }
             case PLAYING_OFFLINE:{
+                //render do novo gamestate
                 for (Objects obj : objectsOnScreen) {
                         if (obj instanceof Environment || (obj.getX() >= -Universal.TILES_SIZE * 4 && obj.getIsActive())) {
                             obj.render(g2d);
@@ -102,6 +106,7 @@ public class Screen {
                 break;
             }
             case GAME_OVER:{
+                //pofflinescreen.render(g2d);
                 for (Objects obj : objectsOnScreen) {
                     if (obj instanceof Environment || (obj.getX() >= -Universal.TILES_SIZE * 4 && !obj.getIsActive())) {
                         obj.render(g2d);

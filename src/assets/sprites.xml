@@ -68,7 +68,11 @@
     <sprite name="menu_exitButton">
         <path>/assets/ui/menu_exit_button.png</path>
     </sprite>
-    
+    <!-- JOGANDO AFK -->
+    <sprite name="backgroundDay">
+        <path>/assets/environment/possivelFundo.png</path>
+    </sprite>
+        
     
     <!-- tela de game over -->
     <sprite name="gameover_menuButton">
