@@ -18,6 +18,7 @@ public class GRoom implements Runnable {
     public double proximoFrame = System.nanoTime() + tempoPorFrame;
     long timer = System.currentTimeMillis();
     int frames = 0;
+    int updates = 0;
         
     /*------------ CONSTRUTOR ------------*/
 	public GRoom(GCanvas gc) {
@@ -39,6 +40,7 @@ public class GRoom implements Runnable {
             dT = Math.min(dT, 1.0 / 30.0);
         
             update(dT);
+            updates++;
             render();
             
             //dificuldade crescente 
@@ -81,6 +83,16 @@ public class GRoom implements Runnable {
                 throw new RuntimeException(e);
             }
             proximoFrame += tempoPorFrame;
+            
+            // FPS COUNTER
+            frames++;
+
+            if (System.currentTimeMillis() - timer >= 1000) {
+                System.out.println("FPS: " + frames + " | UPS: " + updates);
+                frames = 0;
+                updates = 0;
+                timer += 1000;
+            }
             //System.out.println("Global Cooldown: " + Universal.globalCooldown);
         }
         

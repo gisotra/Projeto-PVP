@@ -15,9 +15,9 @@ import instances.obstacles.Obstacles;
 import instances.obstacles.Saw;
 import instances.obstacles.Wall;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 import loop.GCanvas;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.List;
 
 import ui.GameOver;
 import ui.Menu;
@@ -36,7 +36,7 @@ public class Screen {
     */
     /*------------ ATRIBUTOS ------------*/
     public GCanvas gc;
-    public static Queue<Objects> objectsOnScreen = new LinkedList<>(); //vou usar pra dar update e render no player e nos obstaculos simultaneamente (mto amigavel com a cpu)
+    public static List<Objects> objectsOnScreen = new ArrayList<>(); //vou usar pra dar update e render no player e nos obstaculos simultaneamente (mto amigavel com a cpu)
     
     Player1 player1;
     Spawner spawner;
@@ -47,7 +47,7 @@ public class Screen {
     Menu menuscreen;
     GameOver gameoverscreen;
     MultiplayerMenu multmenuscreen;
-    //POffline pofflinescreen;
+    POffline pofflinescreen;
     //para debug
     
     /*------------ CONSTRUTOR ------------*/
@@ -56,7 +56,7 @@ public class Screen {
         menuscreen = new Menu();
         gameoverscreen = new GameOver();
         multmenuscreen = new MultiplayerMenu();
-        //pofflinescreen = new POffline();
+        pofflinescreen = new POffline();
         //grama 
         /*grasslayer = new Grass(this, this.gc);
         objectsOnScreen.add(grasslayer);*/
@@ -87,6 +87,7 @@ public class Screen {
                 break;
             }
             case PLAYING_OFFLINE:{
+                pofflinescreen.render(g2d);
                 //render do novo gamestate
                 for (Objects obj : objectsOnScreen) {
                         if (obj instanceof Environment || (obj.getX() >= -Universal.TILES_SIZE * 4 && obj.getIsActive())) {
