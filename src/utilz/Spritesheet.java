@@ -11,7 +11,7 @@ public class Spritesheet { /*Classe para gerenciamento dos sprites*/
     private int renderHeight; //produto final dos tamanhos do frame * escala
     BufferedImage spritesheet; //meu spritesheet full 
     BufferedImage[][] sprites; //o spritesheet dividido
-    
+    BufferedImage[][] spritesEscalonados; //Evita cálculo desnecessario na renderização
     int frameAtual;
     int totalFrames;
     int indice;
@@ -44,6 +44,12 @@ public class Spritesheet { /*Classe para gerenciamento dos sprites*/
         if(spritesheet.getWidth() == frameWidthOriginal){
                 totalFrames = 0;
                 trocaDeFrames = 0;
+            spritesEscalonados = new BufferedImage[1][1];
+            BufferedImage scaled = new BufferedImage(renderWidth, renderHeight, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g = scaled.createGraphics();
+            g.drawImage(spritesheet, 0, 0, renderWidth, renderHeight, null);
+            g.dispose();
+            spritesEscalonados[0][0] = scaled;
                 //vou usar somente meu atributo spritesheet
         } else {
         
@@ -53,6 +59,7 @@ public class Spritesheet { /*Classe para gerenciamento dos sprites*/
             trocaDeFrames = (int)(Universal.FPS_SET * time / totalFrames);
 
             sprites = new BufferedImage[totalIndices][totalFrames];
+            spritesEscalonados = new BufferedImage[totalIndices][totalFrames];
             initSprites();
         }
     }
@@ -63,7 +70,16 @@ public class Spritesheet { /*Classe para gerenciamento dos sprites*/
         }
         for(int i = 0; i < totalIndices; i++){
             for(int j = 0; j < totalFrames; j++){
-                sprites[i][j] = getSpriteFromSheet(spritesheet, j * frameWidthOriginal, i * frameHeightOriginal, frameWidthOriginal, frameHeightOriginal);
+                sprites[i][j] = getSpriteFromSheet(spritesheet,
+                        j * frameWidthOriginal,
+                        i * frameHeightOriginal, frameWidthOriginal, frameHeightOriginal);
+
+                BufferedImage scaled = new BufferedImage(renderWidth, renderHeight, BufferedImage.TYPE_INT_ARGB);
+                Graphics2D g = scaled.createGraphics();
+                g.drawImage(sprites[i][j], 0, 0, renderWidth, renderHeight, null);
+                g.dispose();
+
+                spritesEscalonados[i][j] = scaled;
             }
         }
     }
@@ -82,7 +98,7 @@ public class Spritesheet { /*Classe para gerenciamento dos sprites*/
     
     public void render(Graphics2D g2d, int x, int y) {
         if(totalIndices == 0 && totalFrames == 0 && trocaDeFrames == 0){ //é um obstáculo estático
-        g2d.drawImage(spritesheet, x, y, renderWidth, renderHeight, null);
+            g2d.drawImage(spritesEscalonados[acaoAtual][frameAtual], x, y, null);
             
         } else {
         contadorFrames++;
@@ -95,8 +111,8 @@ public class Spritesheet { /*Classe para gerenciamento dos sprites*/
         if(Universal.dead){
             contadorFrames = 0;
         }
-        
-        g2d.drawImage(sprites[acaoAtual][frameAtual], x, y, renderWidth, renderHeight, null);
+
+            g2d.drawImage(spritesEscalonados[acaoAtual][frameAtual], x, y, null);
         }
     }
 

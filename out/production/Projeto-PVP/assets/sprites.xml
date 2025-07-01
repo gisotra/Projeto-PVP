@@ -1,9 +1,24 @@
 <sprites>
+    <!-- Player -->
     <sprite name="player1">
         <path>/assets/player/player.png</path>
     </sprite>
+    <sprite name="shadow">
+        <path>/assets/player/shadow.png</path>
+    </sprite>
+    <sprite name="mark">
+        <path>/assets/player/floormark.png</path>
+    </sprite>
+    
+    <!-- Obstáculos -->
     <sprite name="wall">
         <path>/assets/obstacles/wall.png</path>
+    </sprite>
+    <sprite name="fallblock">
+        <path>/assets/obstacles/fallblock.png</path>
+    </sprite>
+    <sprite name="blockshadow">
+        <path>/assets/obstacles/block_shadow.png</path>
     </sprite>
     <sprite name="saw">
         <path>/assets/obstacles/saw.png</path>
@@ -29,19 +44,51 @@
     </sprite>
     <!-- Fundos dos Gamestates -->
     <sprite name="fundoMenu">
-        <path>/assets/menu/fundoProto.png</path>
+        <path>/assets/menu/fundoMenu.png</path>
     </sprite>
     <sprite name="fundoGameOver">
-        <path>/assets/menu/fundoProto.png</path>
+        <path>/assets/menu/fundoGameOverProto.png</path>
     </sprite>
     <sprite name="fundoAbout">
         <path>/assets/menu/fundoProto.png</path>
     </sprite>
+    
     <!-- BOTÕES DOS GAMESTATES -->
-    <sprite name="menuButton">
+    <sprite name="exitbutton">
+        <path>/assets/ui/exit_button.png</path>
+    </sprite>
+    
+    <!-- tela de menu -->
+    <sprite name="menu_playOfflineButton">
+        <path>/assets/ui/menu_playOffline_button.png</path>
+    </sprite>
+    <sprite name="menu_playOnlineButton">
+        <path>/assets/ui/menu_playOnline_button.png</path>
+    </sprite>
+    <sprite name="menu_exitButton">
+        <path>/assets/ui/menu_exit_button.png</path>
+    </sprite>
+    <!-- JOGANDO AFK -->
+    <sprite name="backgroundDay">
+        <path>/assets/environment/possivelFundo.png</path>
+    </sprite>
+        
+    
+    <!-- tela de game over -->
+    <sprite name="gameover_menuButton">
         <path>/assets/ui/gameover_menu_b.png</path>
     </sprite>
-    <sprite name="restartButton">
+    <sprite name="gameover_restartButton">
         <path>/assets/ui/gameover_restart_b.png</path>
     </sprite>
+    
+    <!-- tela de Multiplayer -->
+    <sprite name="asServerButton">
+        <path>/assets/ui/playAsServer_button.png</path>
+    </sprite>
+    <sprite name="asClientButton">
+        <path>/assets/ui/playAsClient_button.png</path>
+    </sprite>
+    
+    
 </sprites>
