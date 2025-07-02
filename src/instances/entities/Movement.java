@@ -8,8 +8,8 @@ public class Movement {
     */
     
     Player1 player1;
-    public double speed = 120.2*Universal.SCALE;
-    public double MAX_SPEED = 3.5*Universal.SCALE;
+    public float speed = 100f*Universal.SCALE;
+    public float MAX_SPEED = 120f*Universal.SCALE;
     public float horizontalSpeed;
     public float atrito = 25.0f*Universal.SCALE;
     public static boolean isJumping = false;
@@ -116,7 +116,7 @@ public class Movement {
         }
 
         //aplico a mudança no player
-        player1.setX(player1.getX() + horizontalSpeed);
+        player1.setX((float) (player1.getX() + horizontalSpeed));
         if(player1.getX() < 0){
             player1.setX(0);
         } else if (player1.getX() >= Universal.GAME_WIDTH - (Universal.TILES_SIZE)/2){

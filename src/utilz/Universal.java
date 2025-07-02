@@ -93,7 +93,7 @@ public class Universal {
     public static boolean block = false; //flag de spawn 
     
     // =============== Geral =============== 
-    public static double OBST_SPEED = 0;
+    public static float OBST_SPEED = 0;
     public static int lastSpeedUpScore = 0;
     public static int speedUpgrades = 0;
     public static final int MAX_SPEED_UPGRADES = 7;
@@ -116,7 +116,7 @@ public class Universal {
     }
     
     public static void resetGameValues(){
-        OBST_SPEED = -1.8 * (double) SCALE;
+        OBST_SPEED = -60f * SCALE;
         globalCooldown = 2000;
         SCORE = 0;
         dead = false;
@@ -126,7 +126,7 @@ public class Universal {
     
     public static void increaseAllSpeed(){
         if (speedUpgrades < MAX_SPEED_UPGRADES) {
-            OBST_SPEED -= 1.5;
+            OBST_SPEED -= 10f;
             speedUpgrades++;
         }
     }

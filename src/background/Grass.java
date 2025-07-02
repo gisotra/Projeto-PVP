@@ -49,7 +49,7 @@ public class Grass extends Environment {
     @Override
     public void update(double deltaTime) {
         if (x + widthO * Universal.SCALE >= 0) {
-            this.setX(this.getX() + (float) (Universal.OBST_SPEED + grassValue));
+            this.setX(this.getX() + (float) (Universal.OBST_SPEED + grassValue * (float)deltaTime));
             if (x <= -Universal.GAME_WIDTH ) {
                 x = 0;
             }

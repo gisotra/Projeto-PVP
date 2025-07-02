@@ -51,6 +51,7 @@ public class GRoom implements Runnable {
             // Substeps: atualiza várias vezes se necessário
             while (accumulator >= fixedStep) {
                 update(fixedStep);
+                //System.out.println(fixedStep);
                 updates++;
                 accumulator -= fixedStep;
 
