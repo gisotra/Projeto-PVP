@@ -27,75 +27,84 @@ public class GRoom implements Runnable {
         /*------------ MÉTODO RUN DA THREAD ------------*/
     @Override
     public void run() {
+        double fixedStep = 1.0 / 60.0;
+        double accumulator = 0.0;
+
         while (true) {
 
-            if(!gc.isDisplayable() || !gc.isFocusOwner()){
+            if (!gc.isDisplayable() || !gc.isFocusOwner()) {
                 sleepEngine();
                 continue;
             }
-            
+
             double agora = System.nanoTime();
-            dT = (System.nanoTime() - ultimoTempo) / 1_000_000_000;
+            double frameTime = (agora - ultimoTempo) / 1_000_000_000.0;
             ultimoTempo = agora;
-            dT = Math.min(dT, 1.0 / 30.0);
-        
-            update(dT);
-            updates++;
-            render();
-            
-            //dificuldade crescente 
-            if (Gamestate.state == PLAYING_OFFLINE) {
-                Universal.SCORE += (int) (100 * dT);
 
-                if (Universal.SCORE - Universal.lastSpeedUpScore >= 1000) {
-                    Universal.lastSpeedUpScore = (Universal.SCORE / 1000) * 1000;
+            // Evita explosão de updates em travadas longas
+            if (frameTime > 0.25) {
+                frameTime = 0.25;
+            }
 
-                    // Diminuição do cooldown inicial até 2000
-                    if (Universal.SCORE <= 2000) {
-                        Universal.globalCooldown -= 500;
-                    } else {
-                        // Aumento de velocidade com limite
-                        Universal.increaseAllSpeed();
+            accumulator += frameTime;
 
-                        // A partir de 7000, cooldown diminui progressivamente, de 100 em 100, até 500
-                        if (Universal.SCORE >= 4000 && Universal.globalCooldown > 100) {
-                            Universal.globalCooldown -= 150;
-                            if (Universal.globalCooldown < 500) {
-                                Universal.globalCooldown = 500;
+            // Substeps: atualiza várias vezes se necessário
+            while (accumulator >= fixedStep) {
+                update(fixedStep);
+                updates++;
+                accumulator -= fixedStep;
+
+                // SCORE progressivo baseado no fixedStep, não no deltaTime mais
+                if (Gamestate.state == PLAYING_OFFLINE) {
+                    Universal.SCORE += (int) (100 * fixedStep);
+
+                    if (Universal.SCORE - Universal.lastSpeedUpScore >= 1000) {
+                        Universal.lastSpeedUpScore = (Universal.SCORE / 1000) * 1000;
+
+                        if (Universal.SCORE <= 2000) {
+                            Universal.globalCooldown -= 500;
+                        } else {
+                            Universal.increaseAllSpeed();
+                            if (Universal.SCORE >= 4000 && Universal.globalCooldown > 100) {
+                                Universal.globalCooldown -= 150;
+                                if (Universal.globalCooldown < 500) {
+                                    Universal.globalCooldown = 500;
+                                }
                             }
                         }
                     }
                 }
             }
 
+            // Renderiza uma vez por frame (último estado simulado)
+            render();
+            frames++;
+
+            // Controla o tempo de sono com base na lógica de FPS
             threadSleep = ((proximoFrame - System.nanoTime()) / 1_000_000);
-            if(threadSleep < 0){
+            if (threadSleep < 0) {
                 threadSleep = 0;
             }
-           
-            threadSleepMS = (long) threadSleep;
-            threadSleepNano = (int) ((threadSleep - threadSleepMS) * 1_000_000); 
 
-            // Dorme um pouco pra não travar a CPU
+            threadSleepMS = (long) threadSleep;
+            threadSleepNano = (int) ((threadSleep - threadSleepMS) * 1_000_000);
+
             try {
                 Thread.sleep(threadSleepMS, threadSleepNano);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            proximoFrame += tempoPorFrame;
-            
-            // FPS COUNTER
-            frames++;
 
+            proximoFrame += tempoPorFrame;
+
+            // FPS / UPS debug
             if (System.currentTimeMillis() - timer >= 1000) {
                 System.out.println("FPS: " + frames + " | UPS: " + updates);
                 frames = 0;
                 updates = 0;
                 timer += 1000;
             }
-            //System.out.println("Global Cooldown: " + Universal.globalCooldown);
         }
-        
     }
     /*------------ MÉTODO UPDATE ------------*/
     public void update(double dT) {

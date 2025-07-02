@@ -12,9 +12,9 @@ import utilz.Spritesheet;
 import utilz.Universal;
 
 public class Trees1 extends Environment {
-
     
-    private float speed = 1.3f * Universal.SCALE; // Velocidade relativa ao mundo
+    float midValue = 5.4f;
+    //private double speed = Universal.OBST_SPEED; // Velocidade relativa ao mundo
     BufferedImage groundSpriteSheet;
     /*
     float drawX = x + i * (widthO * spritesheet.scale);
@@ -23,21 +23,21 @@ public class Trees1 extends Environment {
     
     public Trees1(Screen screen, GCanvas gc) {
         super(screen, gc);
-        this.y = -3;
+        this.y = -80;
         this.x = 0;
         initSprite();
         setIsActive(true);
     }
 
     public void initSprite() {
-        SpriteData trees1Data = SpriteLoader.spriteDataLoader().get("trees1");
+        SpriteData grassData = SpriteLoader.spriteDataLoader().get("midLayer");
         try {
-            groundSpriteSheet = ImageIO.read(getClass().getResource(trees1Data.getPath()));
+            groundSpriteSheet = ImageIO.read(getClass().getResource(grassData.getPath()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         //altura e largura do meu sprite do chão (fullscreen)
-        setWidth(448); //largura em px do FRAME ORIGINAL 
+        setWidth(896); //largura em px do FRAME ORIGINAL 
         setHeight(256); //altura em px do FRAME ORIGINAL
         setSpritesheet(groundSpriteSheet, Universal.SCALE);
     }
@@ -49,9 +49,9 @@ public class Trees1 extends Environment {
     @Override
     public void update(double deltaTime) {
         if (x + widthO * Universal.SCALE >= 0) {
-            x -= speed * deltaTime;
-            if (x <= -Universal.GAME_WIDTH) {
-                x = Universal.GAME_WIDTH;
+            this.setX(this.getX() + (float) (Universal.OBST_SPEED + midValue));
+            if (x <= -Universal.GAME_WIDTH ) {
+                x = 0;
             }
         }
     }
@@ -62,6 +62,5 @@ public class Trees1 extends Environment {
             spritesheet.render(g2d, (int) x, (int) y);
         }
     }
-}
     
-
+}

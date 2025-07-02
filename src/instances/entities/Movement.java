@@ -8,7 +8,7 @@ public class Movement {
     */
     
     Player1 player1;
-    public double speed = 2.2*Universal.SCALE;
+    public double speed = 120.2*Universal.SCALE;
     public double MAX_SPEED = 3.5*Universal.SCALE;
     public float horizontalSpeed;
     public float atrito = 25.0f*Universal.SCALE;
@@ -84,11 +84,11 @@ public class Movement {
 
         if (Universal.right && !Universal.dead) {
 
-            horizontalSpeed = (float) speed;
+            horizontalSpeed = (float) speed * (float) deltaTime;
 
         } else if (Universal.left && !Universal.dead) {
 
-            horizontalSpeed = (float) -speed;
+            horizontalSpeed = (float) -speed * (float) deltaTime;
 
         } else if (Universal.dead){
             horizontalSpeed = 0;

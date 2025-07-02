@@ -32,8 +32,8 @@
     <sprite name="grass">
         <path>/assets/environment/grass.png</path>
     </sprite>
-    <sprite name="trees1">
-        <path>/assets/environment/trees1.png</path>
+    <sprite name="midLayer">
+        <path>/assets/environment/midlayertest.png</path>
     </sprite>
     <sprite name="trees2">
         <path>/assets/environment/trees2.png</path>

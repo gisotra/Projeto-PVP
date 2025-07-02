@@ -3,6 +3,7 @@ package utilz;
 import background.Environment;
 import background.Grass;
 import background.Ground;
+import background.Trees1;
 import gamestates.Gamestate;
 import static gamestates.Gamestate.*;
 import instances.Objects;
@@ -43,6 +44,7 @@ public class Screen {
     /*--- obstáculos ---*/
     Ground groundlayer;
     Grass grasslayer;
+    Trees1 midlayer;
     /*--- game states ---*/
     Menu menuscreen;
     GameOver gameoverscreen;
@@ -57,15 +59,21 @@ public class Screen {
         gameoverscreen = new GameOver();
         multmenuscreen = new MultiplayerMenu();
         pofflinescreen = new POffline();
+            
+        //midlayer
+        //midlayer = new Trees1(this, this.gc);
+        //objectsOnScreen.add(midlayer);
+
         //grama 
-        /*grasslayer = new Grass(this, this.gc);
-        objectsOnScreen.add(grasslayer);*/
-        
-        
-        
+        grasslayer = new Grass(this, this.gc);
+        objectsOnScreen.add(grasslayer);
         //chão
         groundlayer = new Ground(this, this.gc);
         objectsOnScreen.add(groundlayer);
+        
+        
+        
+        
         
         
         player1 = new Player1(this, this.gc);

@@ -13,7 +13,7 @@ import utilz.SpriteLoader;
 import utilz.Spritesheet;
 import utilz.Universal;
 
-public class Saw extends Obstacles{ //extends Obstacles
+public class Saw extends Obstacles{ //extends Obstacles, que extende objects
     /*------------ ATRIBUTOS ------------*/
     BufferedImage sawSpriteSheet;
     /*------------ CONSTRUTOR ------------*/
@@ -62,4 +62,18 @@ public class Saw extends Obstacles{ //extends Obstacles
             drawObstHitbox(g2d);
         }
     }
+    
+    @Override
+    public void update(double deltaTime) {
+        //speed =  Universal.OBST_SPEED;
+        if (this.isActive) { // se estiver ativo
+            /*if(speed < -MAX_SPEED){
+                speed = -MAX_SPEED;
+            }*/
+
+            this.setX(this.getX() + (float) Universal.OBST_SPEED); //atualizo a speed
+            updateObstHitbox();
+        }
+    }
+    
 }

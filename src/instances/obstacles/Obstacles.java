@@ -54,8 +54,10 @@ public abstract class Obstacles extends Objects{ //muito similiar a classe Entit
             /*if(speed < -MAX_SPEED){
                 speed = -MAX_SPEED;
             }*/
+            
         this.setX(this.getX() + (float) Universal.OBST_SPEED ); //atualizo a speed
         updateObstHitbox();
+            System.out.printf("X: %.2f, Speed: %.2f, dT: %.5f\n", getX(), Universal.OBST_SPEED, deltaTime);
         }
     }
     

@@ -13,7 +13,7 @@ import utilz.Universal;
 
 public class Grass extends Environment {
 
-    
+    float grassValue = 5f;
     //private double speed = Universal.OBST_SPEED; // Velocidade relativa ao mundo
     BufferedImage groundSpriteSheet;
     /*
@@ -23,7 +23,7 @@ public class Grass extends Environment {
     
     public Grass(Screen screen, GCanvas gc) {
         super(screen, gc);
-        this.y = -3;
+        this.y = -80;
         this.x = 0;
         initSprite();
         setIsActive(true);
@@ -49,7 +49,7 @@ public class Grass extends Environment {
     @Override
     public void update(double deltaTime) {
         if (x + widthO * Universal.SCALE >= 0) {
-            this.setX(this.getX() + (float) Universal.OBST_SPEED );
+            this.setX(this.getX() + (float) (Universal.OBST_SPEED + grassValue));
             if (x <= -Universal.GAME_WIDTH ) {
                 x = 0;
             }
