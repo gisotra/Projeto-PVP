@@ -37,8 +37,8 @@ public class Ground extends Environment {
             throw new RuntimeException(e);
         }
         //altura e largura do meu sprite do chão (fullscreen)
-        setWidth(896); //largura em px do FRAME ORIGINAL 
-        setHeight(256); //altura em px do FRAME ORIGINAL
+        setWidth(896); //largura em px do FRAME ORIGINAL 28 tiles
+        setHeight(256); //altura em px do FRAME ORIGINAL 8 tiles 
         setSpritesheet(groundSpriteSheet, Universal.SCALE);
     }
     
