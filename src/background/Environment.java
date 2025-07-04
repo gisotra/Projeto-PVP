@@ -12,7 +12,7 @@ public abstract class Environment extends Objects{
         super(screen, gc);
     }
     @Override
-    public abstract void update(double deltaTime);
+    public abstract void update(float deltaTime);
 
     @Override
     public abstract void render(Graphics2D g2d);

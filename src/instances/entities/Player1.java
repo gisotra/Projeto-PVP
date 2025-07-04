@@ -55,7 +55,7 @@ public class Player1 extends Entities{
     }
     
     @Override
-    public void update(double deltaTime){
+    public void update(float deltaTime){
         movement.updatePosY(deltaTime);
         movement.updatePosX(deltaTime);
         collider.updateCollisionArea();

@@ -30,7 +30,7 @@ public class Movement {
         groundLvl = Universal.groundY - heightGY + 40; // 5 Tiles - 1 = 4 tiles
     }
     
-    public void updatePosY(double deltaTime){ //ainda vou usar o deltaTime para movimentação horizontal depois
+    public void updatePosY(float deltaTime){ //ainda vou usar o deltaTime para movimentação horizontal depois
         
         if(!Universal.dead){
             deathJump = false;
@@ -79,16 +79,16 @@ public class Movement {
             }
     }
     
-    public void updatePosX(double deltaTime) {
+    public void updatePosX(float deltaTime) {
         
 
         if (Universal.right && !Universal.dead) {
 
-            horizontalSpeed = (float) speed * (float) deltaTime;
+            horizontalSpeed = (float) speed;
 
         } else if (Universal.left && !Universal.dead) {
 
-            horizontalSpeed = (float) -speed * (float) deltaTime;
+            horizontalSpeed = (float) -speed;
 
         } else if (Universal.dead){
             horizontalSpeed = 0;
@@ -116,7 +116,7 @@ public class Movement {
         }
 
         //aplico a mudança no player
-        player1.setX((float) (player1.getX() + horizontalSpeed));
+        player1.setX((float) (player1.getX() + horizontalSpeed * deltaTime));
         if(player1.getX() < 0){
             player1.setX(0);
         } else if (player1.getX() >= Universal.GAME_WIDTH - (Universal.TILES_SIZE)/2){

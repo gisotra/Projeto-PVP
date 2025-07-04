@@ -47,7 +47,7 @@ public class Trees1 extends Environment {
     }
     
     @Override
-    public void update(double deltaTime) {
+    public void update(float deltaTime) {
         if (x + widthO * Universal.SCALE >= 0) {
             this.setX(this.getX() + (float) (Universal.OBST_SPEED + midValue * (float)deltaTime));
             if (x <= -Universal.GAME_WIDTH ) {

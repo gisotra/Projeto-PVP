@@ -47,7 +47,7 @@ public class Trees2 extends Environment {
     }
     
     @Override
-    public void update(double deltaTime) {
+    public void update(float deltaTime) {
         if (x + widthO * Universal.SCALE >= 0) {
             x -= speed * deltaTime;
             if (x <= -Universal.GAME_WIDTH) {

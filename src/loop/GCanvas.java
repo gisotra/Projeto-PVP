@@ -105,7 +105,7 @@ public class GCanvas extends Canvas {
         return screen;
     }
     
-    public void update(double dT) {
+    public void update(float dT) {
         screen.updateAll(dT);
     }
     

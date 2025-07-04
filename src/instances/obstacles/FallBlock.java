@@ -80,10 +80,10 @@ public class FallBlock extends Obstacles{ //extends Obstacles
     }
     
     @Override
-    public void update(double deltaTime) {
+    public void update(float deltaTime) {
         //movimentação constante pra esquerda
         if (this.isActive) { // se estiver ativo
-            this.setX(this.getX() + (float) Universal.OBST_SPEED * (float)deltaTime); //atualizo a speed
+            this.setX(this.getX() + Universal.OBST_SPEED * deltaTime); //atualizo a speed
             updateY();
             updateObstHitbox();
         }

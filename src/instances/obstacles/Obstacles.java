@@ -11,8 +11,7 @@ import utilz.Universal;
 
 public abstract class Obstacles extends Objects{ //muito similiar a classe Entities, porém direcionada unicamente aos obstáculos
     /*------------ ATRIBUTOS ------------*/
-    public double speed; //ele vai sempre vir pra esquerda 
-    public double MAX_SPEED = 1.8f*Universal.SCALE;
+    public float speed; //ele vai sempre vir pra esquerda
     public Rectangle2D.Float obs_hitbox; //desenvolver na criação dos objetos wall, saw, bird, etc
 
     /*------------ CONSTRUTOR ------------*/
@@ -48,14 +47,9 @@ public abstract class Obstacles extends Objects{ //muito similiar a classe Entit
     public abstract void setSpritesheet(BufferedImage spritesheet, float renderScale);
     
     @Override
-    public void update(double deltaTime) {
-        //speed =  Universal.OBST_SPEED;
+    public void update(float deltaTime) {
         if(this.isActive){ // se estiver ativo
-            /*if(speed < -MAX_SPEED){
-                speed = -MAX_SPEED;
-            }*/
-            
-        this.setX(this.getX() + (float) Universal.OBST_SPEED * (float)deltaTime); //atualizo a speed
+        this.setX(this.getX() + Universal.OBST_SPEED * deltaTime); //atualizo a speed
         updateObstHitbox();
             System.out.printf("X: %.2f, Speed: %.2f, dT: %.5f\n", getX(), Universal.OBST_SPEED, deltaTime);
         }

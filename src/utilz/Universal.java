@@ -116,7 +116,7 @@ public class Universal {
     }
     
     public static void resetGameValues(){
-        OBST_SPEED = -60f * SCALE;
+        OBST_SPEED = -100f * SCALE;
         globalCooldown = 2000;
         SCORE = 0;
         dead = false;

@@ -65,11 +65,11 @@ public class Screen {
         //objectsOnScreen.add(midlayer);
 
         //grama 
-        grasslayer = new Grass(this, this.gc);
-        objectsOnScreen.add(grasslayer);
+        //grasslayer = new Grass(this, this.gc);
+        //objectsOnScreen.add(grasslayer);
         //chão
-        groundlayer = new Ground(this, this.gc);
-        objectsOnScreen.add(groundlayer);
+        //groundlayer = new Ground(this, this.gc);
+        //objectsOnScreen.add(groundlayer);
         
         
         
@@ -95,7 +95,7 @@ public class Screen {
                 break;
             }
             case PLAYING_OFFLINE:{
-                pofflinescreen.render(g2d);
+                //pofflinescreen.render(g2d);
                 //render do novo gamestate
                 for (Objects obj : objectsOnScreen) {
                         if (obj instanceof Environment || (obj.getX() >= -Universal.TILES_SIZE * 4 && obj.getIsActive())) {
@@ -131,7 +131,7 @@ public class Screen {
     }
     
     /*------------ MÉTODO UPDATE ------------*/
-    public void updateAll(double variacaoTempo) {
+    public void updateAll(float variacaoTempo) {
         switch(Gamestate.state){
             case MENU:{
             break;

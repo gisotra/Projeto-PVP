@@ -69,7 +69,7 @@ public abstract class Objects {
     }
 
     /*------------ MÉTODOS ABSTRATOS ------------*/
-    public abstract void update(double deltaTime);
+    public abstract void update(float deltaTime);
 
     public abstract void render(Graphics2D g2d);
 }

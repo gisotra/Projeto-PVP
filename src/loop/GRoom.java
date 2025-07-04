@@ -5,30 +5,31 @@ import static gamestates.Gamestate.*;
 import utilz.Universal;
 
 public class GRoom implements Runnable {
-    
+
     /*------------ ATRIBUTOS ------------*/
-    
+
     GCanvas gc;
-    public double tempoPorFrame = 1_000_000_000.0 / Universal.FPS_SET;
+    public final double tempoPorFrame = 1_000_000_000.0 / Universal.FPS_SET;
     public double ultimoTempo = System.nanoTime();
-    public double dT;
+    public long proximoFrame = System.nanoTime() + (long) tempoPorFrame;
     public double threadSleep;
     public long threadSleepMS;
     public int threadSleepNano;
-    public double proximoFrame = System.nanoTime() + tempoPorFrame;
+
     long timer = System.currentTimeMillis();
     int frames = 0;
     int updates = 0;
-        
+
     /*------------ CONSTRUTOR ------------*/
-	public GRoom(GCanvas gc) {
-            this.gc = gc;
-	}
-        /*------------ MÉTODO RUN DA THREAD ------------*/
+    public GRoom(GCanvas gc) {
+        this.gc = gc;
+    }
+
+    /*------------ MÉTODO RUN DA THREAD ------------*/
     @Override
     public void run() {
-        double fixedStep = 1.0 / 60.0;
-        double accumulator = 0.0;
+        final float fixedStep = 1.0f / 60.0f;
+        float accumulator = 0.0f;
 
         while (true) {
 
@@ -46,16 +47,14 @@ public class GRoom implements Runnable {
                 frameTime = 0.25;
             }
 
-            accumulator += frameTime;
+            accumulator += (float) frameTime;
 
             // Substeps: atualiza várias vezes se necessário
             while (accumulator >= fixedStep) {
                 update(fixedStep);
-                //System.out.println(fixedStep);
                 updates++;
                 accumulator -= fixedStep;
 
-                // SCORE progressivo baseado no fixedStep, não no deltaTime mais
                 if (Gamestate.state == PLAYING_OFFLINE) {
                     Universal.SCORE += (int) (100 * fixedStep);
 
@@ -77,12 +76,12 @@ public class GRoom implements Runnable {
                 }
             }
 
-            // Renderiza uma vez por frame (último estado simulado)
+            // Renderiza uma vez por frame
             render();
             frames++;
 
             // Controla o tempo de sono com base na lógica de FPS
-            threadSleep = ((proximoFrame - System.nanoTime()) / 1_000_000);
+            threadSleep = (proximoFrame - System.nanoTime()) / 1_000_000.0;
             if (threadSleep < 0) {
                 threadSleep = 0;
             }
@@ -96,7 +95,7 @@ public class GRoom implements Runnable {
                 throw new RuntimeException(e);
             }
 
-            proximoFrame += tempoPorFrame;
+            proximoFrame += (long) tempoPorFrame;
 
             // FPS / UPS debug
             if (System.currentTimeMillis() - timer >= 1000) {
@@ -107,8 +106,9 @@ public class GRoom implements Runnable {
             }
         }
     }
+
     /*------------ MÉTODO UPDATE ------------*/
-    public void update(double dT) {
+    public void update(float dT) {
         gc.update(dT);
     }
 
@@ -116,15 +116,14 @@ public class GRoom implements Runnable {
     public void render() {
         gc.render();
     }
-    
-    public void sleepEngine(){
+
+    public void sleepEngine() {
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
-        proximoFrame = System.nanoTime() + tempoPorFrame; 
+        proximoFrame = System.nanoTime() + (long) tempoPorFrame;
         ultimoTempo = System.nanoTime();
     }
 }
-
