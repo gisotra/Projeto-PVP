@@ -41,7 +41,7 @@ public abstract class Obstacles extends Objects{ //muito similiar a classe Entit
     */}
     
     public void updateObstHitbox(){ //pode tirar e definir no obstacles
-        obs_hitbox.x = (int)getX(); //atualizo a posição horizontal
+        obs_hitbox.x = getX(); //atualizo a posição horizontal
     }
     
     public abstract void setSpritesheet(BufferedImage spritesheet, float renderScale);
@@ -51,7 +51,7 @@ public abstract class Obstacles extends Objects{ //muito similiar a classe Entit
         if(this.isActive){ // se estiver ativo
         this.setX(this.getX() + Universal.OBST_SPEED * deltaTime); //atualizo a speed
         updateObstHitbox();
-            System.out.printf("X: %.2f, Speed: %.2f, dT: %.5f\n", getX(), Universal.OBST_SPEED, deltaTime);
+            //System.out.printf("X: %.2f, Speed: %.2f, dT: %.5f\n", getX(), Universal.OBST_SPEED, deltaTime);
         }
     }
     

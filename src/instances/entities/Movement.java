@@ -84,11 +84,11 @@ public class Movement {
 
         if (Universal.right && !Universal.dead) {
 
-            horizontalSpeed = (float) speed;
+            horizontalSpeed = (float) speed * deltaTime;
 
         } else if (Universal.left && !Universal.dead) {
 
-            horizontalSpeed = (float) -speed;
+            horizontalSpeed = (float) -speed * deltaTime;
 
         } else if (Universal.dead){
             horizontalSpeed = 0;
@@ -116,7 +116,7 @@ public class Movement {
         }
 
         //aplico a mudança no player
-        player1.setX((float) (player1.getX() + horizontalSpeed * deltaTime));
+        player1.setX((float) (player1.getX() + horizontalSpeed));
         if(player1.getX() < 0){
             player1.setX(0);
         } else if (player1.getX() >= Universal.GAME_WIDTH - (Universal.TILES_SIZE)/2){

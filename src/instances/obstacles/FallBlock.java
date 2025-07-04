@@ -119,8 +119,8 @@ public class FallBlock extends Obstacles{ //extends Obstacles
     
     @Override
     public void updateObstHitbox() { //pode tirar e definir no obstacles
-        obs_hitbox.x = (int) getX(); //atualizo a posição horizontal
-        obs_hitbox.y = (int) getY(); //atualizo a posição vertical
+        obs_hitbox.x =  getX(); //atualizo a posição horizontal
+        obs_hitbox.y =  getY(); //atualizo a posição vertical
     }
     
     public float getHitboxHeight() {

@@ -68,8 +68,8 @@ public class Screen {
         //grasslayer = new Grass(this, this.gc);
         //objectsOnScreen.add(grasslayer);
         //chão
-        //groundlayer = new Ground(this, this.gc);
-        //objectsOnScreen.add(groundlayer);
+        groundlayer = new Ground(this, this.gc);
+        objectsOnScreen.add(groundlayer);
         
         
         
@@ -95,7 +95,7 @@ public class Screen {
                 break;
             }
             case PLAYING_OFFLINE:{
-                //pofflinescreen.render(g2d);
+                pofflinescreen.render(g2d);
                 //render do novo gamestate
                 for (Objects obj : objectsOnScreen) {
                         if (obj instanceof Environment || (obj.getX() >= -Universal.TILES_SIZE * 4 && obj.getIsActive())) {
